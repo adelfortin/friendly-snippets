@@ -1,4 +1,9 @@
 {
+	"author": {
+		"prefix": "author",
+		"body": ["@author ${user}"],
+		"description": "Author name"
+	},
     "main": {
         "prefix": "main",
         "body": ["public static void main(String[] args) {", "\t$0", "}"],
