@@ -26,52 +26,7 @@
         ],
         "description": "Select all from a table"
     },
-    "join": {
-        "prefix": "join",
-        "body": [
-            "SELECT *",
-            "FROM ${1:tab1_name} ${2:alias1}",
-            "\tJOIN ${3:tab2_name} ${4:alias2} ON ${2:alias1}.${5:cle} = ${4:alias2}.${6:cle};"
-        ],
-        "description": "Snippet for JOIN"
-    },
-    "join2": {
-        "prefix": "join2",
-        "body": [
-            "SELECT ${1:col}, ${2:col2}",
-            "FROM ${3:tableA} A, ${4:tableB} B",
-            "WHERE A.${5:cle} = B.${6:cle};"
-        ],
-        "description": "Snippet for multi-table SELECT with implicit join"
-    },
-    "ljoin": {
-        "prefix": "ljoin",
-        "body": [
-            "SELECT *",
-            "FROM ${1:tab1_name} ${2:alias1}",
-            "\tLEFT JOIN ${3:tab2_name} ${4:alias2} ON ${2:alias1}.${5:cle} = ${4:alias2}.${6:cle};"
-        ],
-        "description": "Snippet for LEFT JOIN"
-    },
-    "rjoin": {
-        "prefix": "rjoin",
-        "body": [
-            "SELECT *",
-            "FROM ${1:tab1_name} ${2:alias1}",
-            "\tRIGHT JOIN ${3:tab2_name} ${4:alias2} ON ${2:alias1}.${5:cle} = ${4:alias2}.${6:cle};"
-        ],
-        "description": "Snippet for RIGHT JOIN"
-    },
-    "fout": {
-        "prefix": "fout",
-        "body": [
-            "SELECT ${1:col}",
-            "FROM ${2:tab1_name} ${3:alias1}",
-            "\tFULL OUTER JOIN ${4:table2_name} ${5:alias2} ON ${3:alias1}.${6:cle} = ${5:alias2}.${7:cle}",
-            "WHERE ${3:alias1}.${8:cle} IS NULL OR ${5:alias2}.${9:cle} IS NULL;"
-        ],
-        "description": "Snippet for FULL OUTER JOIN"
-    },
+    
     "where": {
         "prefix": "where",
         "body": [
@@ -634,5 +589,171 @@
         "-- to_date_yyyymmdd: Conversion '19630112' en date"
     ],
     "description": "Aide-mémoire pour les snippets de gestion des dates"
+    },
+    "join": {
+        "prefix": "join",
+        "body": [
+            "SELECT *",
+            "FROM ${1:tab1_name} ${2:alias1}",
+            "\tJOIN ${3:tab2_name} ${4:alias2} ON ${2:alias1}.${5:cle} = ${4:alias2}.${6:cle};"
+        ],
+        "description": "Snippet for JOIN"
+    },
+    "join2": {
+        "prefix": "join2",
+        "body": [
+            "SELECT ${1:col}, ${2:col2}",
+            "FROM ${3:tableA} A, ${4:tableB} B",
+            "WHERE A.${5:cle} = B.${6:cle};"
+        ],
+        "description": "Snippet for multi-table SELECT with implicit join"
+    },
+    "ljoin": {
+        "prefix": "ljoin",
+        "body": [
+            "SELECT *",
+            "FROM ${1:tab1_name} ${2:alias1}",
+            "\tLEFT JOIN ${3:tab2_name} ${4:alias2} ON ${2:alias1}.${5:cle} = ${4:alias2}.${6:cle};"
+        ],
+        "description": "Snippet for LEFT JOIN"
+    },
+    "rjoin": {
+        "prefix": "rjoin",
+        "body": [
+            "SELECT *",
+            "FROM ${1:tab1_name} ${2:alias1}",
+            "\tRIGHT JOIN ${3:tab2_name} ${4:alias2} ON ${2:alias1}.${5:cle} = ${4:alias2}.${6:cle};"
+        ],
+        "description": "Snippet for RIGHT JOIN"
+    },
+    "fout": {
+        "prefix": "fout",
+        "body": [
+            "SELECT ${1:col}",
+            "FROM ${2:tab1_name} ${3:alias1}",
+            "\tFULL OUTER JOIN ${4:table2_name} ${5:alias2} ON ${3:alias1}.${6:cle} = ${5:alias2}.${7:cle}",
+            "WHERE ${3:alias1}.${8:cle} IS NULL OR ${5:alias2}.${9:cle} IS NULL;"
+        ],
+        "description": "Snippet for FULL OUTER JOIN"
+    },
+    "fjoin": {
+    "prefix": "join",
+    "body": [
+        "JOIN ${1:tab2_name} ${2:alias2} ON ${3:alias1}.${4:cle} = ${2:alias2}.${5:cle}"
+    ],
+    "description": "Snippet pour INNER JOIN avec extension"
+    },
+    "join_more": {
+    "prefix": "join_more",
+    "body": [
+        "JOIN ${1:tab3_name} ${2:alias3} ON ${3:alias2}.${4:cle} = ${2:alias3}.${5:cle}"
+    ],
+    "description": "Ajouter une autre jointure INNER JOIN"
+    },
+    "fljoin": {
+    "prefix": "ljoin",
+    "body": [
+        "LEFT JOIN ${1:tab2_name} ${2:alias2} ON ${3:alias1}.${4:cle} = ${2:alias2}.${5:cle}"
+    ],
+    "description": "Snippet pour LEFT JOIN avec extension"
+    },
+    "ljoin_more": {
+    "prefix": "ljoin_more",
+    "body": [
+        "LEFT JOIN ${1:tab3_name} ${2:alias3} ON ${3:alias2}.${4:cle} = ${2:alias3}.${5:cle}"
+    ],
+    "description": "Ajouter une autre jointure LEFT JOIN"
+    },
+    "frjoin": {
+    "prefix": "rjoin",
+    "body": [
+        "RIGHT JOIN ${1:tab2_name} ${2:alias2} ON ${3:alias1}.${4:cle} = ${2:alias2}.${5:cle}"
+    ],
+    "description": "Snippet pour RIGHT JOIN avec extension"
+    },
+    "rjoin_more": {
+    "prefix": "rjoin_more",
+    "body": [
+        "RIGHT JOIN ${1:tab3_name} ${2:alias3} ON ${3:alias2}.${4:cle} = ${2:alias3}.${5:cle}"
+    ],
+    "description": "Ajouter une autre jointure RIGHT JOIN"
+    },
+    "union": {
+    "prefix": "union",
+    "body": [
+        "${1:query1}",
+        "UNION",
+        "${2:query2}"
+    ],
+    "description": "Snippet pour UNION sans ALL"
+    },
+    "union_all": {
+    "prefix": "union_all",
+    "body": [
+        "${1:query1}",
+        "UNION ALL",
+        "${2:query2}"
+    ],
+    "description": "Snippet pour UNION avec ALL"
+    },
+    "intersect": {
+    "prefix": "intersect",
+    "body": [
+        "${1:query1}",
+        "INTERSECT",
+        "${2:query2}"
+    ],
+    "description": "Snippet pour INTERSECT sans ALL"
+    },
+    "intersect_all": {
+    "prefix": "intersect_all",
+    "body": [
+        "${1:query1}",
+        "INTERSECT ALL",
+        "${2:query2}"
+    ],
+    "description": "Snippet pour INTERSECT avec ALL"
+    },
+    "except": {
+    "prefix": "except",
+    "body": [
+        "${1:query1}",
+        "EXCEPT",
+        "${2:query2}"
+    ],
+    "description": "Snippet pour EXCEPT sans ALL"
+    },
+    "except_all": {
+    "prefix": "except_all",
+    "body": [
+        "${1:query1}",
+        "EXCEPT ALL",
+        "${2:query2}"
+    ],
+    "description": "Snippet pour EXCEPT avec ALL"
+    },
+    "printjoin": {
+    "prefix": "printjoin",
+    "body": [
+        "-- Snippets de jointures :",
+        "-- join: INNER JOIN",
+        "-- join: INNER JOIN avec une clause WHERE",
+        "-- fjoin: INNER JOIN avec extension",
+        "-- join_more: Ajouter une autre jointure INNER JOIN",
+        "-- ljoin: LEFT JOIN",
+        "-- fljoin: LEFT JOIN avec extension",
+        "-- ljoin_more: Ajouter une autre jointure LEFT JOIN",
+        "-- rjoin: RIGHT JOIN",
+        "-- rjoin: RIGHT JOIN avec extension",
+        "-- rjoin_more: Ajouter une autre jointure RIGHT JOIN",
+        "-- fout: FULL OUTER JOIN",
+        "-- union: UNION sans ALL",
+        "-- union_all: UNION avec ALL",
+        "-- intersect: INTERSECT sans ALL",
+        "-- intersect_all: INTERSECT avec ALL",
+        "-- except: EXCEPT sans ALL",
+        "-- except_all: EXCEPT avec ALL"
+    ],
+    "description": "Aide-mémoire pour les snippets de jointures et opérations d'ensembles"
     }
 }
