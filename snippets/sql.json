@@ -754,5 +754,127 @@
         "-- except_all: EXCEPT avec ALL"
     ],
     "description": "Aide-mémoire pour les snippets de jointures et opérations d'ensembles"
+    },
+    {
+    "avg": {
+        "prefix": "avg",
+        "body": ["AVG(${1:column})"],
+        "description": "Calculates the average of a column"
+    },
+    "count": {
+        "prefix": "count",
+        "body": ["COUNT(${1:column})"],
+        "description": "Counts the number of non-null values in a column"
+    },
+    "count_star": {
+        "prefix": "count_star",
+        "body": ["COUNT(*)"],
+        "description": "Counts all rows, including nulls"
+    },
+    "count_expr": {
+        "prefix": "count_expr",
+        "body": ["COUNT(${1:expression})"],
+        "description": "Counts the result of an expression"
+    },
+    "max": {
+        "prefix": "max",
+        "body": ["MAX(${1:column})"],
+        "description": "Finds the maximum value in a column"
+    },
+    "min": {
+        "prefix": "min",
+        "body": ["MIN(${1:column})"],
+        "description": "Finds the minimum value in a column"
+    },
+    "sum": {
+        "prefix": "sum",
+        "body": ["SUM(${1:column})"],
+        "description": "Calculates the sum of a column"
+    },
+    "group_concat": {
+        "prefix": "group_concat",
+        "body": ["GROUP_CONCAT(${1:column})"],
+        "description": "Concatenates the values of a column"
+    },
+    "stddev": {
+        "prefix": "stddev",
+        "body": ["STDDEV(${1:column})"],
+        "description": "Calculates the standard deviation of a column"
+    },
+    "variance": {
+        "prefix": "variance",
+        "body": ["VARIANCE(${1:column})"],
+        "description": "Calculates the variance of a column"
+    },
+    "median": {
+        "prefix": "median",
+        "body": ["MEDIAN(${1:column})"],
+        "description": "Calculates the median value of a column"
+    },
+    "grouping": {
+        "prefix": "grouping",
+        "body": ["GROUPING(${1:column})"],
+        "description": "Indicates whether a column is aggregated or not"
+    },
+    "percentile_cont": {
+        "prefix": "percentile_cont",
+        "body": [
+            "PERCENTILE_CONT(${1:percentile})",
+            "WITHIN GROUP (ORDER BY ${2:column})"
+        ],
+        "description": "Calculates a percentile using continuous distribution"
+    },
+    "percentile_disc": {
+        "prefix": "percentile_disc",
+        "body": [
+            "PERCENTILE_DISC(${1:percentile})",
+            "WITHIN GROUP (ORDER BY ${2:column})"
+        ],
+        "description": "Calculates a percentile using discrete distribution"
+    },
+    "corr": {
+        "prefix": "corr",
+        "body": ["CORR(${1:column_x}, ${2:column_y})"],
+        "description": "Calculates the correlation between two columns"
+    },
+    "covar_pop": {
+        "prefix": "covar_pop",
+        "body": ["COVAR_POP(${1:column_x}, ${2:column_y})"],
+        "description": "Calculates the population covariance of two columns"
+    },
+    "covar_samp": {
+        "prefix": "covar_samp",
+        "body": ["COVAR_SAMP(${1:column_x}, ${2:column_y})"],
+        "description": "Calculates the sample covariance of two columns"
+    },
+    "mode": {
+        "prefix": "mode",
+        "body": ["MODE() WITHIN GROUP (ORDER BY ${1:column})"],
+        "description": "Calculates the mode (most frequent value)"
+    },
+    "printgroup": {
+        "prefix": "printgroup",
+        "body": [
+            "-- Snippets for Group Functions:",
+            "-- avg: Calculates the average",
+            "-- count: Counts the non-null values",
+            "-- count_star: Counts all rows",
+            "-- count_expr: Counts the result of an expression",
+            "-- max: Finds the maximum value",
+            "-- min: Finds the minimum value",
+            "-- sum: Calculates the sum",
+            "-- group_concat: Concatenates values",
+            "-- stddev: Calculates the standard deviation",
+            "-- variance: Calculates the variance",
+            "-- median: Calculates the median",
+            "-- grouping: Indicates aggregation in GROUP BY",
+            "-- percentile_cont: Continuous percentile calculation",
+            "-- percentile_disc: Discrete percentile calculation",
+            "-- corr: Correlation between two columns",
+            "-- covar_pop: Population covariance",
+            "-- covar_samp: Sample covariance",
+            "-- mode: Mode within group"
+        ],
+        "description": "Aide-mémoire for SQL group functions"
     }
 }
