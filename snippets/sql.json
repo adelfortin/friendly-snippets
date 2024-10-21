@@ -976,7 +976,6 @@
         ],
         "description": "Aide-mémoire for HAVING clauses"
     },
-    {
     "create_table_if_exists": {
         "prefix": "create_table_if_exists",
         "body": [
@@ -1013,7 +1012,6 @@
         ],
         "description": "Print for CREATE operations"
     },
-    {
     "alter_table_add_column": {
         "prefix": "alter_table_add_column",
         "body": [
@@ -1094,7 +1092,6 @@
         ],
         "description": "Print for ALTER operations"
     },
-    {
     "drop_table_if_exists": {
         "prefix": "drop_table_if_exists",
         "body": [
