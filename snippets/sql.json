@@ -288,5 +288,209 @@
         "prefix": "cd",
         "body": ["CURRENT_DATE"],
         "description": "Current date"
-    }
+    },
+    "upper": {
+    "prefix": "upper",
+    "body": ["UPPER(${1:column})"],
+    "description": "Convertit une chaîne en majuscules"
+    },
+    "lower": {
+    "prefix": "lower",
+    "body": ["LOWER(${1:column})"],
+    "description": "Convertit une chaîne en minuscules"
+    },
+    "initcap": {
+    "prefix": "initcap",
+    "body": ["INITCAP(${1:column})"],
+    "description": "Mets en capitales la première lettre de chaque mot"
+    },
+    "substr": {
+    "prefix": "substr",
+    "body": ["SUBSTRING(${1:column} FROM ${2:start} FOR ${3:length})"],
+    "description": "Extrait une sous-chaîne"
+    },
+    "substr_from": {
+    "prefix": "substr_from",
+    "body": ["SUBSTRING(${1:column} FROM ${2:start})"],
+    "description": "Extrait une sous-chaîne avec FROM seulement"
+    },
+    "length": {
+    "prefix": "length",
+    "body": ["LENGTH(${1:column})"],
+    "description": "Renvoie la longueur de la chaîne"
+    },
+    "rpad": {
+    "prefix": "rpad",
+    "body": ["RPAD(${1:column}, ${2:total_length}, '${3:padding_char}')"],
+    "description": "Remplit la chaîne à droite jusqu'à la longueur spécifiée"
+    },
+    "printext": {
+    "prefix": "printext",
+    "body": [
+        "-- Snippets de manipulation de texte :",
+        "-- upper: Convertit une chaîne en majuscules",
+        "-- lower: Convertit une chaîne en minuscules",
+        "-- initcap: Mets en capitales la première lettre de chaque mot",
+        "-- substr_from: Extrait une sous-chaîne",
+        "-- substr: Extrait une sous-chaîne avec longueur défini",
+        "-- length: Renvoie la longueur de la chaîne",
+        "-- lpad: Remplit la chaîne à gauche",
+        "-- rpad: Remplit la chaîne à droite"
+    ],
+    "description": "Aide-mémoire pour les snippets de manipulation de texte"
+    },
+    "abs": {
+    "prefix": "abs",
+    "body": ["ABS(${1:column})"],
+    "description": "Renvoie la valeur absolue"
+    },
+    "mod": {
+    "prefix": "mod",
+    "body": ["MOD(${1:column}, ${2:divisor})"],
+    "description": "Renvoie le reste de la division"
+    },
+    "round": {
+    "prefix": "round",
+    "body": ["ROUND(${1:column}, ${2:decimal_places})"],
+    "description": "Arrondit un nombre au nombre de décimales spécifié"
+    },
+    "round_no_dec": {
+    "prefix": "round_no_dec",
+    "body": ["ROUND(${1:column})"],
+    "description": "Arrondit un nombre sans décimales"
+    },
+    "trunc": {
+    "prefix": "trunc",
+    "body": ["TRUNC(${1:column}, ${2:decimal_places})"],
+    "description": "Tronque un nombre au nombre de décimales spécifié"
+    },
+    "trunc_no_dec": {
+    "prefix": "trunc_no_dec",
+    "body": ["TRUNC(${1:column})"],
+    "description": "Tronque un nombre sans décimales"
+    },
+    "power": {
+    "prefix": "power",
+    "body": ["POWER(${1:column}, ${2:exponent})"],
+    "description": "Élève un nombre à la puissance spécifiée"
+    },
+    "printmath": {
+    "prefix": "printmath",
+    "body": [
+        "-- Snippets de fonctions mathématiques :",
+        "-- abs: Renvoie la valeur absolue",
+        "-- mod: Renvoie le reste de la division (modulo)",
+        "-- round: Arrondit un nombre avec décimales",
+        "-- round_no_dec: Arrondit un nombre sans décimales",
+        "-- trunc: Tronque un nombre avec décimales",
+        "-- trunc_no_dec: Tronque un nombre sans décimales",
+        "-- power: Élève un nombre à la puissance spécifiée"
+    ],
+    "description": "Aide-mémoire pour les fonctions mathématiques"
+    },
+    "where_equal": {
+    "prefix": "where_equal",
+    "body": ["WHERE ${1:column} = ${2|cond,'cond','\"cond\"|}"],
+    "description": "Condition WHERE avec égalité"
+    },
+    "where_not_equal": {
+    "prefix": "where_not_equal",
+    "body": [
+        "WHERE ${1:column} ${2|<>,!=|} ${3|cond,'cond','\"cond\"|}"
+    ],
+    "description": "Condition WHERE avec inégalité"
+    },
+    "where_less_than": {
+    "prefix": "where_lt",
+    "body": ["WHERE ${1:column} < ${2|cond,'cond','\"cond\"|}"],
+    "description": "Condition WHERE avec inférieur à"
+    },
+    "where_greater_than": {
+    "prefix": "where_gt",
+    "body": ["WHERE ${1:column} > ${2|cond,'cond','\"cond\"|}"],
+    "description": "Condition WHERE avec supérieur à"
+    },
+    "where_less_equal": {
+    "prefix": "where_le",
+    "body": ["WHERE ${1:column} <= ${2|cond,'cond','\"cond\"|}"],
+    "description": "Condition WHERE avec inférieur ou égal"
+    },
+    "where_greater_equal": {
+    "prefix": "where_ge",
+    "body": ["WHERE ${1:column} >= ${2|cond,'cond','\"cond\"|}"],
+    "description": "Condition WHERE avec supérieur ou égal"
+    },
+    "where_in": {
+    "prefix": "where_in",
+    "body": [
+        "WHERE ${1:column} IN (${2|'cond1', 'cond2', 'cond3'|})"
+    ],
+    "description": "Condition WHERE avec IN"
+    },
+    "where_is_null": {
+    "prefix": "where_is_null",
+    "body": ["WHERE ${1:column} IS NULL"],
+    "description": "Condition WHERE avec IS NULL"
+    },
+    "where_is_not_null": {
+    "prefix": "where_is_not_null",
+    "body": ["WHERE ${1:column} IS NOT NULL"],
+    "description": "Condition WHERE avec IS NOT NULL"
+    },
+    "where_between": {
+    "prefix": "where_between",
+    "body": [
+        "WHERE ${1:column} BETWEEN ${2|cond1,'cond1','\"cond1\"|} AND ${3|cond2,'cond2','\"cond2\"|}"
+    ],
+    "description": "Condition WHERE avec BETWEEN"
+    },
+    "where_not_between": {
+    "prefix": "where_not_between",
+    "body": [
+        "WHERE ${1:column} NOT BETWEEN ${2|cond1,'cond1','\"cond1\"|} AND ${3|cond2,'cond2','\"cond2\"|}"
+    ],
+    "description": "Condition WHERE avec NOT BETWEEN"
+    },
+    "where_like": {
+    "prefix": "where_like",
+    "body": [
+        "WHERE ${1:column} LIKE ${2|'%cond%', '_cond_'|}"
+    ],
+    "description": "Condition WHERE avec LIKE"
+    },
+    "where_and_or": {
+    "prefix": "where_and_or",
+    "body": [
+        "WHERE (${1:cond1} OR ${2:cond2}) AND ${3:cond3}"
+    ],
+    "description": "Condition WHERE avec AND et OR"
+    },
+    "where_or_and": {
+    "prefix": "where_or_and",
+    "body": [
+        "WHERE ${1:cond1} OR (${2:cond2} AND ${3:cond3})"
+    ],
+    "description": "Condition WHERE avec OR et AND imbriqués"
+    },
+    "printwhere": {
+    "prefix": "printwhere",
+    "body": [
+        "-- Snippets des clauses WHERE :",
+        "-- where_equal: Condition d'égalité",
+        "-- where_not_equal: Condition de non-égalité (<>, !=)",
+        "-- where_less_than: Condition inférieur à",
+        "-- where_greater_than: Condition supérieur à",
+        "-- where_less_equal: Condition inférieur ou égal",
+        "-- where_greater_equal: Condition supérieur ou égal",
+        "-- where_in: Condition IN",
+        "-- where_is_null: Condition IS NULL",
+        "-- where_is_not_null: Condition IS NOT NULL",
+        "-- where_between: Condition BETWEEN",
+        "-- where_not_between: Condition NOT BETWEEN",
+        "-- where_like: Condition LIKE avec % et _",
+        "-- where_and_or: Condition AND avec OR imbriqués",
+        "-- where_or_and: Condition OR avec AND imbriqués"
+    ],
+    "description": "Aide-mémoire des clauses WHERE"
+    },
 }
