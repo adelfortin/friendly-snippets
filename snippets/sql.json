@@ -492,5 +492,5 @@
         "-- where_or_and: Condition OR avec AND imbriqués"
     ],
     "description": "Aide-mémoire des clauses WHERE"
-    },
+    }
 }
