@@ -511,7 +511,7 @@
         "-- concat_pipe: Concaténer des colonnes avec ||",
         "-- coalesce: Remplacer les valeurs nulles avec COALESCE",
         "-- case_simple: Utiliser CASE pour transformer des valeurs",
-        "-- case_title: Transformation des civilités avec CASE",
+        "-- case_title: Transformation des civilités avec CASE"
     ],
     "description": "Aide-mémoire pour les snippets de mise en page SQL"
     },
