@@ -875,5 +875,105 @@
             "-- mode: Mode within group"
         ],
         "description": "Aide-mémoire for SQL group functions"
+    },
+    "having_eq": {
+        "prefix": "having_eq",
+        "body": ["HAVING ${1:agg_func}(${2:column}) = ${3:value}"],
+        "description": "HAVING clause with equality condition"
+    },
+    "having_gt": {
+        "prefix": "having_gt",
+        "body": ["HAVING ${1:agg_func}(${2:column}) > ${3:value}"],
+        "description": "HAVING clause with greater than condition"
+    },
+    "having_lt": {
+        "prefix": "having_lt",
+        "body": ["HAVING ${1:agg_func}(${2:column}) < ${3:value}"],
+        "description": "HAVING clause with less than condition"
+    },
+    "having_gte": {
+        "prefix": "having_gte",
+        "body": ["HAVING ${1:agg_func}(${2:column}) >= ${3:value}"],
+        "description": "HAVING clause with greater than or equal condition"
+    },
+    "having_lte": {
+        "prefix": "having_lte",
+        "body": ["HAVING ${1:agg_func}(${2:column}) <= ${3:value}"],
+        "description": "HAVING clause with less than or equal condition"
+    },
+    "having_not_equal": {
+        "prefix": "having_not_equal",
+        "body": ["HAVING ${1:agg_func}(${2:column}) <> ${3:value}"],
+        "description": "HAVING clause with not equal condition"
+    },
+    "having_and_or": {
+        "prefix": "having_and_or",
+        "body": [
+            "HAVING (${1:agg_func}(${2:column}) ${3:operator} ${4:value})",
+            "    AND (${5:agg_func2}(${6:column2}) ${7:operator2} ${8:value2})"
+        ],
+        "description": "HAVING clause with AND and OR"
+    },
+    "having_between": {
+        "prefix": "having_between",
+        "body": [
+            "HAVING ${1:agg_func}(${2:column}) BETWEEN ${3:value1} AND ${4:value2}"
+        ],
+        "description": "HAVING clause with BETWEEN"
+    },
+    "having_not_between": {
+        "prefix": "having_not_between",
+        "body": [
+            "HAVING ${1:agg_func}(${2:column}) NOT BETWEEN ${3:value1} AND ${4:value2}"
+        ],
+        "description": "HAVING clause with NOT BETWEEN"
+    },
+    "having_in": {
+        "prefix": "having_in",
+        "body": [
+            "HAVING ${1:agg_func}(${2:column}) IN (${3:value1}, ${4:value2}, ${5:value3})"
+        ],
+        "description": "HAVING clause with IN condition"
+    },
+    "having_not_in": {
+        "prefix": "having_not_in",
+        "body": [
+            "HAVING ${1:agg_func}(${2:column}) NOT IN (${3:value1}, ${4:value2}, ${5:value3})"
+        ],
+        "description": "HAVING clause with NOT IN condition"
+    },
+    "having_is_null": {
+        "prefix": "having_is_null",
+        "body": [
+            "HAVING ${1:agg_func}(${2:column}) IS NULL"
+        ],
+        "description": "HAVING clause with IS NULL"
+    },
+    "having_is_not_null": {
+        "prefix": "having_is_not_null",
+        "body": [
+            "HAVING ${1:agg_func}(${2:column}) IS NOT NULL"
+        ],
+        "description": "HAVING clause with IS NOT NULL"
+    },
+    "printhaving": {
+        "prefix": "printhaving",
+        "body": [
+            "-- Snippets for HAVING clauses:",
+            "-- having_eq: HAVING clause with equality condition",
+            "-- having_gt: HAVING clause with greater than condition",
+            "-- having_lt: HAVING clause with less than condition",
+            "-- having_gte: HAVING clause with greater than or equal condition",
+            "-- having_lte: HAVING clause with less than or equal condition",
+            "-- having_not_equal: HAVING clause with not equal condition",
+            "-- having_and_or: HAVING clause with AND/OR conditions",
+            "-- having_between: HAVING clause with BETWEEN",
+            "-- having_not_between: HAVING clause with NOT BETWEEN",
+            "-- having_in: HAVING clause with IN condition",
+            "-- having_not_in: HAVING clause with NOT IN condition",
+            "-- having_is_null: HAVING clause with IS NULL",
+            "-- having_is_not_null: HAVING clause with IS NOT NULL"
+        ],
+        "description": "Aide-mémoire for HAVING clauses"
     }
 }
