@@ -374,7 +374,17 @@
     "body": ["POWER(${1:column}, ${2:exponent})"],
     "description": "Élève un nombre à la puissance spécifiée"
     },
-    "printmath": {
+    "ceil": {
+    "prefix": "ceil",
+    "body": ["CEIL(${1:column})"],
+    "description": "Arrondir vers le haut avec CEIL"
+    },
+    "floor": {
+    "prefix": "floor",
+    "body": ["FLOOR(${1:column})"],
+    "description": "Arrondir vers le bas avec FLOOR"
+    },
+   "printmath": {
     "prefix": "printmath",
     "body": [
         "-- Snippets de fonctions mathématiques :",
@@ -384,7 +394,9 @@
         "-- round_no_dec: Arrondit un nombre sans décimales",
         "-- trunc: Tronque un nombre avec décimales",
         "-- trunc_no_dec: Tronque un nombre sans décimales",
-        "-- power: Élève un nombre à la puissance spécifiée"
+        "-- power: Élève un nombre à la puissance spécifiée",
+        "-- ceil: Arrondit vers le haut",
+        "-- floor: Arrondit vers le bas"
     ],
     "description": "Aide-mémoire pour les fonctions mathématiques"
     },
@@ -492,5 +504,135 @@
         "-- where_or_and: Condition OR avec AND imbriqués"
     ],
     "description": "Aide-mémoire des clauses WHERE"
+    },
+    "alias": {
+    "prefix": "alias",
+    "body": ["${1:column_name} AS \"${2:alias_name}\""],
+    "description": "Renommer une colonne avec AS"
+    },
+    "concat": {
+    "prefix": "concat",
+    "body": ["CONCAT(${1:expr1}, ${2:expr2})"],
+    "description": "Concaténer des chaînes de caractères"
+    },
+    "concat_pipe": {
+    "prefix": "concat_pipe",
+    "body": ["${1:column1} || ' ' || ${2:column2}"],
+    "description": "Concaténation avec les opérateurs pipes `||`"
+    },
+    "coalesce": {
+    "prefix": "coalesce",
+    "body": ["COALESCE(${1:column}, ${2:'default_value'})"],
+    "description": "Remplacer les valeurs nulles avec COALESCE"
+    },
+    "case_simple": {
+    "prefix": "case_simple",
+    "body": [
+        "CASE ${1:column}",
+        "\tWHEN '${2:value1}' THEN '${3:result1}'",
+        "\tWHEN '${4:value2}' THEN '${5:result2}'",
+        "\tELSE '${6:default}'",
+        "END AS \"${7:alias}\""
+    ],
+    "description": "Utiliser CASE pour transformer des valeurs"
+    },
+    "case_title": {
+    "prefix": "case_title",
+    "body": [
+        "CASE ${1:titre}",
+        "\tWHEN 'M' THEN 'Monsieur'",
+        "\tWHEN 'MME' THEN 'Madame'",
+        "\tWHEN 'MLLE' THEN 'Mademoiselle'",
+        "\tELSE ''",
+        "END"
+    ],
+    "description": "Transformation des civilités avec CASE"
+    },
+    "printmiseenpage": {
+    "prefix": "printmiseenpage",
+    "body": [
+        "-- Snippets de mise en page SQL :",
+        "-- alias: Renommer une colonne avec AS",
+        "-- concat: Concaténer des colonnes avec CONCAT()",
+        "-- concat_pipe: Concaténer des colonnes avec ||",
+        "-- coalesce: Remplacer les valeurs nulles avec COALESCE",
+        "-- case_simple: Utiliser CASE pour transformer des valeurs",
+        "-- case_title: Transformation des civilités avec CASE",
+    ],
+    "description": "Aide-mémoire pour les snippets de mise en page SQL"
+    },
+    "to_char_dd_mm_yyyy": {
+    "prefix": "to_char_dd_mm_yyyy",
+    "body": ["TO_CHAR(${1:date}, 'DD/MM/YYYY')"],
+    "description": "Convertir la date au format DD/MM/YYYY"
+    },
+    "to_char_dd_mm_yy": {
+    "prefix": "to_char_dd_mm_yy",
+    "body": ["TO_CHAR(${1:date}, 'DD/MM/YY')"],
+    "description": "Convertir la date au format DD/MM/YY"
+    },
+    "to_char_dd_mm_dash_yyyy": {
+    "prefix": "to_char_dd_mm_dash_yyyy",
+    "body": ["TO_CHAR(${1:date}, 'DD-MM-YYYY')"],
+    "description": "Convertir la date au format DD-MM-YYYY"
+    },
+    "to_char_day_dd_month_yyyy": {
+    "prefix": "to_char_day_dd_month_yyyy",
+    "body": ["TO_CHAR(${1:date}, 'FMDay DD FMMonth YYYY')"],
+    "description": "Convertir la date au format complet (ex: Jeudi 12 Janvier 1963)"
+    },
+    "to_char_yyyy_mm_dd": {
+    "prefix": "to_char_yyyy_mm_dd",
+    "body": ["TO_CHAR(${1:date}, 'YYYY-MM-DD')"],
+    "description": "Convertir la date au format ISO (YYYY-MM-DD)"
+    },
+    "to_date_dd_mm_yyyy_dash": {
+    "prefix": "to_date_dd_mm_yyyy_dash",
+    "body": ["TO_DATE(${1:'12-01-1963'}, 'DD-MM-YYYY')"],
+    "description": "Conversion d'une chaîne '12-01-1963' en date"
+    },
+    "to_date_dd_mm_yy_dash": {
+    "prefix": "to_date_dd_mm_yy_dash",
+    "body": ["TO_DATE(${1:'12-01-63'}, 'DD-MM-YY')"],
+    "description": "Conversion d'une chaîne '12-01-63' en date"
+    },
+    "to_date_dd_mm_yyyy_slash": {
+    "prefix": "to_date_dd_mm_yyyy_slash",
+    "body": ["TO_DATE(${1:'12/01/1963'}, 'DD/MM/YYYY')"],
+    "description": "Conversion d'une chaîne '12/01/1963' en date"
+    },
+    "to_date_dd_mm_yy_slash": {
+    "prefix": "to_date_dd_mm_yy_slash",
+    "body": ["TO_DATE(${1:'12/01/63'}, 'DD/MM/YY')"],
+    "description": "Conversion d'une chaîne '12/01/63' en date"
+    },
+    "to_date_yyyy_mm_dd_dash": {
+    "prefix": "to_date_yyyy_mm_dd_dash",
+    "body": ["TO_DATE(${1:'1963-01-12'}, 'YYYY-MM-DD')"],
+    "description": "Conversion d'une chaîne '1963-01-12' en date"
+    },
+    "to_date_yyyymmdd": {
+    "prefix": "to_date_yyyymmdd",
+    "body": ["TO_DATE(${1:'19630112'}, 'YYYYMMDD')"],
+    "description": "Conversion d'une chaîne '19630112' en date"
+    },
+    "printdate": {
+    "prefix": "printdate",
+    "body": [
+        "-- Snippets de gestion des dates :",
+        "-- to_char_dd_mm_yyyy: Convertir au format DD/MM/YYYY",
+        "-- to_char_dd_mm_yy: Convertir au format DD/MM/YY",
+        "-- to_char_dd_mm_dash_yyyy: Convertir au format DD-MM-YYYY",
+        "-- to_char_day_dd_month_yyyy: Convertir au format Jeudi 12 Janvier 1963",
+        "-- to_char_dd_month_yyyy: Convertir au format 12 Janvier 1963",
+        "-- to_char_yyyy_mm_dd: Convertir au format YYYY-MM-DD",
+        "-- to_date_dd_mm_yyyy_dash: Conversion '12-01-1963' en date",
+        "-- to_date_dd_mm_yy_dash: Conversion '12-01-63' en date",
+        "-- to_date_dd_mm_yyyy_slash: Conversion '12/01/1963' en date",
+        "-- to_date_dd_mm_yy_slash: Conversion '12/01/63' en date",
+        "-- to_date_yyyy_mm_dd_dash: Conversion '1963-01-12' en date",
+        "-- to_date_yyyymmdd: Conversion '19630112' en date"
+    ],
+    "description": "Aide-mémoire pour les snippets de gestion des dates"
     }
 }
