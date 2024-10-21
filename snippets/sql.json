@@ -975,5 +975,165 @@
             "-- having_is_not_null: HAVING clause with IS NOT NULL"
         ],
         "description": "Aide-mémoire for HAVING clauses"
+    },
+    {
+    "create_table_if_exists": {
+        "prefix": "create_table_if_exists",
+        "body": [
+            "CREATE TABLE IF NOT EXISTS ${1:table_name} (",
+            "    ${2:col_name} ${3:data_type}${4:, other_columns}",
+            ");"
+        ],
+        "description": "Create table with IF NOT EXISTS"
+    },
+    "create_sequence_if_exists": {
+        "prefix": "create_sequence_if_exists",
+        "body": [
+            "CREATE SEQUENCE IF NOT EXISTS ${1:sequence_name};"
+        ],
+        "description": "Create sequence with IF NOT EXISTS"
+    },
+    "create_table_with_sequence": {
+        "prefix": "create_table_with_sequence",
+        "body": [
+            "CREATE TABLE IF NOT EXISTS ${1:table_name} (",
+            "    ${2:col_name} ${3:data_type},",
+            "    ${4:seq_col} SERIAL PRIMARY KEY USING ${5:sequence_name}",
+            ");"
+        ],
+        "description": "Create table with sequence for primary key"
+    },
+    "print_create": {
+        "prefix": "print_create",
+        "body": [
+            "-- Snippets for CREATE operations:",
+            "-- create_table_if_exists: Create a table with IF NOT EXISTS",
+            "-- create_sequence_if_exists: Create a sequence with IF NOT EXISTS",
+            "-- create_table_with_sequence: Create a table with sequence as primary key"
+        ],
+        "description": "Print for CREATE operations"
+    },
+    {
+    "alter_table_add_column": {
+        "prefix": "alter_table_add_column",
+        "body": [
+            "ALTER TABLE ${1:table_name}",
+            "ADD COLUMN ${2:col_name} ${3:data_type};"
+        ],
+        "description": "Alter table to add a column"
+    },
+    "alter_table_modify_column": {
+        "prefix": "alter_table_modify_column",
+        "body": [
+            "ALTER TABLE ${1:table_name}",
+            "ALTER COLUMN ${2:col_name} SET ${3:property};"
+        ],
+        "description": "Alter table to modify a column"
+    },
+    "alter_table_drop_column": {
+        "prefix": "alter_table_drop_column",
+        "body": [
+            "ALTER TABLE ${1:table_name}",
+            "DROP COLUMN ${2:col_name};"
+        ],
+        "description": "Alter table to drop a column"
+    },
+    "alter_table_add_pk": {
+        "prefix": "alter_table_add_pk",
+        "body": [
+            "ALTER TABLE ${1:table_name}",
+            "ADD CONSTRAINT ${2:pk_name} PRIMARY KEY (${3:col_name});"
+        ],
+        "description": "Alter table to add a primary key"
+    },
+    "alter_table_add_unique": {
+        "prefix": "alter_table_add_unique",
+        "body": [
+            "ALTER TABLE ${1:table_name}",
+            "ADD CONSTRAINT ${2:unique_name} UNIQUE (${3:col_name});"
+        ],
+        "description": "Alter table to add a unique constraint"
+    },
+    "alter_table_add_fk": {
+        "prefix": "alter_table_add_fk",
+        "body": [
+            "ALTER TABLE ${1:table_name}",
+            "ADD CONSTRAINT ${2:fk_name} FOREIGN KEY (${3:col_name})",
+            "REFERENCES ${4:ref_table}(${5:ref_col});"
+        ],
+        "description": "Alter table to add a foreign key constraint"
+    },
+    "alter_table_add_check": {
+        "prefix": "alter_table_add_check",
+        "body": [
+            "ALTER TABLE ${1:table_name}",
+            "ADD CONSTRAINT ${2:check_name} CHECK (${3:condition});"
+        ],
+        "description": "Alter table to add a check constraint"
+    },
+    "alter_sequence": {
+        "prefix": "alter_sequence",
+        "body": [
+            "ALTER SEQUENCE ${1:sequence_name}",
+            "RESTART WITH ${2:start_value};"
+        ],
+        "description": "Alter sequence to restart from a value"
+    },
+    "print_alter": {
+        "prefix": "print_alter",
+        "body": [
+            "-- Snippets for ALTER operations:",
+            "-- alter_table_add_column: Add a column to a table",
+            "-- alter_table_modify_column: Modify a column in a table",
+            "-- alter_table_drop_column: Drop a column from a table",
+            "-- alter_table_add_pk: Add a primary key constraint",
+            "-- alter_table_add_unique: Add a unique constraint",
+            "-- alter_table_add_fk: Add a foreign key constraint",
+            "-- alter_table_add_check: Add a check constraint",
+            "-- alter_sequence: Alter sequence to restart"
+        ],
+        "description": "Print for ALTER operations"
+    },
+    {
+    "drop_table_if_exists": {
+        "prefix": "drop_table_if_exists",
+        "body": [
+            "DROP TABLE IF EXISTS ${1:table_name};"
+        ],
+        "description": "Drop table with IF EXISTS"
+    },
+    "drop_column": {
+        "prefix": "drop_column",
+        "body": [
+            "ALTER TABLE ${1:table_name}",
+            "DROP COLUMN ${2:col_name};"
+        ],
+        "description": "Drop a column from a table"
+    },
+    "drop_constraint": {
+        "prefix": "drop_constraint",
+        "body": [
+            "ALTER TABLE ${1:table_name}",
+            "DROP CONSTRAINT ${2:constraint_name};"
+        ],
+        "description": "Drop a constraint from a table"
+    },
+    "drop_sequence_if_exists": {
+        "prefix": "drop_sequence_if_exists",
+        "body": [
+            "DROP SEQUENCE IF EXISTS ${1:sequence_name};"
+        ],
+        "description": "Drop sequence with IF EXISTS"
+    },
+    "print_drop": {
+        "prefix": "print_drop",
+        "body": [
+            "-- Snippets for DROP operations:",
+            "-- drop_table_if_exists: Drop a table with IF EXISTS",
+            "-- drop_column: Drop a column from a table",
+            "-- drop_constraint: Drop a constraint from a table",
+            "-- drop_sequence_if_exists: Drop a sequence with IF EXISTS"
+        ],
+        "description": "Print for DROP operations"
     }
 }
