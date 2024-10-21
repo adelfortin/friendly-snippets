@@ -1132,5 +1132,154 @@
             "-- drop_sequence_if_exists: Drop a sequence with IF EXISTS"
         ],
         "description": "Print for DROP operations"
+    },
+    "insert_basic": {
+        "prefix": "insert_basic",
+        "body": [
+            "INSERT INTO ${1:table_name} (${2:col1}, ${3:col2})",
+            "VALUES (${4:value1}, ${5:value2});"
+        ],
+        "description": "Basic INSERT into table"
+    },
+    "insert_returning": {
+        "prefix": "insert_returning",
+        "body": [
+            "INSERT INTO ${1:table_name} (${2:col1}, ${3:col2})",
+            "VALUES (${4:value1}, ${5:value2})",
+            "RETURNING ${6:col_name};"
+        ],
+        "description": "INSERT with RETURNING clause"
+    },
+    "insert_select": {
+        "prefix": "insert_select",
+        "body": [
+            "INSERT INTO ${1:table_name} (${2:col1}, ${3:col2})",
+            "SELECT ${4:col1}, ${5:col2}",
+            "FROM ${6:source_table}",
+            "WHERE ${7:condition};"
+        ],
+        "description": "INSERT from SELECT query"
+    },
+    "print_insert": {
+        "prefix": "print_insert",
+        "body": [
+            "-- Snippets for INSERT operations:",
+            "-- insert_basic: Basic INSERT statement",
+            "-- insert_returning: INSERT with RETURNING clause",
+            "-- insert_select: INSERT using a SELECT query"
+        ],
+        "description": "Print for INSERT operations"
+    },
+    "update_basic": {
+        "prefix": "update_basic",
+        "body": [
+            "UPDATE ${1:table_name}",
+            "SET ${2:col1} = ${3:value1}, ${4:col2} = ${5:value2}",
+            "WHERE ${6:condition};"
+        ],
+        "description": "Basic UPDATE table row"
+    },
+    "update_returning": {
+        "prefix": "update_returning",
+        "body": [
+            "UPDATE ${1:table_name}",
+            "SET ${2:col1} = ${3:value1}, ${4:col2} = ${5:value2}",
+            "WHERE ${6:condition}",
+            "RETURNING ${7:col_name};"
+        ],
+        "description": "UPDATE with RETURNING clause"
+    },
+    "update_with_join": {
+        "prefix": "update_with_join",
+        "body": [
+            "UPDATE ${1:table_name} t",
+            "SET ${2:col} = ${3:value}",
+            "FROM ${4:join_table} jt",
+            "WHERE t.${5:join_column} = jt.${6:join_column} AND ${7:condition};"
+        ],
+        "description": "UPDATE with JOIN"
+    },
+    "print_update": {
+        "prefix": "print_update",
+        "body": [
+            "-- Snippets for UPDATE operations:",
+            "-- update_basic: Basic UPDATE statement",
+            "-- update_returning: UPDATE with RETURNING clause",
+            "-- update_with_join: UPDATE with JOIN clause"
+        ],
+        "description": "Print for UPDATE operations"
+    },
+    "delete_basic": {
+        "prefix": "delete_basic",
+        "body": [
+            "DELETE FROM ${1:table_name}",
+            "WHERE ${2:condition};"
+        ],
+        "description": "Basic DELETE from table"
+    },
+    "delete_returning": {
+        "prefix": "delete_returning",
+        "body": [
+            "DELETE FROM ${1:table_name}",
+            "WHERE ${2:condition}",
+            "RETURNING ${3:col_name};"
+        ],
+        "description": "DELETE with RETURNING clause"
+    },
+    "delete_using": {
+        "prefix": "delete_using",
+        "body": [
+            "DELETE FROM ${1:table_name} t",
+            "USING ${2:join_table} jt",
+            "WHERE t.${3:join_column} = jt.${4:join_column} AND ${5:condition};"
+        ],
+        "description": "DELETE using another table"
+    },
+    "print_delete": {
+        "prefix": "print_delete",
+        "body": [
+            "-- Snippets for DELETE operations:",
+            "-- delete_basic: Basic DELETE statement",
+            "-- delete_returning: DELETE with RETURNING clause",
+            "-- delete_using: DELETE using another table"
+        ],
+        "description": "Print for DELETE operations"
+    },
+    "create_view": {
+        "prefix": "create_view",
+        "body": [
+            "CREATE VIEW ${1:view_name} AS",
+            "SELECT ${2:columns}",
+            "FROM ${3:table_name}",
+            "WHERE ${4:condition};"
+        ],
+        "description": "Create a SQL view"
+    },
+    "update_view": {
+        "prefix": "update_view",
+        "body": [
+            "CREATE OR REPLACE VIEW ${1:view_name} AS",
+            "SELECT ${2:columns}",
+            "FROM ${3:table_name}",
+            "WHERE ${4:condition};"
+        ],
+        "description": "Update an existing SQL view"
+    },
+    "drop_view": {
+        "prefix": "drop_view",
+        "body": [
+            "DROP VIEW IF EXISTS ${1:view_name};"
+        ],
+        "description": "Drop a SQL view"
+    },
+    "print_view": {
+        "prefix": "print_view",
+        "body": [
+            "-- Snippets for Views:",
+            "-- create_view: Create a new SQL view",
+            "-- update_view: Create or replace an existing view",
+            "-- drop_view: Drop a view if exists"
+        ],
+        "description": "Print for View operations"
     }
 }
