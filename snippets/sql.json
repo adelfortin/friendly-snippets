@@ -736,7 +736,7 @@
     "body": [
         "-- Snippets de jointures :",
         "-- join: INNER JOIN",
-        "-- join: INNER JOIN avec une clause WHERE",
+        "-- join2: INNER JOIN avec une clause WHERE",
         "-- fjoin: INNER JOIN avec extension",
         "-- join_more: Ajouter une autre jointure INNER JOIN",
         "-- ljoin: LEFT JOIN",
