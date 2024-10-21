@@ -755,7 +755,6 @@
     ],
     "description": "Aide-mémoire pour les snippets de jointures et opérations d'ensembles"
     },
-    {
     "avg": {
         "prefix": "avg",
         "body": ["AVG(${1:column})"],
