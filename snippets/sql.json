@@ -26,7 +26,6 @@
         ],
         "description": "Select all from a table"
     },
-    
     "where": {
         "prefix": "where",
         "body": [
