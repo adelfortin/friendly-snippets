@@ -636,7 +636,7 @@
         "description": "Snippet for FULL OUTER JOIN"
     },
     "fjoin": {
-    "prefix": "join",
+    "prefix": "fjoin",
     "body": [
         "JOIN ${1:tab2_name} ${2:alias2} ON ${3:alias1}.${4:cle} = ${2:alias2}.${5:cle}"
     ],
@@ -650,7 +650,7 @@
     "description": "Ajouter une autre jointure INNER JOIN"
     },
     "fljoin": {
-    "prefix": "ljoin",
+    "prefix": "fljoin",
     "body": [
         "LEFT JOIN ${1:tab2_name} ${2:alias2} ON ${3:alias1}.${4:cle} = ${2:alias2}.${5:cle}"
     ],
@@ -664,7 +664,7 @@
     "description": "Ajouter une autre jointure LEFT JOIN"
     },
     "frjoin": {
-    "prefix": "rjoin",
+    "prefix": "frjoin",
     "body": [
         "RIGHT JOIN ${1:tab2_name} ${2:alias2} ON ${3:alias1}.${4:cle} = ${2:alias2}.${5:cle}"
     ],
