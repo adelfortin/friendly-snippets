@@ -7,7 +7,7 @@
             "-----------------",
             ""
         ],
-        "description": "Snippet for adding a question section with number"
+        "description": "Snippet pour ajouter une question avec un nombre"
     },
     "qz": {
         "prefix": "qz",
@@ -17,7 +17,7 @@
             "-----------------",
             ""
         ],
-        "description": "Snippet for adding a generic section"
+        "description": "Snippet pour ajouter une section ou un titre"
     },
     "sela": {
         "prefix": "sela",
@@ -30,8 +30,8 @@
         "prefix": "where",
         "body": [
             "SELECT *",
-            "FROM ${1:tab_name}",
-            "WHERE ${2:conditions};"
+            "\tFROM ${1:tab_name}",
+            "\t\tWHERE ${2:conditions};"
         ],
         "description": "Snippet for WHERE clause"
     },
