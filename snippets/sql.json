@@ -81,7 +81,7 @@
     },
     "gb": {
         "prefix": "gb",
-        "body": ["\t\t\GROUP BY ${1:column}"],
+        "body": ["\t\tGROUP BY ${1:column}"],
         "description": "Faire un GROUP BY par colonne"
     },
     "ob": {
@@ -107,7 +107,7 @@
     "seq": {
         "prefix": "seq",
         "body": ["CREATE SEQUENCE IF NOT EXISTS ${1:sequence_name}_seq;"],
-        "description": "Créer une séquence, si celle-ci n existe pas"
+        "description": "Créer une séquence si celle-ci n existe pas"
     },
     "view": {
         "prefix": "view",
