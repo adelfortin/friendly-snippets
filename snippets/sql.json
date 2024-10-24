@@ -171,6 +171,74 @@
         "body": ["DROP VIEW IF EXISTS ${1:view_name};"],
         "description": "Supprimer une vue si elle existe"
     },
+    "pkc": {
+        "prefix": "pkc",
+        "body": [
+            "CONSTRAINT ${1:pk_name} PRIMARY KEY(${2:column})"
+        ],
+        "description": "Contrainte de clé primaire"
+    },
+    "fkc": {
+        "prefix": "fkc",
+        "body": [
+            "CONSTRAINT ${1:fk_name} FOREIGN KEY(${2:column}) REFERENCES ${3:ref_table}(${4:ref_column})"
+        ],
+        "description": "Contrainte de clé étrangère"
+    },
+    "pk": {
+        "prefix": "pk",
+        "body": [
+            "${1:pk_name} PRIMARY KEY(${2:column})"
+        ],
+        "description": "Clé primaire"
+    },
+    "fk": {
+        "prefix": "fk",
+        "body": [
+            "${1:fk_name} FOREIGN KEY(${2:column}) REFERENCES ${3:ref_table}(${4:ref_column})"
+        ],
+        "description": "Clé étrangère"
+    },
+    "date": {
+        "prefix": "date",
+        "body": ["DATE NOT NULL"],
+        "description": "Type Date avec contrainte NOT NULL"
+    },
+    "timestamp": {
+        "prefix": "timestamp",
+        "body": ["TIMESTAMP NOT NULL"],
+        "description": "Type Timestamp avec contrainte NOT NULL"
+    },
+    "var": {
+        "prefix": "var",
+        "body": ["VARCHAR(${1:length})"],
+        "description": "Type Varchar"
+    },
+    "char": {
+        "prefix": "char",
+        "body": ["CHAR(${1:length})"],
+        "description": "Type Char"
+    },
+    "serial": {
+        "prefix": "serial",
+        "body": ["SERIAL PRIMARY KEY"],
+        "description": "Clé primaire de type Serial"
+    },
+    "datep": {
+        "prefix": "datep",
+        "body": ["date_part(${1:text}, ${2:timestamp})"],
+        "description": "Fonction date_part pour extraire une partie d'une date"
+    },
+    "datet": {
+        "prefix": "datet",
+        "body": ["date_trunc(${1:text}, ${2:timestamp})"],
+        "description": "Fonction date_trunc pour tronquer une date"
+    },
+    "cd": {
+        "prefix": "cd",
+        "body": ["CURRENT_DATE"],
+        "description": "Date actuelle"
+    },
     "printlddgen": {
         "prefix": "printlddgen",
         "body": [
@@ -183,7 +251,19 @@
             "-- dt: Supprimer une table si elle existe",
             "-- dl: Supprimer une ligne d'une table",
             "-- ds: Supprimer une séquence si elle existe",
-            "-- dv: Supprimer une vue si elle existe"
+            "-- dv: Supprimer une vue si elle existe",
+            "-- pkc: Contrainte de clé primaire",
+            "-- fkc: Contrainte de clé étrangère",
+            "-- pk: Clé primaire",
+            "-- fk: Clé étrangère",
+            "-- date: Type Date avec contrainte NOT NULL",
+            "-- timestamp: Type Timestamp avec contrainte NOT NULL",
+            "-- var: Type Varchar",
+            "-- char: Type Char",
+            "-- serial: Clé primaire de type Serial",
+            "-- datep: Fonction date_part pour extraire une partie d'une date",
+            "-- datet: Fonction date_trunc pour tronquer une date",
+            "-- cd: Date actuelle"
         ],
         "description": "Aide-mémoire pour les snippets de langage de définition des données"
     },
@@ -192,93 +272,38 @@
         "body": [
             "UPDATE ${1:table_name}",
             "\tSET ${2:col1} = ${3:value1}, ${4:col2} = ${5:value2}",
-            "\tWHERE ${6:condition};"
+            "\tWHERE ${6:condition};",
+            "\t\t;"
         ],
-        "description": "Update table row"
+        "description": "Mettre à jour une ligne d'une table"
     },
     "insert": {
         "prefix": "insert",
         "body": [
             "INSERT INTO ${1:table_name}(${2:col1}, ${3:col2})",
-            "VALUES (${4:value1}, ${5:value2});"
+            "\tVALUES (${4:value1}, ${5:value2});",
+            "\t\t;"
         ],
-        "description": "Insert values into table"
+        "description": "Insérer des valeurs dans une table"
     },
     "df": {
         "prefix": "df",
         "body": [
             "DELETE FROM ${1:table_name}",
-            "WHERE ${2:condition};"
+            "\tWHERE ${2:condition};",
+            "\t\t;"
         ],
-        "description": "Delete from table with condition"
+        "description": "Supprimer des lignes d'une table avec condition"
     },
-    "pkc": {
-        "prefix": "pkc",
+    "printlmdgen": {
+        "prefix": "printlmdgen",
         "body": [
-            "CONSTRAINT ${1:pk_name} PRIMARY KEY(${2:column})"
+            "-- Snippets généraux pour le langage de modification des données :",
+            "-- update: Mettre à jour une ligne d'une table",
+            "-- insert: Insérer des valeurs dans une table",
+            "-- df: Supprimer des lignes d'une table avec condition"
         ],
-        "description": "Primary key constraint"
-    },
-    "fkc": {
-        "prefix": "fkc",
-        "body": [
-            "CONSTRAINT ${1:fk_name} FOREIGN KEY(${2:column}) REFERENCES ${3:ref_table}(${4:ref_column})"
-        ],
-        "description": "Foreign key constraint"
-    },
-    "pk": {
-        "prefix": "pk",
-        "body": [
-            "${1:pk_name} PRIMARY KEY(${2:column})"
-        ],
-        "description": "Primary key"
-    },
-    "fk": {
-        "prefix": "fk",
-        "body": [
-            "${1:fk_name} FOREIGN KEY(${2:column}) REFERENCES ${3:ref_table}(${4:ref_column})"
-        ],
-        "description": "Foreign key"
-    },
-    "date": {
-        "prefix": "date",
-        "body": ["DATE NOT NULL"],
-        "description": "Date type with NOT NULL"
-    },
-    "timestamp": {
-        "prefix": "timestamp",
-        "body": ["TIMESTAMP NOT NULL"],
-        "description": "Timestamp type with NOT NULL"
-    },
-    "var": {
-        "prefix": "var",
-        "body": ["VARCHAR(${1:length})"],
-        "description": "Varchar type"
-    },
-    "char": {
-        "prefix": "char",
-        "body": ["CHAR(${1:length})"],
-        "description": "Char type"
-    },
-    "serial": {
-        "prefix": "serial",
-        "body": ["SERIAL PRIMARY KEY"],
-        "description": "Serial primary key"
-    },
-    "datep": {
-        "prefix": "datep",
-        "body": ["date_part(${1:text}, ${2:timestamp})"],
-        "description": "Date part function"
-    },
-    "datet": {
-        "prefix": "datet",
-        "body": ["date_trunc(${1:text}, ${2:timestamp})"],
-        "description": "Date truncation function"
-    },
-    "cd": {
-        "prefix": "cd",
-        "body": ["CURRENT_DATE"],
-        "description": "Current date"
+        "description": "Aide-mémoire pour les snippets de langage de modification des données"
     },
     "upper": {
     "prefix": "upper",
@@ -392,109 +417,147 @@
     "description": "Aide-mémoire pour les fonctions mathématiques"
     },
     "where_equal": {
-    "prefix": "where_equal",
-    "body": ["WHERE ${1:column} = ${2|cond,'cond','\"cond\"|}"],
-    "description": "Condition WHERE avec égalité"
+        "prefix": "where_equal",
+        "body": [
+            "\t\tWHERE ${1:column} = ${2|cond,'cond','\"cond\"|};"
+        ],
+        "description": "Condition WHERE avec égalité"
     },
     "where_not_equal": {
-    "prefix": "where_not_equal",
-    "body": [
-        "WHERE ${1:column} ${2|<>,!=|} ${3|cond,'cond','\"cond\"|}"
-    ],
-    "description": "Condition WHERE avec inégalité"
+        "prefix": "where_not_equal",
+        "body": [
+            "\t\tWHERE ${1:column} ${2|<>,!=|} ${3|cond,'cond','\"cond\"|};"
+        ],
+        "description": "Condition WHERE avec inégalité"
     },
     "where_less_than": {
-    "prefix": "where_lt",
-    "body": ["WHERE ${1:column} < ${2|cond,'cond','\"cond\"|}"],
-    "description": "Condition WHERE avec inférieur à"
+        "prefix": "where_lt",
+        "body": [
+            "\t\tWHERE ${1:column} < ${2|cond,'cond','\"cond\"|};"
+        ],
+        "description": "Condition WHERE avec inférieur à"
     },
     "where_greater_than": {
-    "prefix": "where_gt",
-    "body": ["WHERE ${1:column} > ${2|cond,'cond','\"cond\"|}"],
-    "description": "Condition WHERE avec supérieur à"
+        "prefix": "where_gt",
+        "body": [
+            "\t\tWHERE ${1:column} > ${2|cond,'cond','\"cond\"|};"
+        ],
+        "description": "Condition WHERE avec supérieur à"
     },
     "where_less_equal": {
-    "prefix": "where_le",
-    "body": ["WHERE ${1:column} <= ${2|cond,'cond','\"cond\"|}"],
-    "description": "Condition WHERE avec inférieur ou égal"
+        "prefix": "where_le",
+        "body": [
+            "\t\tWHERE ${1:column} <= ${2|cond,'cond','\"cond\"|};"
+        ],
+        "description": "Condition WHERE avec inférieur ou égal"
     },
     "where_greater_equal": {
-    "prefix": "where_ge",
-    "body": ["WHERE ${1:column} >= ${2|cond,'cond','\"cond\"|}"],
-    "description": "Condition WHERE avec supérieur ou égal"
+        "prefix": "where_ge",
+        "body": [
+            "\t\tWHERE ${1:column} >= ${2|cond,'cond','\"cond\"|};"
+        ],
+        "description": "Condition WHERE avec supérieur ou égal"
     },
     "where_in": {
-    "prefix": "where_in",
-    "body": [
-        "WHERE ${1:column} IN (${2|'cond1', 'cond2', 'cond3'|})"
-    ],
-    "description": "Condition WHERE avec IN"
+        "prefix": "where_in",
+        "body": [
+            "\t\tWHERE ${1:column} IN (${2|'cond1', 'cond2', 'cond3'|});"
+        ],
+        "description": "Condition WHERE avec IN"
     },
     "where_is_null": {
-    "prefix": "where_is_null",
-    "body": ["WHERE ${1:column} IS NULL"],
-    "description": "Condition WHERE avec IS NULL"
+        "prefix": "where_is_null",
+        "body": [
+            "\t\tWHERE ${1:column} IS NULL;"
+        ],
+        "description": "Condition WHERE avec IS NULL"
     },
     "where_is_not_null": {
-    "prefix": "where_is_not_null",
-    "body": ["WHERE ${1:column} IS NOT NULL"],
-    "description": "Condition WHERE avec IS NOT NULL"
+        "prefix": "where_is_not_null",
+        "body": [
+            "\t\tWHERE ${1:column} IS NOT NULL;"
+        ],
+        "description": "Condition WHERE avec IS NOT NULL"
     },
     "where_between": {
-    "prefix": "where_between",
-    "body": [
-        "WHERE ${1:column} BETWEEN ${2|cond1,'cond1','\"cond1\"|} AND ${3|cond2,'cond2','\"cond2\"|}"
-    ],
-    "description": "Condition WHERE avec BETWEEN"
+        "prefix": "where_between",
+        "body": [
+            "\t\tWHERE ${1:column} BETWEEN ${2|cond1,'cond1','\"cond1\"|} AND ${3|cond2,'cond2','\"cond2\"|};"
+        ],
+        "description": "Condition WHERE avec BETWEEN"
     },
     "where_not_between": {
-    "prefix": "where_not_between",
-    "body": [
-        "WHERE ${1:column} NOT BETWEEN ${2|cond1,'cond1','\"cond1\"|} AND ${3|cond2,'cond2','\"cond2\"|}"
-    ],
-    "description": "Condition WHERE avec NOT BETWEEN"
+        "prefix": "where_not_between",
+        "body": [
+            "\t\tWHERE ${1:column} NOT BETWEEN ${2|cond1,'cond1','\"cond1\"|} AND ${3|cond2,'cond2','\"cond2\"|};"
+        ],
+        "description": "Condition WHERE avec NOT BETWEEN"
     },
     "where_like": {
-    "prefix": "where_like",
-    "body": [
-        "WHERE ${1:column} LIKE ${2|'%cond%', '_cond_'|}"
-    ],
-    "description": "Condition WHERE avec LIKE"
+        "prefix": "where_like",
+        "body": [
+            "\t\tWHERE ${1:column} LIKE ${2|'%cond%', '_cond_'|};"
+        ],
+        "description": "Condition WHERE avec LIKE"
+    },
+    "where_ilike": {
+        "prefix": "where_ilike",
+        "body": [
+            "\t\tWHERE ${1:column} ILIKE ${2|'%cond%', '_cond_'|};"
+        ],
+        "description": "Condition WHERE avec ILIKE (insensible à la casse)"
+    },
+    "where_not_like": {
+        "prefix": "where_not_like",
+        "body": [
+            "\t\tWHERE ${1:column} NOT LIKE ${2|'%cond%', '_cond_'|};"
+        ],
+        "description": "Condition WHERE avec NOT LIKE"
+    },
+    "where_not_ilike": {
+        "prefix": "where_not_ilike",
+        "body": [
+            "\t\tWHERE ${1:column} NOT ILIKE ${2|'%cond%', '_cond_'|};"
+        ],
+        "description": "Condition WHERE avec NOT ILIKE (insensible à la casse)"
     },
     "where_and_or": {
-    "prefix": "where_and_or",
-    "body": [
-        "WHERE (${1:cond1} OR ${2:cond2}) AND ${3:cond3}"
-    ],
-    "description": "Condition WHERE avec AND et OR"
+        "prefix": "where_and_or",
+        "body": [
+            "\t\tWHERE (${1:cond1} OR ${2:cond2}) AND ${3:cond3};"
+        ],
+        "description": "Condition WHERE avec AND et OR"
     },
     "where_or_and": {
-    "prefix": "where_or_and",
-    "body": [
-        "WHERE ${1:cond1} OR (${2:cond2} AND ${3:cond3})"
-    ],
-    "description": "Condition WHERE avec OR et AND imbriqués"
+        "prefix": "where_or_and",
+        "body": [
+            "\t\tWHERE ${1:cond1} OR (${2:cond2} AND ${3:cond3});"
+        ],
+        "description": "Condition WHERE avec OR et AND imbriqués"
     },
     "printwhere": {
-    "prefix": "printwhere",
-    "body": [
-        "-- Snippets des clauses WHERE :",
-        "-- where_equal: Condition d'égalité",
-        "-- where_not_equal: Condition de non-égalité (<>, !=)",
-        "-- where_less_than: Condition inférieur à",
-        "-- where_greater_than: Condition supérieur à",
-        "-- where_less_equal: Condition inférieur ou égal",
-        "-- where_greater_equal: Condition supérieur ou égal",
-        "-- where_in: Condition IN",
-        "-- where_is_null: Condition IS NULL",
-        "-- where_is_not_null: Condition IS NOT NULL",
-        "-- where_between: Condition BETWEEN",
-        "-- where_not_between: Condition NOT BETWEEN",
-        "-- where_like: Condition LIKE avec % et _",
-        "-- where_and_or: Condition AND avec OR imbriqués",
-        "-- where_or_and: Condition OR avec AND imbriqués"
-    ],
-    "description": "Aide-mémoire des clauses WHERE"
+        "prefix": "printwhere",
+        "body": [
+            "-- Snippets des clauses WHERE :",
+            "-- where_equal: Condition d'égalité",
+            "-- where_not_equal: Condition de non-égalité (<>, !=)",
+            "-- where_less_than: Condition inférieur à",
+            "-- where_greater_than: Condition supérieur à",
+            "-- where_less_equal: Condition inférieur ou égal",
+            "-- where_greater_equal: Condition supérieur ou égal",
+            "-- where_in: Condition IN",
+            "-- where_is_null: Condition IS NULL",
+            "-- where_is_not_null: Condition IS NOT NULL",
+            "-- where_between: Condition BETWEEN",
+            "-- where_not_between: Condition NOT BETWEEN",
+            "-- where_like: Condition LIKE avec % et _",
+            "-- where_ilike: Condition ILIKE (insensible à la casse)",
+            "-- where_not_like: Condition NOT LIKE",
+            "-- where_not_ilike: Condition NOT ILIKE (insensible à la casse)",
+            "-- where_and_or: Condition AND avec OR imbriqués",
+            "-- where_or_and: Condition OR avec AND imbriqués"
+        ],
+        "description": "Aide-mémoire des clauses WHERE"
     },
     "alias": {
     "prefix": "alias",
@@ -607,60 +670,148 @@
     "body": ["TO_DATE(${1:'19630112'}, 'YYYYMMDD')"],
     "description": "Conversion d'une chaîne '19630112' en date"
     },
+    "to_char_hh": {
+        "prefix": "to_char_hh",
+        "body": ["TO_CHAR(${1:date}, 'HH24')"],
+        "description": "Convertir l'heure au format HH (ex: 23)"
+    },
+    "to_char_hh_mm": {
+        "prefix": "to_char_hh_mm",
+        "body": ["TO_CHAR(${1:date}, 'HH24:MI')"],
+        "description": "Convertir l'heure au format HH:MM (ex: 23:54)"
+    },
+    "to_char_hh_mm_ss": {
+        "prefix": "to_char_hh_mm_ss",
+        "body": ["TO_CHAR(${1:date}, 'HH24:MI:SS')"],
+        "description": "Convertir l'heure au format HH:MM:SS (ex: 23:54:48)"
+    },
+    "to_char_heure": {
+        "prefix": "to_char_heure",
+        "body": ["TO_CHAR(${1:date}, 'HH24 heures')"],
+        "description": "Convertir l'heure au format 23 heures"
+    },
+    "to_char_heure_minute": {
+        "prefix": "to_char_heure_minute",
+        "body": ["TO_CHAR(${1:date}, 'HH24 heures MI minutes')"],
+        "description": "Convertir l'heure au format 23 heures 54 minutes"
+    },
+    "to_char_heure_minute_seconde": {
+        "prefix": "to_char_heure_minute_seconde",
+        "body": ["TO_CHAR(${1:date}, 'HH24 heures MI minutes SS secondes')"],
+        "description": "Convertir l'heure au format 23 heures 54 minutes 48 secondes"
+    },
+    "to_char_hh_min": {
+        "prefix": "to_char_hh_min",
+        "body": ["TO_CHAR(${1:date}, 'HH24h MI')"],
+        "description": "Convertir l'heure au format 23 h 54"
+    },
+    "to_char_day_dd_month_yyyy_hh": {
+        "prefix": "to_char_day_dd_month_yyyy_hh",
+        "body": ["TO_CHAR(${1:date}, 'FMDay DD FMMonth YYYY à HH24')"],
+        "description": "Convertir la date et l'heure au format complet (ex: Jeudi 12 Janvier 1963 à 23)"
+    },
+    "to_char_day_dd_month_yyyy_hh_mm": {
+        "prefix": "to_char_day_dd_month_yyyy_hh_mm",
+        "body": ["TO_CHAR(${1:date}, 'FMDay DD FMMonth YYYY à HH24:MI')"],
+        "description": "Convertir la date et l'heure au format complet (ex: Jeudi 12 Janvier 1963 à 23:54)"
+    },
+    "to_char_day_dd_month_yyyy_hh_mm_ss": {
+        "prefix": "to_char_day_dd_month_yyyy_hh_mm_ss",
+        "body": ["TO_CHAR(${1:date}, 'FMDay DD FMMonth YYYY à HH24:MI:SS')"],
+        "description": "Convertir la date et l'heure au format complet (ex: Jeudi 12 Janvier 1963 à 23:54:48)"
+    },
+    "to_char_day_dd_month_yyyy_heure": {
+        "prefix": "to_char_day_dd_month_yyyy_heure",
+        "body": ["TO_CHAR(${1:date}, 'FMDay DD FMMonth YYYY à HH24 heures')"],
+        "description": "Convertir la date et l'heure au format complet (ex: Jeudi 12 Janvier 1963 à 23 heures)"
+    },
+    "to_char_day_dd_month_yyyy_heure_minute": {
+        "prefix": "to_char_day_dd_month_yyyy_heure_minute",
+        "body": ["TO_CHAR(${1:date}, 'FMDay DD FMMonth YYYY à HH24 heures MI minutes')"],
+        "description": "Convertir la date et l'heure au format complet (ex: Jeudi 12 Janvier 1963 à 23 heures 54 minutes)"
+    },
+    "to_char_day_dd_month_yyyy_heure_minute_seconde": {
+        "prefix": "to_char_day_dd_month_yyyy_heure_minute_seconde",
+        "body": ["TO_CHAR(${1:date}, 'FMDay DD FMMonth YYYY à HH24 heures MI minutes SS secondes')"],
+        "description": "Convertir la date et l'heure au format complet (ex: Jeudi 12 Janvier 1963 à 23 heures 54 minutes 48 secondes)"
+    },
+    "to_char_day_dd_month_yyyy_hh_min": {
+        "prefix": "to_char_day_dd_month_yyyy_hh_min",
+        "body": ["TO_CHAR(${1:date}, 'FMDay DD FMMonth YYYY à HH24h MI')"],
+        "description": "Convertir la date et l'heure au format complet (ex: Jeudi 12 Janvier 1963 à 23 h 54)"
+    },
     "printdate": {
-    "prefix": "printdate",
-    "body": [
-        "-- Snippets de gestion des dates :",
-        "-- to_char_dd_mm_yyyy: Convertir au format DD/MM/YYYY",
-        "-- to_char_dd_mm_yy: Convertir au format DD/MM/YY",
-        "-- to_char_dd_mm_dash_yyyy: Convertir au format DD-MM-YYYY",
-        "-- to_char_day_dd_month_yyyy: Convertir au format Jeudi 12 Janvier 1963",
-        "-- to_char_dd_month_yyyy: Convertir au format 12 Janvier 1963",
-        "-- to_char_yyyy_mm_dd: Convertir au format YYYY-MM-DD",
-        "-- to_date_dd_mm_yyyy_dash: Conversion '12-01-1963' en date",
-        "-- to_date_dd_mm_yy_dash: Conversion '12-01-63' en date",
-        "-- to_date_dd_mm_yyyy_slash: Conversion '12/01/1963' en date",
-        "-- to_date_dd_mm_yy_slash: Conversion '12/01/63' en date",
-        "-- to_date_yyyy_mm_dd_dash: Conversion '1963-01-12' en date",
-        "-- to_date_yyyymmdd: Conversion '19630112' en date"
-    ],
-    "description": "Aide-mémoire pour les snippets de gestion des dates"
+        "prefix": "printdate",
+        "body": [
+            "-- Snippets de gestion des dates et heures :",
+            "-- to_char_dd_mm_yyyy: Convertir au format DD/MM/YYYY",
+            "-- to_char_dd_mm_yy: Convertir au format DD/MM/YY",
+            "-- to_char_dd_mm_dash_yyyy: Convertir au format DD-MM-YYYY",
+            "-- to_char_day_dd_month_yyyy: Convertir au format Jeudi 12 Janvier 1963",
+            "-- to_char_dd_month_yyyy: Convertir au format 12 Janvier 1963",
+            "-- to_char_yyyy_mm_dd: Convertir au format YYYY-MM-DD",
+            "-- to_char_hh: Convertir au format HH",
+            "-- to_char_hh_mm: Convertir au format HH:MM",
+            "-- to_char_hh_mm_ss: Convertir au format HH:MM:SS",
+            "-- to_char_heure: Convertir au format 23 heures",
+            "-- to_char_heure_minute: Convertir au format 23 heures 54 minutes",
+            "-- to_char_heure_minute_seconde: Convertir au format 23 heures 54 minutes 48 secondes",
+            "-- to_char_hh_min: Convertir au format 23 h 54",
+            "-- to_char_day_dd_month_yyyy_hh: Convertir au format complet avec heure",
+            "-- to_char_day_dd_month_yyyy_hh_mm: Convertir au format complet avec heure et minute",
+            "-- to_char_day_dd_month_yyyy_hh_mm_ss: Convertir au format complet avec heure, minute et seconde",
+            "-- to_char_day_dd_month_yyyy_heure: Convertir au format complet avec heure en texte",
+            "-- to_char_day_dd_month_yyyy_heure_minute: Convertir au format complet avec heure et minute en texte",
+            "-- to_char_day_dd_month_yyyy_heure_minute_seconde: Convertir au format complet avec heure, minute et seconde en texte",
+            "-- to_char_day_dd_month_yyyy_hh_min: Convertir au format complet avec heure et minute abrégés",
+            "-- to_date_dd_mm_yyyy_dash: Conversion '12-01-1963' en date",
+            "-- to_date_dd_mm_yy_dash: Conversion '12-01-63' en date",
+            "-- to_date_dd_mm_yyyy_slash: Conversion '12/01/1963' en date",
+            "-- to_date_dd_mm_yy_slash: Conversion '12/01/63' en date",
+            "-- to_date_yyyy_mm_dd_dash: Conversion '1963-01-12' en date",
+            "-- to_date_yyyymmdd: Conversion '19630112' en date"
+        ],
+        "description": "Aide-mémoire pour les snippets de gestion des dates et heures"
     },
     "join": {
         "prefix": "join",
         "body": [
             "SELECT *",
-            "FROM ${1:tab1_name} ${2:alias1}",
-            "\tJOIN ${3:tab2_name} ${4:alias2} ON ${2:alias1}.${5:cle} = ${4:alias2}.${6:cle};"
+            "\tFROM ${1:tab1_name} ${2:alias1}",
+            "\t\tJOIN ${3:tab2_name} ${4:alias2} ON ${2:alias1}.${5:cle} = ${4:alias2}.${6:cle}",
+            "\t\t\t;"
         ],
-        "description": "Snippet for JOIN"
+        "description": "Snippet pour une jointure INNER JOIN"
     },
     "join2": {
         "prefix": "join2",
         "body": [
             "SELECT ${1:col}, ${2:col2}",
-            "FROM ${3:tableA} A, ${4:tableB} B",
-            "WHERE A.${5:cle} = B.${6:cle};"
+            "\tFROM ${3:tableA} A, ${4:tableB} B",
+            "\t\tWHERE A.${5:cle} = B.${6:cle}",
+            "\t\t\t;"
         ],
-        "description": "Snippet for multi-table SELECT with implicit join"
+        "description": "Snippet pour un SELECT multi-table avec jointure implicite"
     },
     "ljoin": {
         "prefix": "ljoin",
         "body": [
             "SELECT *",
-            "FROM ${1:tab1_name} ${2:alias1}",
-            "\tLEFT JOIN ${3:tab2_name} ${4:alias2} ON ${2:alias1}.${5:cle} = ${4:alias2}.${6:cle};"
+            "\tFROM ${1:tab1_name} ${2:alias1}",
+            "\t\tLEFT JOIN ${3:tab2_name} ${4:alias2} ON ${2:alias1}.${5:cle} = ${4:alias2}.${6:cle}",
+            "\t\t\t;"
         ],
-        "description": "Snippet for LEFT JOIN"
+        "description": "Snippet pour une jointure LEFT JOIN"
     },
     "rjoin": {
         "prefix": "rjoin",
         "body": [
             "SELECT *",
-            "FROM ${1:tab1_name} ${2:alias1}",
-            "\tRIGHT JOIN ${3:tab2_name} ${4:alias2} ON ${2:alias1}.${5:cle} = ${4:alias2}.${6:cle};"
+            "\tFROM ${1:tab1_name} ${2:alias1}",
+            "\t\tRIGHT JOIN ${3:tab2_name} ${4:alias2} ON ${2:alias1}.${5:cle} = ${4:alias2}.${6:cle}",
+            "\t\t\t;"
         ],
-        "description": "Snippet for RIGHT JOIN"
+        "description": "Snippet pour une jointure RIGHT JOIN"
     },
     "fout": {
         "prefix": "fout",
@@ -715,82 +866,94 @@
     "description": "Ajouter une autre jointure RIGHT JOIN"
     },
     "union": {
-    "prefix": "union",
-    "body": [
-        "${1:query1}",
-        "UNION",
-        "${2:query2}"
-    ],
-    "description": "Snippet pour UNION sans ALL"
+        "prefix": "union",
+        "body": [
+            "${1:query1}",
+            "",
+            "\t\t\tUNION",
+            "",
+            "${2:query2}"
+        ],
+        "description": "Snippet pour UNION sans ALL"
     },
     "union_all": {
-    "prefix": "union_all",
-    "body": [
-        "${1:query1}",
-        "UNION ALL",
-        "${2:query2}"
-    ],
-    "description": "Snippet pour UNION avec ALL"
+        "prefix": "union_all",
+        "body": [
+            "${1:query1}",
+            "",
+            "\t\t\tUNION ALL",
+            "",
+            "${2:query2}"
+        ],
+        "description": "Snippet pour UNION avec ALL"
     },
     "intersect": {
-    "prefix": "intersect",
-    "body": [
-        "${1:query1}",
-        "INTERSECT",
-        "${2:query2}"
-    ],
-    "description": "Snippet pour INTERSECT sans ALL"
+        "prefix": "intersect",
+        "body": [
+            "${1:query1}",
+            "",
+            "\t\t\tINTERSECT",
+            "",
+            "${2:query2}"
+        ],
+        "description": "Snippet pour INTERSECT sans ALL"
     },
     "intersect_all": {
-    "prefix": "intersect_all",
-    "body": [
-        "${1:query1}",
-        "INTERSECT ALL",
-        "${2:query2}"
-    ],
-    "description": "Snippet pour INTERSECT avec ALL"
+        "prefix": "intersect_all",
+        "body": [
+            "${1:query1}",
+            "",
+            "\t\t\tINTERSECT ALL",
+            "",
+            "${2:query2}"
+        ],
+        "description": "Snippet pour INTERSECT avec ALL"
     },
     "except": {
-    "prefix": "except",
-    "body": [
-        "${1:query1}",
-        "EXCEPT",
-        "${2:query2}"
-    ],
-    "description": "Snippet pour EXCEPT sans ALL"
+        "prefix": "except",
+        "body": [
+            "${1:query1}",
+            "",
+            "\t\t\tEXCEPT",
+            "",
+            "${2:query2}"
+        ],
+        "description": "Snippet pour EXCEPT sans ALL"
     },
     "except_all": {
-    "prefix": "except_all",
-    "body": [
-        "${1:query1}",
-        "EXCEPT ALL",
-        "${2:query2}"
-    ],
-    "description": "Snippet pour EXCEPT avec ALL"
+        "prefix": "except_all",
+        "body": [
+            "${1:query1}",
+            "",
+            "\t\t\tEXCEPT ALL",
+            "",
+            "${2:query2}"
+        ],
+        "description": "Snippet pour EXCEPT avec ALL"
     },
     "printjoin": {
-    "prefix": "printjoin",
-    "body": [
-        "-- Snippets de jointures :",
-        "-- join: INNER JOIN",
-        "-- join2: INNER JOIN avec une clause WHERE",
-        "-- fjoin: INNER JOIN avec extension",
-        "-- join_more: Ajouter une autre jointure INNER JOIN",
-        "-- ljoin: LEFT JOIN",
-        "-- fljoin: LEFT JOIN avec extension",
-        "-- ljoin_more: Ajouter une autre jointure LEFT JOIN",
-        "-- rjoin: RIGHT JOIN",
-        "-- rjoin: RIGHT JOIN avec extension",
-        "-- rjoin_more: Ajouter une autre jointure RIGHT JOIN",
-        "-- fout: FULL OUTER JOIN",
-        "-- union: UNION sans ALL",
-        "-- union_all: UNION avec ALL",
-        "-- intersect: INTERSECT sans ALL",
-        "-- intersect_all: INTERSECT avec ALL",
-        "-- except: EXCEPT sans ALL",
-        "-- except_all: EXCEPT avec ALL"
-    ],
-    "description": "Aide-mémoire pour les snippets de jointures et opérations d'ensembles"
+        "prefix": "printjoin",
+        "body": [
+            "-- Snippets de jointures :",
+            "-- join: INNER JOIN",
+            "-- join2: INNER JOIN avec une clause WHERE",
+            "-- fjoin: INNER JOIN avec extension",
+            "-- join_more: Ajouter une autre jointure INNER JOIN",
+            "-- ljoin: LEFT JOIN",
+            "-- fljoin: LEFT JOIN avec extension",
+            "-- ljoin_more: Ajouter une autre jointure LEFT JOIN",
+            "-- rjoin: RIGHT JOIN",
+            "-- frjoin: RIGHT JOIN avec extension",
+            "-- rjoin_more: Ajouter une autre jointure RIGHT JOIN",
+            "-- fout: FULL OUTER JOIN",
+            "-- union: UNION sans ALL",
+            "-- union_all: UNION avec ALL",
+            "-- intersect: INTERSECT sans ALL",
+            "-- intersect_all: INTERSECT avec ALL",
+            "-- except: EXCEPT sans ALL",
+            "-- except_all: EXCEPT avec ALL"
+        ],
+        "description": "Aide-mémoire pour les snippets de jointures et opérations d'ensembles"
     },
     "avg": {
         "prefix": "avg",
@@ -916,138 +1079,379 @@
     "having_eq": {
         "prefix": "having_eq",
         "body": ["HAVING ${1:agg_func}(${2:column}) = ${3:value}"],
-        "description": "HAVING clause with equality condition"
+        "description": "Clause HAVING avec condition d'égalité"
     },
     "having_gt": {
         "prefix": "having_gt",
         "body": ["HAVING ${1:agg_func}(${2:column}) > ${3:value}"],
-        "description": "HAVING clause with greater than condition"
+        "description": "Clause HAVING avec condition de supériorité"
     },
     "having_lt": {
         "prefix": "having_lt",
         "body": ["HAVING ${1:agg_func}(${2:column}) < ${3:value}"],
-        "description": "HAVING clause with less than condition"
+        "description": "Clause HAVING avec condition d'infériorité"
     },
     "having_gte": {
         "prefix": "having_gte",
         "body": ["HAVING ${1:agg_func}(${2:column}) >= ${3:value}"],
-        "description": "HAVING clause with greater than or equal condition"
+        "description": "Clause HAVING avec condition de supériorité ou égalité"
     },
     "having_lte": {
         "prefix": "having_lte",
         "body": ["HAVING ${1:agg_func}(${2:column}) <= ${3:value}"],
-        "description": "HAVING clause with less than or equal condition"
+        "description": "Clause HAVING avec condition d'infériorité ou égalité"
     },
     "having_not_equal": {
         "prefix": "having_not_equal",
         "body": ["HAVING ${1:agg_func}(${2:column}) <> ${3:value}"],
-        "description": "HAVING clause with not equal condition"
+        "description": "Clause HAVING avec condition de non-égalité"
+    },
+    "having_like": {
+        "prefix": "having_like",
+        "body": ["HAVING ${1:agg_func}(${2:column}) LIKE ${3:'%value%'}"],
+        "description": "Clause HAVING avec LIKE"
+    },
+    "having_not_like": {
+        "prefix": "having_not_like",
+        "body": ["HAVING ${1:agg_func}(${2:column}) NOT LIKE ${3:'%value%'}"],
+        "description": "Clause HAVING avec NOT LIKE"
+    },
+    "having_ilike": {
+        "prefix": "having_ilike",
+        "body": ["HAVING ${1:agg_func}(${2:column}) ILIKE ${3:'%value%'}"],
+        "description": "Clause HAVING avec ILIKE (insensible à la casse)"
+    },
+    "having_not_ilike": {
+        "prefix": "having_not_ilike",
+        "body": ["HAVING ${1:agg_func}(${2:column}) NOT ILIKE ${3:'%value%'}"],
+        "description": "Clause HAVING avec NOT ILIKE (insensible à la casse)"
     },
     "having_and_or": {
         "prefix": "having_and_or",
         "body": [
             "HAVING (${1:agg_func}(${2:column}) ${3:operator} ${4:value})",
-            "    AND (${5:agg_func2}(${6:column2}) ${7:operator2} ${8:value2})"
+            "\tAND (${5:agg_func2}(${6:column2}) ${7:operator2} ${8:value2})"
         ],
-        "description": "HAVING clause with AND and OR"
+        "description": "Clause HAVING avec conditions AND et OR"
     },
     "having_between": {
         "prefix": "having_between",
         "body": [
             "HAVING ${1:agg_func}(${2:column}) BETWEEN ${3:value1} AND ${4:value2}"
         ],
-        "description": "HAVING clause with BETWEEN"
+        "description": "Clause HAVING avec BETWEEN"
     },
     "having_not_between": {
         "prefix": "having_not_between",
         "body": [
             "HAVING ${1:agg_func}(${2:column}) NOT BETWEEN ${3:value1} AND ${4:value2}"
         ],
-        "description": "HAVING clause with NOT BETWEEN"
+        "description": "Clause HAVING avec NOT BETWEEN"
     },
     "having_in": {
         "prefix": "having_in",
         "body": [
             "HAVING ${1:agg_func}(${2:column}) IN (${3:value1}, ${4:value2}, ${5:value3})"
         ],
-        "description": "HAVING clause with IN condition"
+        "description": "Clause HAVING avec IN"
     },
     "having_not_in": {
         "prefix": "having_not_in",
         "body": [
             "HAVING ${1:agg_func}(${2:column}) NOT IN (${3:value1}, ${4:value2}, ${5:value3})"
         ],
-        "description": "HAVING clause with NOT IN condition"
+        "description": "Clause HAVING avec NOT IN"
     },
     "having_is_null": {
         "prefix": "having_is_null",
         "body": [
             "HAVING ${1:agg_func}(${2:column}) IS NULL"
         ],
-        "description": "HAVING clause with IS NULL"
+        "description": "Clause HAVING avec IS NULL"
     },
     "having_is_not_null": {
         "prefix": "having_is_not_null",
         "body": [
             "HAVING ${1:agg_func}(${2:column}) IS NOT NULL"
         ],
-        "description": "HAVING clause with IS NOT NULL"
+        "description": "Clause HAVING avec IS NOT NULL"
     },
     "printhaving": {
         "prefix": "printhaving",
         "body": [
-            "-- Snippets for HAVING clauses:",
-            "-- having_eq: HAVING clause with equality condition",
-            "-- having_gt: HAVING clause with greater than condition",
-            "-- having_lt: HAVING clause with less than condition",
-            "-- having_gte: HAVING clause with greater than or equal condition",
-            "-- having_lte: HAVING clause with less than or equal condition",
-            "-- having_not_equal: HAVING clause with not equal condition",
-            "-- having_and_or: HAVING clause with AND/OR conditions",
-            "-- having_between: HAVING clause with BETWEEN",
-            "-- having_not_between: HAVING clause with NOT BETWEEN",
-            "-- having_in: HAVING clause with IN condition",
-            "-- having_not_in: HAVING clause with NOT IN condition",
-            "-- having_is_null: HAVING clause with IS NULL",
-            "-- having_is_not_null: HAVING clause with IS NOT NULL"
+            "-- Snippets pour les clauses HAVING :",
+            "-- having_eq: Clause HAVING avec condition d'égalité",
+            "-- having_gt: Clause HAVING avec condition de supériorité",
+            "-- having_lt: Clause HAVING avec condition d'infériorité",
+            "-- having_gte: Clause HAVING avec condition de supériorité ou égalité",
+            "-- having_lte: Clause HAVING avec condition d'infériorité ou égalité",
+            "-- having_not_equal: Clause HAVING avec condition de non-égalité",
+            "-- having_like: Clause HAVING avec LIKE",
+            "-- having_not_like: Clause HAVING avec NOT LIKE",
+            "-- having_ilike: Clause HAVING avec ILIKE (insensible à la casse)",
+            "-- having_not_ilike: Clause HAVING avec NOT ILIKE (insensible à la casse)",
+            "-- having_and_or: Clause HAVING avec conditions AND et OR",
+            "-- having_between: Clause HAVING avec BETWEEN",
+            "-- having_not_between: Clause HAVING avec NOT BETWEEN",
+            "-- having_in: Clause HAVING avec IN",
+            "-- having_not_in: Clause HAVING avec NOT IN",
+            "-- having_is_null: Clause HAVING avec IS NULL",
+            "-- having_is_not_null: Clause HAVING avec IS NOT NULL"
         ],
-        "description": "Aide-mémoire for HAVING clauses"
+        "description": "Aide-mémoire pour les clauses HAVING"
+    },
+    "max_filter": {
+        "prefix": "max_filter",
+        "body": [
+            "SELECT ${1:columns}",
+            "FROM ${2:table}",
+            "\tWHERE ${3:column} = (SELECT MAX(${3:column}) FROM ${2:table});"
+        ],
+        "description": "Filtrer pour la valeur maximale d'une colonne spécifique"
+    },
+    "top_n": {
+        "prefix": "top_n",
+        "body": [
+            "SELECT ${1:columns}",
+            "FROM ${2:table}",
+            "\tORDER BY ${3:column} DESC",
+            "\t\tLIMIT ${4:N};"
+        ],
+        "description": "Obtenir les N meilleurs résultats (Top N)"
+    },
+    "most_recent": {
+        "prefix": "most_recent",
+        "body": [
+            "SELECT ${1:columns}",
+            "FROM ${2:table}",
+            "\tWHERE ${3:date_column} = (SELECT MAX(${3:date_column}) FROM ${2:table});"
+        ],
+        "description": "Filtrer selon la valeur la plus récente d'une colonne de date"
+    },
+    "last_inserted": {
+        "prefix": "last_inserted",
+        "body": [
+            "SELECT ${1:columns}",
+            "FROM ${2:table}",
+            "\tORDER BY ${3:date_column} DESC",
+            "\t\tLIMIT 1;"
+        ],
+        "description": "Obtenir le dernier enregistrement ajouté dans une table"
+    },
+    "avg_by_group": {
+        "prefix": "avg_by_group",
+        "body": [
+            "SELECT ${1:group_column}, AVG(${2:value_column}) AS moyenne",
+            "FROM ${3:table}",
+            "\tGROUP BY ${1:group_column}",
+            "\t\tHAVING AVG(${2:value_column}) > ${4:value};"
+        ],
+        "description": "Calcul de la moyenne par groupe avec un filtre"
+    },
+    "exists_condition": {
+        "prefix": "exists_condition",
+        "body": [
+            "SELECT ${1:columns}",
+            "FROM ${2:table}",
+            "\tWHERE EXISTS (",
+            "\t\tSELECT 1",
+            "\t\tFROM ${3:related_table}",
+            "\t\t\tWHERE ${4:condition}",
+            "\t\t);"
+        ],
+        "description": "Filtrer en utilisant une condition d'existence"
+    },
+    "distinct_filter": {
+        "prefix": "distinct_filter",
+        "body": [
+            "SELECT DISTINCT ${1:columns}",
+            "FROM ${2:table}",
+            "\tWHERE ${3:condition};"
+        ],
+        "description": "Filtrer pour obtenir des lignes distinctes"
+    },
+    "count_and_max": {
+        "prefix": "count_and_max",
+        "body": [
+            "SELECT ${1:group_column}, COUNT(${2:count_column}) AS nb_occurrences",
+            "FROM ${3:table}",
+            "\tGROUP BY ${1:group_column}",
+            "\t\tHAVING COUNT(${2:count_column}) = (",
+            "\t\t\tSELECT MAX(count) FROM (",
+            "\t\t\t\tSELECT COUNT(${2:count_column}) AS count",
+            "\t\t\t\tFROM ${3:table}",
+            "\t\t\t\t\tGROUP BY ${1:group_column}",
+            "\t\t\t) AS subquery",
+            "\t\t);"
+        ],
+        "description": "Compter les occurrences et filtrer sur le maximum"
+    },
+    "printcond": {
+        "prefix": "printcond",
+        "body": [
+            "-- Snippets pour les conditions avancées :",
+            "-- max_filter: Filtrer pour la valeur maximale d'une colonne spécifique",
+            "-- top_n: Obtenir les N meilleurs résultats (Top N)",
+            "-- most_recent: Filtrer selon la valeur la plus récente d'une colonne de date",
+            "-- last_inserted: Obtenir le dernier enregistrement ajouté dans une table",
+            "-- avg_by_group: Calcul de la moyenne par groupe avec un filtre",
+            "-- exists_condition: Filtrer en utilisant une condition d'existence",
+            "-- distinct_filter: Filtrer pour obtenir des lignes distinctes",
+            "-- count_and_max: Compter les occurrences et filtrer sur le maximum"
+        ],
+        "description": "Aide-mémoire pour les conditions avancées en SQL"
+    },
+    "drop_table_if_exists": {
+        "prefix": "drop_table_if_exists",
+        "body": [
+            "DROP TABLE IF EXISTS ${1:table_name};"
+        ],
+        "description": "Supprimer une table si elle existe (sans CASCADE). Peut échouer si des dépendances existent."
+    },
+    "drop_table_if_exists_cascade": {
+        "prefix": "drop_table_if_exists_cascade",
+        "body": [
+            "DROP TABLE IF EXISTS ${1:table_name} CASCADE;"
+        ],
+        "description": "Supprimer une table si elle existe avec CASCADE. Utiliser si la table a des dépendances (clés étrangères, etc.)."
     },
     "create_table_if_exists": {
         "prefix": "create_table_if_exists",
         "body": [
-            "CREATE TABLE IF NOT EXISTS ${1:table_name} (",
-            "    ${2:col_name} ${3:data_type}${4:, other_columns}",
-            ");"
+            "DROP TABLE IF EXISTS ${1:table_name};",
+            "\tCREATE TABLE IF NOT EXISTS ${1:table_name} (",
+            "\t\t${2:col_name} ${3:data_type}${4:, other_columns}",
+            "\t\t\t);"
         ],
-        "description": "Create table with IF NOT EXISTS"
+        "description": "Créer une table avec IF NOT EXISTS après avoir supprimé la table existante."
+    },
+    "drop_sequence_if_exists": {
+        "prefix": "drop_sequence_if_exists",
+        "body": [
+            "DROP SEQUENCE IF EXISTS ${1:sequence_name};"
+        ],
+        "description": "Supprimer une séquence si elle existe (sans CASCADE). Peut échouer si des dépendances existent."
+    },
+    "drop_sequence_if_exists_cascade": {
+        "prefix": "drop_sequence_if_exists_cascade",
+        "body": [
+            "DROP SEQUENCE IF EXISTS ${1:sequence_name} CASCADE;"
+        ],
+        "description": "Supprimer une séquence si elle existe avec CASCADE. Utiliser si la séquence a des dépendances."
     },
     "create_sequence_if_exists": {
         "prefix": "create_sequence_if_exists",
         "body": [
-            "CREATE SEQUENCE IF NOT EXISTS ${1:sequence_name};"
+            "DROP SEQUENCE IF EXISTS ${1:sequence_name};",
+            "\tCREATE SEQUENCE IF NOT EXISTS ${1:sequence_name};"
         ],
-        "description": "Create sequence with IF NOT EXISTS"
+        "description": "Créer une séquence avec IF NOT EXISTS après avoir supprimé la séquence existante."
     },
     "create_table_with_sequence": {
         "prefix": "create_table_with_sequence",
         "body": [
-            "CREATE TABLE IF NOT EXISTS ${1:table_name} (",
-            "    ${2:col_name} ${3:data_type},",
-            "    ${4:seq_col} SERIAL PRIMARY KEY USING ${5:sequence_name}",
-            ");"
+            "DROP TABLE IF EXISTS ${1:table_name};",
+            "\tCREATE TABLE IF NOT EXISTS ${1:table_name} (",
+            "\t\t${2:col_name} ${3:data_type},",
+            "\t\t\ttable_id INTEGER DEFAULT NEXTVAL('${4:table_seq}'),",
+            "\t\t\t\t${5:other_columns}",
+            "\t\t\t\t\t);"
         ],
-        "description": "Create table with sequence for primary key"
+        "description": "Créer une table avec une séquence pour la clé primaire après avoir supprimé la table existante."
+    },
+    "col_char": {
+        "prefix": "col_char",
+        "body": [
+            "\t\t${1:col_name} CHAR(${2:n})${3: NOT NULL},"
+        ],
+        "description": "Ajouter une colonne de type CHAR(n). Version avec NOT NULL possible."
+    },
+    "col_varchar": {
+        "prefix": "col_varchar",
+        "body": [
+            "\t\t${1:col_name} VARCHAR(${2:n})${3: NOT NULL},"
+        ],
+        "description": "Ajouter une colonne de type VARCHAR(n). Version avec NOT NULL possible."
+    },
+    "col_text": {
+        "prefix": "col_text",
+        "body": [
+            "\t\t${1:col_name} TEXT${2: NOT NULL},"
+        ],
+        "description": "Ajouter une colonne de type TEXT. Version avec NOT NULL possible."
+    },
+    "col_int": {
+        "prefix": "col_int",
+        "body": [
+            "\t${1:col_name} INTEGER${2: NOT NULL},"
+        ],
+        "description": "Ajouter une colonne de type INTEGER. Version avec NOT NULL possible."
+    },
+    "col_serial": {
+        "prefix": "col_serial",
+        "body": [
+            "\t${1:col_name} SERIAL${2: NOT NULL},"
+        ],
+        "description": "Ajouter une colonne de type SERIAL pour une clé primaire auto-incrémentée."
+    },
+    "col_numeric": {
+        "prefix": "col_numeric",
+        "body": [
+            "\t\t${1:col_name} NUMERIC(${2:precision}, ${3:scale})${4: NOT NULL},"
+        ],
+        "description": "Ajouter une colonne de type NUMERIC avec précision et échelle. Version avec NOT NULL possible."
+    },
+    "col_date": {
+        "prefix": "col_date",
+        "body": [
+            "\t\t${1:col_name} DATE${2: NOT NULL},"
+        ],
+        "description": "Ajouter une colonne de type DATE. Version avec NOT NULL possible."
+    },
+    "col_timestamp": {
+        "prefix": "col_timestamp",
+        "body": [
+            "\t\t${1:col_name} TIMESTAMP${2: NOT NULL},"
+        ],
+        "description": "Ajouter une colonne de type TIMESTAMP. Version avec NOT NULL possible."
+    },
+    "col_time": {
+        "prefix": "col_time",
+        "body": [
+            "\t\t${1:col_name} TIME${2: NOT NULL},"
+        ],
+        "description": "Ajouter une colonne de type TIME. Version avec NOT NULL possible."
+    },
+    "col_interval": {
+        "prefix": "col_interval",
+        "body": [
+            "\t\t${1:col_name} INTERVAL${2: NOT NULL},"
+        ],
+        "description": "Ajouter une colonne de type INTERVAL. Version avec NOT NULL possible."
     },
     "print_create": {
         "prefix": "print_create",
         "body": [
-            "-- Snippets for CREATE operations:",
-            "-- create_table_if_exists: Create a table with IF NOT EXISTS",
-            "-- create_sequence_if_exists: Create a sequence with IF NOT EXISTS",
-            "-- create_table_with_sequence: Create a table with sequence as primary key"
+            "-- Snippets pour les opérations CREATE :",
+            "-- drop_table_if_exists: Supprimer une table si elle existe (sans CASCADE)",
+            "-- drop_table_if_exists_cascade: Supprimer une table si elle existe avec CASCADE",
+            "-- create_table_if_exists: Créer une table avec IF NOT EXISTS après suppression",
+            "-- drop_sequence_if_exists: Supprimer une séquence si elle existe (sans CASCADE)",
+            "-- drop_sequence_if_exists_cascade: Supprimer une séquence si elle existe avec CASCADE",
+            "-- create_sequence_if_exists: Créer une séquence avec IF NOT EXISTS après suppression",
+            "-- create_table_with_sequence: Créer une table avec une séquence pour la clé primaire",
+            "-- col_char: Ajouter une colonne de type CHAR(n)",
+            "-- col_varchar: Ajouter une colonne de type VARCHAR(n)",
+            "-- col_text: Ajouter une colonne de type TEXT",
+            "-- col_int: Ajouter une colonne de type INTEGER",
+            "-- col_serial: Ajouter une colonne de type SERIAL",
+            "-- col_numeric: Ajouter une colonne de type NUMERIC",
+            "-- col_date: Ajouter une colonne de type DATE",
+            "-- col_timestamp: Ajouter une colonne de type TIMESTAMP",
+            "-- col_time: Ajouter une colonne de type TIME",
+            "-- col_interval: Ajouter une colonne de type INTERVAL"
         ],
-        "description": "Print for CREATE operations"
+        "description": "Aide-mémoire pour les opérations CREATE et colonnes"
     },
     "alter_table_add_column": {
         "prefix": "alter_table_add_column",
