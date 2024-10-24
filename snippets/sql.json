@@ -107,7 +107,7 @@
     "seq": {
         "prefix": "seq",
         "body": ["CREATE SEQUENCE IF NOT EXISTS ${1:sequence_name}_seq;"],
-        "description": "Créer une séquence, si celle-ci n'existe pas"
+        "description": "Créer une séquence, si celle-ci n existe pas"
     },
     "view": {
         "prefix": "view",
