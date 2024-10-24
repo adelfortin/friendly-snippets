@@ -24,7 +24,7 @@
         "body": [
             "SELECT * FROM ${1:table};"
         ],
-        "description": "Select all from a table"
+        "description": "Faire un SELECT de tout les éléments de la table"
     },
     "where": {
         "prefix": "where",
@@ -34,99 +34,104 @@
             "\t\tWHERE ${2:conditions}",
             "\t\t\t;"
         ],
-        "description": "Snippet for WHERE clause"
+        "description": "Snippet pour les clauses WHERE"
     },
     "group": {
         "prefix": "group",
         "body": [
             "SELECT ${1:col1}, ${2:col2}",
-            "FROM ${3:table_name}",
-            "GROUP BY ${1:col1}, ${2:col2};"
+            "\tFROM ${3:table_name}",
+            "\t\tGROUP BY ${1:col1}, ${2:col2};",
+            "\t\t\t;"
         ],
-        "description": "Snippet for GROUP BY"
+        "description": "Snippet pour les GROUP BY"
     },
     "having": {
         "prefix": "having",
         "body": [
             "SELECT ${1:col1}, ${2:col2}",
-            "FROM ${3:table_name}",
-            "HAVING ${4:conditions};"
+            "\tFROM ${3:table_name}",
+            "\t\tHAVING ${4:conditions};",
+            "\t\t\t;"
         ],
-        "description": "Snippet for HAVING clause"
+        "description": "Snippet pour les clauses HAVING"
     },
     "havg": {
         "prefix": "havg",
         "body": [
             "SELECT ${1:col1}, ${2:col2}",
-            "FROM ${3:table_name}",
-            "HAVING ${4:conditions}",
-            "GROUP BY ${1:col1}, ${2:col2};"
+            "\tFROM ${3:table_name}",
+            "\t\tHAVING ${4:conditions}",
+            "\t\t\tGROUP BY ${1:col1}, ${2:col2};",
+            "\t\t\t\t;"
         ],
-        "description": "Snippet for HAVING and GROUP BY"
+        "description": "Snippet avec un cas présentant un HAVING avec un GROUP BY"
     },
     "order": {
         "prefix": "order",
         "body": [
             "SELECT ${1:col1}, ${2:col2}",
-            "FROM ${3:table_name}",
-            "HAVING ${4:conditions}",
-            "GROUP BY ${1:col1}, ${2:col2}",
-            "ORDER BY ${5:cle};"
+            "\tFROM ${3:table_name}",
+            "\t\tHAVING ${4:conditions}",
+            "\t\t\tGROUP BY ${1:col1}, ${2:col2}",
+            "\t\t\t\tORDER BY ${5:cle};",
+            "\t\t\t\t\t;"
         ],
-        "description": "Snippet for ORDER BY clause"
+        "description": "Snippet avec un cas présentant un HAVING avec un GROUP BY et un ORDER BY"
     },
     "gb": {
         "prefix": "gb",
-        "body": ["GROUP BY ${1:column}"],
-        "description": "Group by column"
+        "body": ["\t\t\GROUP BY ${1:column}"],
+        "description": "Faire un GROUP BY par colonne"
     },
     "ob": {
         "prefix": "ob",
-        "body": ["ORDER BY ${1:column}"],
-        "description": "Order by column"
+        "body": ["\t\tORDER BY ${1:column}"],
+        "description": "Faire un ORDER BY par colonne"
     },
     "if": {
         "prefix": "if",
         "body": ["IF NOT EXISTS ${1:condition};"],
-        "description": "IF NOT EXISTS condition"
+        "description": "condition IF NOT EXISTS"
     },
     "check": {
         "prefix": "check",
         "body": ["CHECK (${1:condition})"],
-        "description": "Snippet for CHECK constraint"
+        "description": "Snippet pour une contrainte de CHECK"
     },
     "add": {
         "prefix": "add",
         "body": ["ALTER TABLE ${1:table_name} ADD CONSTRAINT ${2:constraint};"],
-        "description": "Add constraint to a table"
+        "description": "Ajout d'une contrainte à une table"
     },
     "seq": {
         "prefix": "seq",
         "body": ["CREATE SEQUENCE IF NOT EXISTS ${1:sequence_name}_seq;"],
-        "description": "Create sequence if not exists"
+        "description": "Créer une séquence, si celle-ci n'existe pas"
     },
     "view": {
         "prefix": "view",
         "body": [
             "CREATE VIEW ${1:view_name} AS",
             "\tSELECT *",
-            "\tFROM ${2:table}",
-            "\tWHERE ${3:condition};",
+            "\t\tFROM ${2:table}",
+            "\t\t\tWHERE ${3:condition};",
+            "\t\t\t\t;",
             "",
             "SELECT * FROM ${1:view_name};"
         ],
-        "description": "Create SQL view"
+        "description": "Créer et vérifie une vue SQL"
     },
     "table": {
         "prefix": "table",
         "body": [
             "CREATE TABLE IF NOT EXISTS ${1:table_name} (",
             "\t${2:col1} ${3:TYPE},",
-            "\t${4:col2} ${5:TYPE},",
-            "\t${6:col3} ${7:TYPE}",
-            ");"
+            "\t\t${4:col2} ${5:TYPE},",
+            "\t\t\t${6:col3} ${7:TYPE}",
+            "\t\t\t\t);"
         ],
-        "description": "Create SQL table"
+        "description": "Créer une table SQL"
     },
     "dt": {
         "prefix": "dt",
