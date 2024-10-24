@@ -31,7 +31,7 @@
         "body": [
             "SELECT *",
             "\tFROM ${1:tab_name}",
-            "\t\tWHERE ${2:conditions}"
+            "\t\tWHERE ${2:conditions}",
             "\t\t\t;"
         ],
         "description": "Snippet for WHERE clause"
