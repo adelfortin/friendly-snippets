@@ -95,7 +95,7 @@
         "description": "condition IF NOT EXISTS"
     },
     "printlidgen": {
-    "prefix": "printext",
+    "prefix": "printlidgen",
     "body": [
         "-- Snippets generaux pour le langage d'interrogation des données  :",
         "-- sela: Faire un SELECT de tout les éléments de la table",
