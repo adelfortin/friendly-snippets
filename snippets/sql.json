@@ -1,4 +1,32 @@
 {
+    "aide": {
+        "prefix": "aide",
+        "body": [
+            "-- Liste des commandes d'aide disponibles :",
+            "-- printquestion : Aide-mémoire pour les questions et sections SQL.",
+            "-- printlidgen : Aide-mémoire pour les snippets de langage d'interrogation des données.",
+            "-- printlddgen : Aide-mémoire pour les snippets de langage de définition des données.",
+            "-- printlmdgen : Aide-mémoire pour les snippets de langage de modification des données.",
+            "-- printext : Aide-mémoire pour les snippets de manipulation de texte.",
+            "-- printmath : Aide-mémoire pour les fonctions mathématiques.",
+            "-- printwhere : Aide-mémoire pour les clauses WHERE.",
+            "-- printmiseenpage : Aide-mémoire pour les snippets de mise en page SQL.",
+            "-- printdate : Aide-mémoire pour les snippets de gestion des dates et heures.",
+            "-- printjoin : Aide-mémoire pour les snippets de jointures et opérations d'ensembles.",
+            "-- printgroup : Aide-mémoire pour les fonctions de groupe en SQL.",
+            "-- printhaving : Aide-mémoire pour les clauses HAVING.",
+            "-- printcond : Aide-mémoire pour les conditions avancées en SQL.",
+            "-- print_create : Aide-mémoire pour les opérations CREATE et colonnes.",
+            "-- print_alter : Aide-mémoire pour les opérations ALTER.",
+            "-- print_drop : Aide-mémoire pour les opérations DROP.",
+            "-- print_insert : Aide-mémoire pour les opérations INSERT.",
+            "-- print_update : Aide-mémoire pour les opérations UPDATE.",
+            "-- print_delete : Aide-mémoire pour les opérations DELETE.",
+            "-- print_view : Aide-mémoire pour les opérations sur les VUES.",
+            "-- print_schema : Aide-mémoire pour la gestion des schémas et des données PostgreSQL."
+        ],
+        "description": "Aide-mémoire pour toutes les commandes d'aide disponibles dans le fichier."
+    },
     "qt": {
         "prefix": "qt",
         "body": [
@@ -18,6 +46,137 @@
             ""
         ],
         "description": "Snippet pour ajouter une section ou un titre"
+    },
+    "qt1": {
+        "prefix": "qt1",
+        "body": [
+            "-----------------",
+            "-- QUESTION N° 1",
+            "-----------------",
+            ""
+        ],
+        "description": "Snippet pour ajouter la question N° 1"
+    },
+    "qt2": {
+        "prefix": "qt2",
+        "body": [
+            "-----------------",
+            "-- QUESTION N° 2",
+            "-----------------",
+            ""
+        ],
+        "description": "Snippet pour ajouter la question N° 2"
+    },
+    "qt3": {
+        "prefix": "qt3",
+        "body": [
+            "-----------------",
+            "-- QUESTION N° 3",
+            "-----------------",
+            ""
+        ],
+        "description": "Snippet pour ajouter la question N° 3"
+    },
+    "qt4": {
+        "prefix": "qt4",
+        "body": [
+            "-----------------",
+            "-- QUESTION N° 4",
+            "-----------------",
+            ""
+        ],
+        "description": "Snippet pour ajouter la question N° 4"
+    },
+    "qt5": {
+        "prefix": "qt5",
+        "body": [
+            "-----------------",
+            "-- QUESTION N° 5",
+            "-----------------",
+            ""
+        ],
+        "description": "Snippet pour ajouter la question N° 5"
+    },
+    "qt6": {
+        "prefix": "qt6",
+        "body": [
+            "-----------------",
+            "-- QUESTION N° 6",
+            "-----------------",
+            ""
+        ],
+        "description": "Snippet pour ajouter la question N° 6"
+    },
+    "qt7": {
+        "prefix": "qt7",
+        "body": [
+            "-----------------",
+            "-- QUESTION N° 7",
+            "-----------------",
+            ""
+        ],
+        "description": "Snippet pour ajouter la question N° 7"
+    },
+    "qt8": {
+        "prefix": "qt8",
+        "body": [
+            "-----------------",
+            "-- QUESTION N° 8",
+            "-----------------",
+            ""
+        ],
+        "description": "Snippet pour ajouter la question N° 8"
+    },
+    "qt9": {
+        "prefix": "qt9",
+        "body": [
+            "-----------------",
+            "-- QUESTION N° 9",
+            "-----------------",
+            ""
+        ],
+        "description": "Snippet pour ajouter la question N° 9"
+    },
+    "qz_lid": {
+        "prefix": "qz_lid",
+        "body": [
+            "-----------------------------------------",
+            "-- Langage d'Interrogation des Données",
+            "-----------------------------------------",
+            ""
+        ],
+        "description": "Section pour Langage d'Interrogation des Données (LID)"
+    },
+    "qz_ldd": {
+        "prefix": "qz_ldd",
+        "body": [
+            "-----------------------------------------",
+            "-- Langage de Définition des Données",
+            "-----------------------------------------",
+            ""
+        ],
+        "description": "Section pour Langage de Définition des Données (LDD)"
+    },
+    "qz_lmd": {
+        "prefix": "qz_lmd",
+        "body": [
+            "-----------------------------------------",
+            "-- Langage de Manipulation des Données",
+            "-----------------------------------------",
+            ""
+        ],
+        "description": "Section pour Langage de Manipulation des Données (LMD)"
+    },
+    "printquestion": {
+        "prefix": "printquestion",
+        "body": [
+            "-- Snippets pour les questions et sections SQL :",
+            "-- qt1 à qt9 : Question numérotée de 1 à 9",
+            "-- qz_lid : Section pour Langage d'Interrogation des Données",
+            "-- qz_ldd : Section pour Langage de Définition des Données",
+            "-- qz_lmd : Section pour Langage de Manipulation des Données"
+        ],
+        "description": "Aide-mémoire pour les questions et sections SQL"
     },
     "sela": {
         "prefix": "sela",
@@ -1352,8 +1511,8 @@
         "body": [
             "DROP TABLE IF EXISTS ${1:table_name};",
             "\tCREATE TABLE IF NOT EXISTS ${1:table_name} (",
-            "\t\t${2:col_name} ${3:data_type},",
-            "\t\t\ttable_id INTEGER DEFAULT NEXTVAL('${4:table_seq}'),",
+            "\t\ttable_id INTEGER DEFAULT NEXTVAL('${4:table_seq}'),",
+            "\t\t\t${2:col_name} ${3:data_type},",
             "\t\t\t\t${5:other_columns}",
             "\t\t\t\t\t);"
         ],
@@ -1362,77 +1521,147 @@
     "col_char": {
         "prefix": "col_char",
         "body": [
-            "\t\t${1:col_name} CHAR(${2:n})${3: NOT NULL},"
+            "\t${1:col_name} CHAR(${2:n}),"
         ],
-        "description": "Ajouter une colonne de type CHAR(n). Version avec NOT NULL possible."
+        "description": "Ajouter une colonne de type CHAR(n)."
+    },
+    "col_char_not_null": {
+        "prefix": "col_char_not_null",
+        "body": [
+            "\t${1:col_name} CHAR(${2:n}) NOT NULL,"
+        ],
+        "description": "Ajouter une colonne de type CHAR(n) avec NOT NULL."
     },
     "col_varchar": {
         "prefix": "col_varchar",
         "body": [
-            "\t\t${1:col_name} VARCHAR(${2:n})${3: NOT NULL},"
+            "\t${1:col_name} VARCHAR(${2:n}),"
         ],
-        "description": "Ajouter une colonne de type VARCHAR(n). Version avec NOT NULL possible."
+        "description": "Ajouter une colonne de type VARCHAR(n)."
+    },
+    "col_varchar_not_null": {
+        "prefix": "col_varchar_not_null",
+        "body": [
+            "\t${1:col_name} VARCHAR(${2:n}) NOT NULL,"
+        ],
+        "description": "Ajouter une colonne de type VARCHAR(n) avec NOT NULL."
     },
     "col_text": {
         "prefix": "col_text",
         "body": [
-            "\t\t${1:col_name} TEXT${2: NOT NULL},"
+            "\t${1:col_name} TEXT,"
         ],
-        "description": "Ajouter une colonne de type TEXT. Version avec NOT NULL possible."
+        "description": "Ajouter une colonne de type TEXT."
+    },
+    "col_text_not_null": {
+        "prefix": "col_text_not_null",
+        "body": [
+            "\t${1:col_name} TEXT NOT NULL,"
+        ],
+        "description": "Ajouter une colonne de type TEXT avec NOT NULL."
     },
     "col_int": {
         "prefix": "col_int",
         "body": [
-            "\t${1:col_name} INTEGER${2: NOT NULL},"
+            "\t${1:col_name} INTEGER,"
         ],
-        "description": "Ajouter une colonne de type INTEGER. Version avec NOT NULL possible."
+        "description": "Ajouter une colonne de type INTEGER."
+    },
+    "col_int_not_null": {
+        "prefix": "col_int_not_null",
+        "body": [
+            "\t${1:col_name} INTEGER NOT NULL,"
+        ],
+        "description": "Ajouter une colonne de type INTEGER avec NOT NULL."
     },
     "col_serial": {
         "prefix": "col_serial",
         "body": [
-            "\t${1:col_name} SERIAL${2: NOT NULL},"
+            "\t${1:col_name} SERIAL,"
         ],
-        "description": "Ajouter une colonne de type SERIAL pour une clé primaire auto-incrémentée."
+        "description": "Ajouter une colonne de type SERIAL."
+    },
+    "col_serial_not_null": {
+        "prefix": "col_serial_not_null",
+        "body": [
+            "\t${1:col_name} SERIAL NOT NULL,"
+        ],
+        "description": "Ajouter une colonne de type SERIAL avec NOT NULL."
     },
     "col_numeric": {
         "prefix": "col_numeric",
         "body": [
-            "\t\t${1:col_name} NUMERIC(${2:precision}, ${3:scale})${4: NOT NULL},"
+            "\t${1:col_name} NUMERIC(${2:precision}, ${3:scale}),"
         ],
-        "description": "Ajouter une colonne de type NUMERIC avec précision et échelle. Version avec NOT NULL possible."
+        "description": "Ajouter une colonne de type NUMERIC avec précision et échelle."
+    },
+    "col_numeric_not_null": {
+        "prefix": "col_numeric_not_null",
+        "body": [
+            "\t${1:col_name} NUMERIC(${2:precision}, ${3:scale}) NOT NULL,"
+        ],
+        "description": "Ajouter une colonne de type NUMERIC avec précision, échelle, et NOT NULL."
     },
     "col_date": {
         "prefix": "col_date",
         "body": [
-            "\t\t${1:col_name} DATE${2: NOT NULL},"
+            "\t${1:col_name} DATE,"
         ],
-        "description": "Ajouter une colonne de type DATE. Version avec NOT NULL possible."
+        "description": "Ajouter une colonne de type DATE."
+    },
+    "col_date_not_null": {
+        "prefix": "col_date_not_null",
+        "body": [
+            "\t${1:col_name} DATE NOT NULL,"
+        ],
+        "description": "Ajouter une colonne de type DATE avec NOT NULL."
     },
     "col_timestamp": {
         "prefix": "col_timestamp",
         "body": [
-            "\t\t${1:col_name} TIMESTAMP${2: NOT NULL},"
+            "\t${1:col_name} TIMESTAMP,"
         ],
-        "description": "Ajouter une colonne de type TIMESTAMP. Version avec NOT NULL possible."
+        "description": "Ajouter une colonne de type TIMESTAMP."
+    },
+    "col_timestamp_not_null": {
+        "prefix": "col_timestamp_not_null",
+        "body": [
+            "\t${1:col_name} TIMESTAMP NOT NULL,"
+        ],
+        "description": "Ajouter une colonne de type TIMESTAMP avec NOT NULL."
     },
     "col_time": {
         "prefix": "col_time",
         "body": [
-            "\t\t${1:col_name} TIME${2: NOT NULL},"
+            "\t${1:col_name} TIME,"
         ],
-        "description": "Ajouter une colonne de type TIME. Version avec NOT NULL possible."
+        "description": "Ajouter une colonne de type TIME."
+    },
+    "col_time_not_null": {
+        "prefix": "col_time_not_null",
+        "body": [
+            "\t${1:col_name} TIME NOT NULL,"
+        ],
+        "description": "Ajouter une colonne de type TIME avec NOT NULL."
     },
     "col_interval": {
         "prefix": "col_interval",
         "body": [
-            "\t\t${1:col_name} INTERVAL${2: NOT NULL},"
+            "\t${1:col_name} INTERVAL,"
         ],
-        "description": "Ajouter une colonne de type INTERVAL. Version avec NOT NULL possible."
+        "description": "Ajouter une colonne de type INTERVAL."
+    },
+    "col_interval_not_null": {
+        "prefix": "col_interval_not_null",
+        "body": [
+            "\t${1:col_name} INTERVAL NOT NULL,"
+        ],
+        "description": "Ajouter une colonne de type INTERVAL avec NOT NULL."
     },
     "print_create": {
         "prefix": "print_create",
         "body": [
-            "-- Snippets pour les opérations CREATE :",
+            "-- Snippets pour les opérations CREATE et ajout de colonnes :",
             "-- drop_table_if_exists: Supprimer une table si elle existe (sans CASCADE)",
             "-- drop_table_if_exists_cascade: Supprimer une table si elle existe avec CASCADE",
             "-- create_table_if_exists: Créer une table avec IF NOT EXISTS après suppression",
@@ -1441,15 +1670,25 @@
             "-- create_sequence_if_exists: Créer une séquence avec IF NOT EXISTS après suppression",
             "-- create_table_with_sequence: Créer une table avec une séquence pour la clé primaire",
             "-- col_char: Ajouter une colonne de type CHAR(n)",
+            "-- col_char_not_null: Ajouter une colonne de type CHAR(n) avec NOT NULL",
             "-- col_varchar: Ajouter une colonne de type VARCHAR(n)",
+            "-- col_varchar_not_null: Ajouter une colonne de type VARCHAR(n) avec NOT NULL",
             "-- col_text: Ajouter une colonne de type TEXT",
+            "-- col_text_not_null: Ajouter une colonne de type TEXT avec NOT NULL",
             "-- col_int: Ajouter une colonne de type INTEGER",
+            "-- col_int_not_null: Ajouter une colonne de type INTEGER avec NOT NULL",
             "-- col_serial: Ajouter une colonne de type SERIAL",
+            "-- col_serial_not_null: Ajouter une colonne de type SERIAL avec NOT NULL",
             "-- col_numeric: Ajouter une colonne de type NUMERIC",
+            "-- col_numeric_not_null: Ajouter une colonne de type NUMERIC avec NOT NULL",
             "-- col_date: Ajouter une colonne de type DATE",
+            "-- col_date_not_null: Ajouter une colonne de type DATE avec NOT NULL",
             "-- col_timestamp: Ajouter une colonne de type TIMESTAMP",
+            "-- col_timestamp_not_null: Ajouter une colonne de type TIMESTAMP avec NOT NULL",
             "-- col_time: Ajouter une colonne de type TIME",
-            "-- col_interval: Ajouter une colonne de type INTERVAL"
+            "-- col_time_not_null: Ajouter une colonne de type TIME avec NOT NULL",
+            "-- col_interval: Ajouter une colonne de type INTERVAL",
+            "-- col_interval_not_null: Ajouter une colonne de type INTERVAL avec NOT NULL"
         ],
         "description": "Aide-mémoire pour les opérations CREATE et colonnes"
     },
@@ -1457,270 +1696,430 @@
         "prefix": "alter_table_add_column",
         "body": [
             "ALTER TABLE ${1:table_name}",
-            "ADD COLUMN ${2:col_name} ${3:data_type};"
+            "\tADD COLUMN ${2:col_name} ${3:data_type};"
         ],
-        "description": "Alter table to add a column"
+        "description": "Modifier la table pour ajouter une colonne."
     },
     "alter_table_modify_column": {
         "prefix": "alter_table_modify_column",
         "body": [
             "ALTER TABLE ${1:table_name}",
-            "ALTER COLUMN ${2:col_name} SET ${3:property};"
+            "\tALTER COLUMN ${2:col_name} SET ${3:property};"
         ],
-        "description": "Alter table to modify a column"
+        "description": "Modifier la table pour changer les propriétés d'une colonne."
     },
     "alter_table_drop_column": {
         "prefix": "alter_table_drop_column",
         "body": [
             "ALTER TABLE ${1:table_name}",
-            "DROP COLUMN ${2:col_name};"
+            "\tDROP COLUMN ${2:col_name};"
         ],
-        "description": "Alter table to drop a column"
+        "description": "Modifier la table pour supprimer une colonne."
     },
     "alter_table_add_pk": {
         "prefix": "alter_table_add_pk",
         "body": [
             "ALTER TABLE ${1:table_name}",
-            "ADD CONSTRAINT ${2:pk_name} PRIMARY KEY (${3:col_name});"
+            "\tADD CONSTRAINT ${2:pk_name} PRIMARY KEY (${3:col_name});"
         ],
-        "description": "Alter table to add a primary key"
+        "description": "Modifier la table pour ajouter une clé primaire."
     },
     "alter_table_add_unique": {
         "prefix": "alter_table_add_unique",
         "body": [
             "ALTER TABLE ${1:table_name}",
-            "ADD CONSTRAINT ${2:unique_name} UNIQUE (${3:col_name});"
+            "\tADD CONSTRAINT ${2:unique_name} UNIQUE (${3:col_name});"
         ],
-        "description": "Alter table to add a unique constraint"
+        "description": "Modifier la table pour ajouter une contrainte d'unicité."
     },
     "alter_table_add_fk": {
         "prefix": "alter_table_add_fk",
         "body": [
             "ALTER TABLE ${1:table_name}",
-            "ADD CONSTRAINT ${2:fk_name} FOREIGN KEY (${3:col_name})",
-            "REFERENCES ${4:ref_table}(${5:ref_col});"
+            "\tADD CONSTRAINT ${2:fk_tablename_colname} FOREIGN KEY (${3:col_name})",
+            "\t\tREFERENCES ${4:ref_table}(${5:ref_col});"
         ],
-        "description": "Alter table to add a foreign key constraint"
+        "description": "Modifier la table pour ajouter une contrainte de clé étrangère."
     },
     "alter_table_add_check": {
         "prefix": "alter_table_add_check",
         "body": [
             "ALTER TABLE ${1:table_name}",
-            "ADD CONSTRAINT ${2:check_name} CHECK (${3:condition});"
+            "\tADD CONSTRAINT ${2:check_name} CHECK (${3:condition});"
         ],
-        "description": "Alter table to add a check constraint"
+        "description": "Modifier la table pour ajouter une contrainte de vérification."
     },
-    "alter_sequence": {
-        "prefix": "alter_sequence",
+    "alter_sequence_restart": {
+        "prefix": "alter_sequence_restart",
         "body": [
             "ALTER SEQUENCE ${1:sequence_name}",
-            "RESTART WITH ${2:start_value};"
+            "\tRESTART WITH ${2:start_value};"
         ],
-        "description": "Alter sequence to restart from a value"
+        "description": "Modifier la séquence pour redémarrer à partir d'une valeur spécifique."
+    },
+    "alter_sequence_owned_by": {
+        "prefix": "alter_sequence_owned_by",
+        "body": [
+            "ALTER SEQUENCE ${1:sequence_name}",
+            "\tOWNED BY ${2:table}.${3:col_name};"
+        ],
+        "description": "Modifier la séquence pour qu'elle soit liée à une colonne spécifique d'une table."
     },
     "print_alter": {
         "prefix": "print_alter",
         "body": [
-            "-- Snippets for ALTER operations:",
-            "-- alter_table_add_column: Add a column to a table",
-            "-- alter_table_modify_column: Modify a column in a table",
-            "-- alter_table_drop_column: Drop a column from a table",
-            "-- alter_table_add_pk: Add a primary key constraint",
-            "-- alter_table_add_unique: Add a unique constraint",
-            "-- alter_table_add_fk: Add a foreign key constraint",
-            "-- alter_table_add_check: Add a check constraint",
-            "-- alter_sequence: Alter sequence to restart"
+            "-- Snippets pour les opérations ALTER :",
+            "-- alter_table_add_column: Ajouter une colonne à une table.",
+            "-- alter_table_modify_column: Modifier les propriétés d'une colonne dans une table.",
+            "-- alter_table_drop_column: Supprimer une colonne d'une table.",
+            "-- alter_table_add_pk: Ajouter une contrainte de clé primaire.",
+            "-- alter_table_add_unique: Ajouter une contrainte d'unicité.",
+            "-- alter_table_add_fk: Ajouter une contrainte de clé étrangère.",
+            "-- alter_table_add_check: Ajouter une contrainte de vérification.",
+            "-- alter_sequence_restart: Redémarrer une séquence à partir d'une valeur spécifique.",
+            "-- alter_sequence_owned_by: Associer une séquence à une colonne spécifique d'une table."
         ],
-        "description": "Print for ALTER operations"
+        "description": "Aide-mémoire pour les opérations ALTER."
     },
     "drop_table_if_exists": {
         "prefix": "drop_table_if_exists",
         "body": [
             "DROP TABLE IF EXISTS ${1:table_name};"
         ],
-        "description": "Drop table with IF EXISTS"
+        "description": "Supprimer une table si elle existe."
+    },
+    "drop_table_if_exists_cascade": {
+        "prefix": "drop_table_if_exists_cascade",
+        "body": [
+            "DROP TABLE IF EXISTS ${1:table_name} CASCADE;"
+        ],
+        "description": "Supprimer une table si elle existe avec CASCADE (nécessaire si des dépendances existent)."
     },
     "drop_column": {
         "prefix": "drop_column",
         "body": [
             "ALTER TABLE ${1:table_name}",
-            "DROP COLUMN ${2:col_name};"
+            "\tDROP COLUMN ${2:col_name};"
         ],
-        "description": "Drop a column from a table"
+        "description": "Supprimer une colonne d'une table."
     },
     "drop_constraint": {
         "prefix": "drop_constraint",
         "body": [
             "ALTER TABLE ${1:table_name}",
-            "DROP CONSTRAINT ${2:constraint_name};"
+            "\tDROP CONSTRAINT ${2:constraint_name};"
         ],
-        "description": "Drop a constraint from a table"
+        "description": "Supprimer une contrainte d'une table."
     },
     "drop_sequence_if_exists": {
         "prefix": "drop_sequence_if_exists",
         "body": [
             "DROP SEQUENCE IF EXISTS ${1:sequence_name};"
         ],
-        "description": "Drop sequence with IF EXISTS"
+        "description": "Supprimer une séquence si elle existe."
+    },
+    "drop_sequence_if_exists_cascade": {
+        "prefix": "drop_sequence_if_exists_cascade",
+        "body": [
+            "DROP SEQUENCE IF EXISTS ${1:sequence_name} CASCADE;"
+        ],
+        "description": "Supprimer une séquence si elle existe avec CASCADE (nécessaire si la séquence est utilisée dans une clé étrangère ou autre dépendance)."
     },
     "print_drop": {
         "prefix": "print_drop",
         "body": [
-            "-- Snippets for DROP operations:",
-            "-- drop_table_if_exists: Drop a table with IF EXISTS",
-            "-- drop_column: Drop a column from a table",
-            "-- drop_constraint: Drop a constraint from a table",
-            "-- drop_sequence_if_exists: Drop a sequence with IF EXISTS"
+            "-- Snippets pour les opérations DROP :",
+            "-- drop_table_if_exists: Supprimer une table si elle existe.",
+            "-- drop_table_if_exists_cascade: Supprimer une table si elle existe avec CASCADE.",
+            "-- drop_column: Supprimer une colonne d'une table.",
+            "-- drop_constraint: Supprimer une contrainte d'une table.",
+            "-- drop_sequence_if_exists: Supprimer une séquence si elle existe.",
+            "-- drop_sequence_if_exists_cascade: Supprimer une séquence si elle existe avec CASCADE."
         ],
-        "description": "Print for DROP operations"
+        "description": "Aide-mémoire pour les opérations DROP."
     },
     "insert_basic": {
         "prefix": "insert_basic",
         "body": [
             "INSERT INTO ${1:table_name} (${2:col1}, ${3:col2})",
-            "VALUES (${4:value1}, ${5:value2});"
+            "\tVALUES (${4:value1}, ${5:value2});"
         ],
-        "description": "Basic INSERT into table"
+        "description": "Insertion basique dans une table."
     },
     "insert_returning": {
         "prefix": "insert_returning",
         "body": [
             "INSERT INTO ${1:table_name} (${2:col1}, ${3:col2})",
-            "VALUES (${4:value1}, ${5:value2})",
-            "RETURNING ${6:col_name};"
+            "\tVALUES (${4:value1}, ${5:value2})",
+            "\tRETURNING ${6:col_name};"
         ],
-        "description": "INSERT with RETURNING clause"
+        "description": "Insertion avec une clause RETURNING."
     },
     "insert_select": {
         "prefix": "insert_select",
         "body": [
             "INSERT INTO ${1:table_name} (${2:col1}, ${3:col2})",
-            "SELECT ${4:col1}, ${5:col2}",
-            "FROM ${6:source_table}",
-            "WHERE ${7:condition};"
+            "\tSELECT ${4:col1}, ${5:col2}",
+            "\tFROM ${6:source_table}",
+            "\t\tWHERE ${7:condition};"
         ],
-        "description": "INSERT from SELECT query"
+        "description": "Insertion à partir d'une requête SELECT."
     },
     "print_insert": {
         "prefix": "print_insert",
         "body": [
-            "-- Snippets for INSERT operations:",
-            "-- insert_basic: Basic INSERT statement",
-            "-- insert_returning: INSERT with RETURNING clause",
-            "-- insert_select: INSERT using a SELECT query"
+            "-- Snippets pour les opérations INSERT :",
+            "-- insert_basic: Insertion basique dans une table.",
+            "-- insert_returning: Insertion avec une clause RETURNING.",
+            "-- insert_select: Insertion à partir d'une requête SELECT."
         ],
-        "description": "Print for INSERT operations"
+        "description": "Aide-mémoire pour les opérations INSERT."
     },
     "update_basic": {
         "prefix": "update_basic",
         "body": [
             "UPDATE ${1:table_name}",
-            "SET ${2:col1} = ${3:value1}, ${4:col2} = ${5:value2}",
-            "WHERE ${6:condition};"
+            "\tSET ${2:col1} = ${3:value1}, ${4:col2} = ${5:value2}",
+            "\tWHERE ${6:condition};"
         ],
-        "description": "Basic UPDATE table row"
+        "description": "Mise à jour basique d'une ligne dans une table."
     },
     "update_returning": {
         "prefix": "update_returning",
         "body": [
             "UPDATE ${1:table_name}",
-            "SET ${2:col1} = ${3:value1}, ${4:col2} = ${5:value2}",
-            "WHERE ${6:condition}",
-            "RETURNING ${7:col_name};"
+            "\tSET ${2:col1} = ${3:value1}, ${4:col2} = ${5:value2}",
+            "\tWHERE ${6:condition}",
+            "\tRETURNING ${7:col_name};"
         ],
-        "description": "UPDATE with RETURNING clause"
+        "description": "Mise à jour avec une clause RETURNING."
     },
     "update_with_join": {
         "prefix": "update_with_join",
         "body": [
             "UPDATE ${1:table_name} t",
-            "SET ${2:col} = ${3:value}",
-            "FROM ${4:join_table} jt",
-            "WHERE t.${5:join_column} = jt.${6:join_column} AND ${7:condition};"
+            "\tSET ${2:col} = ${3:value}",
+            "\tFROM ${4:join_table} jt",
+            "\t\tWHERE t.${5:join_column} = jt.${6:join_column} AND ${7:condition};"
         ],
-        "description": "UPDATE with JOIN"
+        "description": "Mise à jour avec une jointure (JOIN)."
     },
     "print_update": {
         "prefix": "print_update",
         "body": [
-            "-- Snippets for UPDATE operations:",
-            "-- update_basic: Basic UPDATE statement",
-            "-- update_returning: UPDATE with RETURNING clause",
-            "-- update_with_join: UPDATE with JOIN clause"
+            "-- Snippets pour les opérations UPDATE :",
+            "-- update_basic: Mise à jour basique d'une ligne dans une table.",
+            "-- update_returning: Mise à jour avec une clause RETURNING.",
+            "-- update_with_join: Mise à jour avec une jointure (JOIN)."
         ],
-        "description": "Print for UPDATE operations"
+        "description": "Aide-mémoire pour les opérations UPDATE."
     },
     "delete_basic": {
         "prefix": "delete_basic",
         "body": [
             "DELETE FROM ${1:table_name}",
-            "WHERE ${2:condition};"
+            "\tWHERE ${2:condition};"
         ],
-        "description": "Basic DELETE from table"
+        "description": "Suppression basique de lignes dans une table."
     },
     "delete_returning": {
         "prefix": "delete_returning",
         "body": [
             "DELETE FROM ${1:table_name}",
-            "WHERE ${2:condition}",
-            "RETURNING ${3:col_name};"
+            "\tWHERE ${2:condition}",
+            "\tRETURNING ${3:col_name};"
         ],
-        "description": "DELETE with RETURNING clause"
+        "description": "Suppression avec une clause RETURNING."
     },
     "delete_using": {
         "prefix": "delete_using",
         "body": [
             "DELETE FROM ${1:table_name} t",
-            "USING ${2:join_table} jt",
-            "WHERE t.${3:join_column} = jt.${4:join_column} AND ${5:condition};"
+            "\tUSING ${2:join_table} jt",
+            "\t\tWHERE t.${3:join_column} = jt.${4:join_column} AND ${5:condition};"
         ],
-        "description": "DELETE using another table"
+        "description": "Suppression en utilisant une autre table pour la condition."
     },
+{
     "print_delete": {
         "prefix": "print_delete",
         "body": [
-            "-- Snippets for DELETE operations:",
-            "-- delete_basic: Basic DELETE statement",
-            "-- delete_returning: DELETE with RETURNING clause",
-            "-- delete_using: DELETE using another table"
+            "-- Snippets pour les opérations DELETE :",
+            "-- delete_basic: Suppression basique de lignes dans une table.",
+            "-- delete_returning: Suppression avec une clause RETURNING.",
+            "-- delete_using: Suppression en utilisant une autre table pour la condition."
         ],
-        "description": "Print for DELETE operations"
+        "description": "Aide-mémoire pour les opérations DELETE."
     },
     "create_view": {
         "prefix": "create_view",
         "body": [
-            "CREATE VIEW ${1:view_name} AS",
-            "SELECT ${2:columns}",
-            "FROM ${3:table_name}",
-            "WHERE ${4:condition};"
+            "DROP VIEW IF EXISTS ${1:view_name};",
+            "\tCREATE VIEW ${1:view_name} AS",
+            "\t\tSELECT ${2:columns}",
+            "\t\t\tFROM ${3:table_name}",
+            "\t\t\t\tWHERE ${4:condition};"
         ],
-        "description": "Create a SQL view"
+        "description": "Créer une vue SQL avec suppression préalable si elle existe."
     },
     "update_view": {
         "prefix": "update_view",
         "body": [
             "CREATE OR REPLACE VIEW ${1:view_name} AS",
-            "SELECT ${2:columns}",
-            "FROM ${3:table_name}",
-            "WHERE ${4:condition};"
+            "\tSELECT ${2:columns}",
+            "\t\tFROM ${3:table_name}",
+            "\t\t\tWHERE ${4:condition};"
         ],
-        "description": "Update an existing SQL view"
+        "description": "Mettre à jour ou créer une vue SQL existante."
     },
     "drop_view": {
         "prefix": "drop_view",
         "body": [
             "DROP VIEW IF EXISTS ${1:view_name};"
         ],
-        "description": "Drop a SQL view"
+        "description": "Supprimer une vue SQL si elle existe."
     },
     "print_view": {
         "prefix": "print_view",
         "body": [
-            "-- Snippets for Views:",
-            "-- create_view: Create a new SQL view",
-            "-- update_view: Create or replace an existing view",
-            "-- drop_view: Drop a view if exists"
+            "-- Snippets pour les opérations sur les VUES :",
+            "-- create_view: Créer une nouvelle vue SQL avec suppression préalable.",
+            "-- update_view: Mettre à jour ou créer une vue SQL existante.",
+            "-- drop_view: Supprimer une vue SQL si elle existe."
         ],
-        "description": "Print for View operations"
+        "description": "Aide-mémoire pour les opérations sur les VUES."
+    },
+    "list_columns": {
+        "prefix": "list_columns",
+        "body": [
+            "SELECT column_name, data_type, character_maximum_length, is_nullable, column_default",
+            "FROM information_schema.columns",
+            "WHERE table_name = '${1:table_name}';"
+        ],
+        "description": "Lister les colonnes d'une table avec leur type de données, contraintes et valeur par défaut."
+    },
+    "list_tables_in_schema": {
+        "prefix": "list_tables_in_schema",
+        "body": [
+            "SELECT table_name",
+            "FROM information_schema.tables",
+            "WHERE table_schema = '${1:schema_name}';"
+        ],
+        "description": "Lister toutes les tables d'un schéma spécifique."
+    },
+    "list_indexes_in_table": {
+        "prefix": "list_indexes_in_table",
+        "body": [
+            "SELECT indexname, indexdef",
+            "FROM pg_indexes",
+            "WHERE tablename = '${1:table_name}';"
+        ],
+        "description": "Lister tous les index d'une table."
+    },
+    "list_constraints_in_table": {
+        "prefix": "list_constraints_in_table",
+        "body": [
+            "SELECT constraint_name, constraint_type",
+            "FROM information_schema.table_constraints",
+            "WHERE table_name = '${1:table_name}';"
+        ],
+        "description": "Lister toutes les contraintes d'une table."
+    },
+    "list_sequences_in_schema": {
+        "prefix": "list_sequences_in_schema",
+        "body": [
+            "SELECT sequence_name",
+            "FROM information_schema.sequences",
+            "WHERE sequence_schema = '${1:schema_name}';"
+        ],
+        "description": "Lister toutes les séquences d'un schéma spécifique."
+    },
+    "list_foreign_keys_in_table": {
+        "prefix": "list_foreign_keys_in_table",
+        "body": [
+            "SELECT conname AS constraint_name, conrelid::regclass AS table_name,",
+            "       confrelid::regclass AS foreign_table_name",
+            "FROM pg_constraint",
+            "WHERE conrelid = '${1:table_name}'::regclass AND contype = 'f';"
+        ],
+        "description": "Lister toutes les clés étrangères d'une table."
+    },
+    "show_table_size": {
+        "prefix": "show_table_size",
+        "body": [
+            "SELECT pg_size_pretty(pg_total_relation_size('${1:table_name}')) AS size;"
+        ],
+        "description": "Afficher la taille totale d'une table."
+    },
+    "show_database_size": {
+        "prefix": "show_database_size",
+        "body": [
+            "SELECT pg_size_pretty(pg_database_size('${1:database_name}')) AS size;"
+        ],
+        "description": "Afficher la taille d'une base de données."
+    },
+    "list_schemas": {
+        "prefix": "list_schemas",
+        "body": [
+            "SELECT schema_name",
+            "FROM information_schema.schemata;"
+        ],
+        "description": "Lister tous les schémas de la base de données."
+    },
+    "describe_table": {
+        "prefix": "describe_table",
+        "body": [
+            "\\d+ ${1:table_name}"
+        ],
+        "description": "Décrire une table (afficher la structure avec des informations détaillées)."
+    },
+    "check_sequence_nextval": {
+        "prefix": "check_sequence_nextval",
+        "body": [
+            "SELECT nextval('${1:sequence_name}');"
+        ],
+        "description": "Vérifier la prochaine valeur d'une séquence."
+    },
+    "check_sequence_currval": {
+        "prefix": "check_sequence_currval",
+        "body": [
+            "SELECT currval('${1:sequence_name}');"
+        ],
+        "description": "Vérifier la valeur actuelle d'une séquence."
+    },
+    "reset_sequence": {
+        "prefix": "reset_sequence",
+        "body": [
+            "SELECT setval('${1:sequence_name}', ${2:new_value}, ${3:true_or_false});"
+        ],
+        "description": "Réinitialiser la valeur d'une séquence."
+    },
+    "show_table_ddl": {
+        "prefix": "show_table_ddl",
+        "body": [
+            "SELECT pg_get_tabledef('${1:table_name}'::regclass);"
+        ],
+        "description": "Afficher la définition DDL d'une table."
+    },
+    "print_schema": {
+        "prefix": "print_schema",
+        "body": [
+            "-- Snippets pour la gestion des schémas et des données PostgreSQL :",
+            "-- list_columns: Lister les colonnes d'une table avec leur type de données, contraintes et valeur par défaut.",
+            "-- list_tables_in_schema: Lister toutes les tables d'un schéma spécifique.",
+            "-- list_indexes_in_table: Lister tous les index d'une table.",
+            "-- list_constraints_in_table: Lister toutes les contraintes d'une table.",
+            "-- list_sequences_in_schema: Lister toutes les séquences d'un schéma spécifique.",
+            "-- list_foreign_keys_in_table: Lister toutes les clés étrangères d'une table.",
+            "-- show_table_size: Afficher la taille totale d'une table.",
+            "-- show_database_size: Afficher la taille d'une base de données.",
+            "-- list_schemas: Lister tous les schémas de la base de données.",
+            "-- describe_table: Décrire une table (structure détaillée).",
+            "-- check_sequence_nextval: Vérifier la prochaine valeur d'une séquence.",  
+            "-- check_sequence_currval: Vérifier la valeur actuelle d'une séquence.",
+            "-- reset_sequence: Réinitialiser la valeur d'une séquence.",
+            "-- show_table_ddl: Afficher la définition DDL d'une table."
+        ],
+        "description": "Aide-mémoire pour la gestion des schémas et des données PostgreSQL."
     }
 }
