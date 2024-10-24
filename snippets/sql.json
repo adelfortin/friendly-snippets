@@ -1940,7 +1940,6 @@
         ],
         "description": "Suppression en utilisant une autre table pour la condition."
     },
-{
     "print_delete": {
         "prefix": "print_delete",
         "body": [
