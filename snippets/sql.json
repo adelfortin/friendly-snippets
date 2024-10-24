@@ -123,7 +123,7 @@
     "seq": {
         "prefix": "seq",
         "body": ["CREATE SEQUENCE IF NOT EXISTS ${1:sequence_name}_seq;"],
-        "description": "Créer une séquence si celle-ci n existe pas"
+        "description": "Créer une séquence si celle-ci n'existe pas"
     },
     "view": {
         "prefix": "view",
@@ -132,11 +132,9 @@
             "\tSELECT *",
             "\t\tFROM ${2:table}",
             "\t\t\tWHERE ${3:condition};",
-            "\t\t\t\t;",
-            "",
-            "SELECT * FROM ${1:view_name};"
+            "\t\t\t\t;"
         ],
-        "description": "Créer et vérifie une vue SQL"
+        "description": "Créer et vérifier une vue SQL"
     },
     "table": {
         "prefix": "table",
@@ -152,25 +150,42 @@
     "dt": {
         "prefix": "dt",
         "body": ["DROP TABLE IF EXISTS ${1:table_name} CASCADE;"],
-        "description": "Drop table if exists"
+        "description": "Supprimer une table si elle existe"
     },
     "dl": {
         "prefix": "dl",
         "body": [
             "DELETE FROM ${1:table_name}",
-            "WHERE ${2:condition};"
+            "\tWHERE ${2:condition};",
+            "\t\t;"
         ],
-        "description": "Delete row from a table"
+        "description": "Supprimer une ligne d'une table"
     },
     "ds": {
         "prefix": "ds",
         "body": ["DROP SEQUENCE IF EXISTS ${1:sequence_name} CASCADE;"],
-        "description": "Drop sequence if exists"
+        "description": "Supprimer une séquence si elle existe"
     },
     "dv": {
         "prefix": "dv",
         "body": ["DROP VIEW IF EXISTS ${1:view_name};"],
-        "description": "Drop view if exists"
+        "description": "Supprimer une vue si elle existe"
+    },
+    "printlddgen": {
+        "prefix": "printlddgen",
+        "body": [
+            "-- Snippets généraux pour le langage de définition des données :",
+            "-- check: Snippet pour une contrainte de CHECK",
+            "-- add: Ajout d'une contrainte à une table",
+            "-- seq: Créer une séquence si celle-ci n'existe pas",
+            "-- view: Créer et vérifier une vue SQL",
+            "-- table: Créer une table SQL",
+            "-- dt: Supprimer une table si elle existe",
+            "-- dl: Supprimer une ligne d'une table",
+            "-- ds: Supprimer une séquence si elle existe",
+            "-- dv: Supprimer une vue si elle existe"
+        ],
+        "description": "Aide-mémoire pour les snippets de langage de définition des données"
     },
     "update": {
         "prefix": "update",
