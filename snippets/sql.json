@@ -216,27 +216,27 @@
         "description": "Snippet pour les clauses HAVING"
     },
     "havg": {
-        "prefix": "havg",
-        "body": [
-            "SELECT ${1:col1}, ${2:col2}",
-            "\tFROM ${3:table_name}",
-            "\t\tHAVING ${4:conditions}",
-            "\t\t\tGROUP BY ${1:col1}, ${2:col2};",
-            "\t\t\t\t;"
-        ],
-        "description": "Snippet avec un cas présentant un HAVING avec un GROUP BY"
+    "prefix": "havg",
+    "body": [
+    "SELECT ${1:col1}, ${2:col2}",
+    "\tFROM ${3:table_name}",
+    "\t\tGROUP BY ${1:col1}, ${2:col2};",
+    "\t\t\tHAVING ${4:conditions}",
+    "\t\t\t\t;"
+    ],
+    "description": "Snippet avec un cas présentant un HAVING avec un GROUP BY"
     },
     "order": {
-        "prefix": "order",
-        "body": [
-            "SELECT ${1:col1}, ${2:col2}",
-            "\tFROM ${3:table_name}",
-            "\t\tHAVING ${4:conditions}",
-            "\t\t\tGROUP BY ${1:col1}, ${2:col2}",
-            "\t\t\t\tORDER BY ${5:cle};",
-            "\t\t\t\t\t;"
-        ],
-        "description": "Snippet avec un cas présentant un HAVING avec un GROUP BY et un ORDER BY"
+    "prefix": "order",
+    "body": [
+    "SELECT ${1:col1}, ${2:col2}",
+    "\tFROM ${3:table_name}",
+    "\t\tGROUP BY ${1:col1}, ${2:col2}",
+    "\t\t\tHAVING ${4:conditions}",
+    "\t\t\t\tORDER BY ${5:cle};",
+    "\t\t\t\t\t;"
+    ],
+    "description": "Snippet avec un cas présentant un HAVING avec un GROUP BY et un ORDER BY"
     },
     "gb": {
         "prefix": "gb",
