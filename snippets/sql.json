@@ -958,7 +958,8 @@
             "SELECT *",
             "\tFROM ${1:tab1_name} ${2:alias1}",
             "\t\tLEFT JOIN ${3:tab2_name} ${4:alias2} ON ${2:alias1}.${5:cle} = ${4:alias2}.${6:cle}",
-            "WHERE ${4:alias2}.${5:cle} IS NULL;",
+            "\t\t\tWHERE ${4:alias2}.${5:cle} IS NULL",
+            "\t\t\t\t;"
         ],
         "description": "LEFT JOIN avec condition de non-correspondance"
     },
@@ -978,7 +979,8 @@
             "SELECT *",
             "\tFROM ${1:tab1_name} ${2:alias1}",
             "\t\tRIGHT JOIN ${3:tab2_name} ${4:alias2} ON ${2:alias1}.${5:cle} = ${4:alias2}.${6:cle}",
-            "WHERE ${2:alias1}.${5:cle} IS NULL;"
+            "\t\t\tWHERE ${2:alias1}.${5:cle} IS NULL",
+            "\t\t\t\t;"
         ],
         "description": "RIGHT JOIN avec condition de non-correspondance"
     },
@@ -995,9 +997,10 @@
     "full_outer_join": {
         "prefix": "full_outer_join",
         "body": [
-            "SELECT ${1:fields}",
+            "SELECT ${1:col}",
             "\tFROM ${2:tableA} ${3:aliasA}",
-            "\t\tFULL OUTER JOIN ${4:tableB} ${5:aliasB} ON ${3:aliasA}.${6:key} = ${5:aliasB}.${6:key};"
+            "\t\tFULL OUTER JOIN ${4:tableB} ${5:aliasB} ON ${3:aliasA}.${6:key} = ${5:aliasB}.${6:key}",
+            "\t\t\t;"
         ],
         "description": "Snippet pour FULL OUTER JOIN sans exclusion"
     },
