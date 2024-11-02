@@ -952,6 +952,16 @@
         ],
         "description": "Snippet pour un SELECT multi-table avec jointure implicite"
     },
+    "join_no_match": {
+        "prefix": "join_no_match",
+        "body": [
+            "SELECT *",
+            "\tFROM ${1:tab1_name} ${2:alias1}",
+            "\t\tLEFT JOIN ${3:tab2_name} ${4:alias2} ON ${2:alias1}.${5:cle} = ${4:alias2}.${6:cle}",
+            "WHERE ${4:alias2}.${5:cle} IS NULL;",
+        ],
+        "description": "LEFT JOIN avec condition de non-correspondance"
+    },
     "ljoin": {
         "prefix": "ljoin",
         "body": [
@@ -962,6 +972,16 @@
         ],
         "description": "Snippet pour une jointure LEFT JOIN"
     },
+    "rjoin_no_match": {
+        "prefix": "rjoin_no_match",
+        "body": [
+            "SELECT *",
+            "\tFROM ${1:tab1_name} ${2:alias1}",
+            "\t\tRIGHT JOIN ${3:tab2_name} ${4:alias2} ON ${2:alias1}.${5:cle} = ${4:alias2}.${6:cle}",
+            "WHERE ${2:alias1}.${5:cle} IS NULL;"
+        ],
+        "description": "RIGHT JOIN avec condition de non-correspondance"
+    },
     "rjoin": {
         "prefix": "rjoin",
         "body": [
@@ -971,6 +991,15 @@
             "\t\t\t;"
         ],
         "description": "Snippet pour une jointure RIGHT JOIN"
+    },
+    "full_outer_join": {
+        "prefix": "full_outer_join",
+        "body": [
+            "SELECT ${1:fields}",
+            "\tFROM ${2:tableA} ${3:aliasA}",
+            "\t\tFULL OUTER JOIN ${4:tableB} ${5:aliasB} ON ${3:aliasA}.${6:key} = ${5:aliasB}.${6:key};"
+        ],
+        "description": "Snippet pour FULL OUTER JOIN sans exclusion"
     },
     "fout": {
         "prefix": "fout",
@@ -1096,14 +1125,17 @@
             "-- Snippets de jointures :",
             "-- join: INNER JOIN",
             "-- join2: INNER JOIN avec une clause WHERE",
+            "-- join_no_match: LEFT JOIN avec non-correspondance",
             "-- fjoin: INNER JOIN avec extension",
             "-- join_more: Ajouter une autre jointure INNER JOIN",
             "-- ljoin: LEFT JOIN",
             "-- fljoin: LEFT JOIN avec extension",
             "-- ljoin_more: Ajouter une autre jointure LEFT JOIN",
+            "-- rjoin_no_match: RIGHT JOIN avec non-correspondance",
             "-- rjoin: RIGHT JOIN",
             "-- frjoin: RIGHT JOIN avec extension",
             "-- rjoin_more: Ajouter une autre jointure RIGHT JOIN",
+            "-- full_outer_join: FULL OUTER JOIN sans exclusion",
             "-- fout: FULL OUTER JOIN",
             "-- union: UNION sans ALL",
             "-- union_all: UNION avec ALL",
