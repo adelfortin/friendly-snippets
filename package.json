@@ -432,6 +432,10 @@
                 "language": ["powershell", "ps1"],
                 "path": "./snippets/PowerShell.json"
             },
+                        {
+                "language": "psql",
+                "path": "./snippets/psql.json"
+            },
             {
                 "language": "nu",
                 "path": "./snippets/nushell.json"
