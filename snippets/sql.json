@@ -2155,5 +2155,68 @@
             "-- show_table_ddl: Afficher la définition DDL d'une table."
         ],
         "description": "Aide-mémoire pour la gestion des schémas et des données PostgreSQL."
+    },
+     "printpsql": {
+        "prefix": "printpsql",
+        "body": [
+            "-- Snippets pour l'administration PostgreSQL :",
+            "-- createrole: Créer un rôle standard avec options complètes",
+            "-- creategrouprole: Créer un rôle de groupe sans login",
+            "-- creategrouprolepwd: Créer un rôle de groupe avec mot de passe",
+            "-- alterrole: Modifier un rôle existant",
+            "-- grantrole: Accorder des privilèges à un rôle",
+            "-- revokerole: Révoquer des privilèges d'un rôle",
+            "-- alterinrole: Ajouter un rôle dans un autre (héritage)"
+        ],
+        "description": "Aide-mémoire pour les snippets d'administration PostgreSQL"
+    },
+    "createrole": {
+        "prefix": "createrole",
+        "body": [
+            "CREATE ROLE ${1:role_name} WITH LOGIN PASSWORD '${2:password}' CREATEDB CREATEROLE INHERIT REPLICATION CONNECTION LIMIT ${3:0};"
+        ],
+        "description": "Créer un rôle standard avec options complètes"
+    },
+    "creategrouprole": {
+        "prefix": "creategrouprole",
+        "body": [
+            "CREATE ROLE ${1:group_role_name} NOLOGIN;"
+        ],
+        "description": "Créer un rôle de groupe sans login"
+    },
+    "creategrouprolepwd": {
+        "prefix": "creategrouprolepwd",
+        "body": [
+            "CREATE ROLE ${1:group_role_name} LOGIN PASSWORD '${2:password}';"
+        ],
+        "description": "Créer un rôle de groupe avec mot de passe"
+    },
+    "alterrole": {
+        "prefix": "alterrole",
+        "body": [
+            "ALTER ROLE ${1:role_name} WITH ${2:CREATEDB|NOCREATEDB} ${3:CREATEROLE|NOCREATEROLE} ${4:LOGIN|NOLOGIN} PASSWORD '${5:new_password}';"
+        ],
+        "description": "Modifier un rôle existant"
+    },
+    "grantrole": {
+        "prefix": "grantrole",
+        "body": [
+            "GRANT ${1:privilege} ON ${2:database} TO ${3:role_name};"
+        ],
+        "description": "Accorder des privilèges à un rôle"
+    },
+    "revokerole": {
+        "prefix": "revokerole",
+        "body": [
+            "REVOKE ${1:privilege} ON ${2:database} FROM ${3:role_name};"
+        ],
+        "description": "Révoquer des privilèges d'un rôle"
+    },
+    "alterinrole": {
+        "prefix": "alterinrole",
+        "body": [
+            "ALTER ROLE ${1:role_name} IN ROLE ${2:parent_role};"
+        ],
+        "description": "Ajouter un rôle dans un autre (héritage)"
     }
 }
