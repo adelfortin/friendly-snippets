@@ -621,7 +621,6 @@
         ],
         "description": "Regex pour cas spécifiques (ls -l, /etc/passwd, .git-credentials, token)"
     },
-{
     "printawk": {
         "prefix": "printawk",
         "body": [
