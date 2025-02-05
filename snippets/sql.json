@@ -2156,67 +2156,101 @@
         ],
         "description": "Aide-mémoire pour la gestion des schémas et des données PostgreSQL."
     },
-     "printpsql": {
-        "prefix": "printpsql",
+    "printdbarole": {
+        "prefix": "printdbarole",
         "body": [
-            "-- Snippets pour l'administration PostgreSQL :",
-            "-- createrole: Créer un rôle standard avec options complètes",
-            "-- creategrouprole: Créer un rôle de groupe sans login",
-            "-- creategrouprolepwd: Créer un rôle de groupe avec mot de passe",
-            "-- alterrole: Modifier un rôle existant",
-            "-- grantrole: Accorder des privilèges à un rôle",
-            "-- revokerole: Révoquer des privilèges d'un rôle",
-            "-- alterinrole: Ajouter un rôle dans un autre (héritage)"
+            "-- Snippets d'administration PostgreSQL pour les rôles :", 
+            "-- create_role: Créer un rôle avec toutes les options possibles", 
+            "-- create_role_simple: Créer un rôle simple avec LOGIN et mot de passe", 
+            "-- create_role_with_admin: Créer un rôle avec un rôle d'administration (IN ROLE)", 
+            "-- create_group_role: Créer un rôle de groupe sans LOGIN", 
+            "-- create_inherited_group_role: Créer un groupe héritant d'un autre groupe (sans LOGIN)", 
+            "-- alter_role: Modifier les propriétés d'un rôle existant", 
+            "-- grant_role: Attribuer un rôle à un utilisateur", 
+            "-- revoke_role: Révoquer un rôle d'un utilisateur", 
+            "-- drop_role: Supprimer un rôle existant", 
+            "-- set_role: Assumer temporairement un rôle dans la session actuelle"
         ],
-        "description": "Aide-mémoire pour les snippets d'administration PostgreSQL"
+        "description": "Aide-mémoire pour les snippets de gestion des rôles PostgreSQL"
     },
-    "createrole": {
-        "prefix": "createrole",
+
+    "create_role": {
+        "prefix": "create_role",
         "body": [
-            "CREATE ROLE ${1:role_name} WITH LOGIN PASSWORD '${2:password}' CREATEDB CREATEROLE INHERIT REPLICATION CONNECTION LIMIT ${3:0};"
+            "CREATE ROLE ${1:role_name} WITH LOGIN PASSWORD '${2:password}' CREATEDB CREATEROLE INHERIT;"
         ],
-        "description": "Créer un rôle standard avec options complètes"
+        "description": "Créer un rôle avec toutes les options principales"
     },
-    "creategrouprole": {
-        "prefix": "creategrouprole",
+
+    "create_role_simple": {
+        "prefix": "create_role_simple",
         "body": [
-            "CREATE ROLE ${1:group_role_name} NOLOGIN;"
+            "CREATE ROLE ${1:bob} LOGIN PASSWORD '${2:bob}';"
         ],
-        "description": "Créer un rôle de groupe sans login"
+        "description": "Créer un rôle simple avec LOGIN et mot de passe"
     },
-    "creategrouprolepwd": {
-        "prefix": "creategrouprolepwd",
+
+    "create_role_with_admin": {
+        "prefix": "create_role_with_admin",
         "body": [
-            "CREATE ROLE ${1:group_role_name} LOGIN PASSWORD '${2:password}';"
+            "CREATE ROLE ${1:alice} LOGIN PASSWORD '${2:alice}' IN ROLE ${3:admin};"
         ],
-        "description": "Créer un rôle de groupe avec mot de passe"
+        "description": "Créer un rôle avec un rôle d'administration (IN ROLE)"
     },
-    "alterrole": {
-        "prefix": "alterrole",
+
+    "create_group_role": {
+        "prefix": "create_group_role",
         "body": [
-            "ALTER ROLE ${1:role_name} WITH ${2:CREATEDB|NOCREATEDB} ${3:CREATEROLE|NOCREATEROLE} ${4:LOGIN|NOLOGIN} PASSWORD '${5:new_password}';"
+            "CREATE ROLE ${1:group_name} NOLOGIN;"
         ],
-        "description": "Modifier un rôle existant"
+        "description": "Créer un rôle de groupe sans LOGIN"
     },
-    "grantrole": {
-        "prefix": "grantrole",
+
+    "create_inherited_group_role": {
+        "prefix": "create_inherited_group_role",
         "body": [
-            "GRANT ${1:privilege} ON ${2:database} TO ${3:role_name};"
+            "CREATE ROLE ${1:child_group} NOLOGIN IN ROLE ${2:parent_group};"
         ],
-        "description": "Accorder des privilèges à un rôle"
+        "description": "Créer un groupe héritant d'un autre groupe (sans LOGIN)"
     },
-    "revokerole": {
-        "prefix": "revokerole",
+
+    "alter_role": {
+        "prefix": "alter_role",
         "body": [
-            "REVOKE ${1:privilege} ON ${2:database} FROM ${3:role_name};"
+            "ALTER ROLE ${1:role_name} WITH CREATEDB NOCREATEROLE INHERIT;"
         ],
-        "description": "Révoquer des privilèges d'un rôle"
+        "description": "Modifier les propriétés d'un rôle existant"
     },
-    "alterinrole": {
-        "prefix": "alterinrole",
+
+    "grant_role": {
+        "prefix": "grant_role",
         "body": [
-            "ALTER ROLE ${1:role_name} IN ROLE ${2:parent_role};"
+            "GRANT ${1:admin} TO ${2:alice};"
         ],
-        "description": "Ajouter un rôle dans un autre (héritage)"
+        "description": "Attribuer un rôle à un utilisateur"
+    },
+
+    "revoke_role": {
+        "prefix": "revoke_role",
+        "body": [
+            "REVOKE ${1:admin} FROM ${2:alice};"
+        ],
+        "description": "Révoquer un rôle d'un utilisateur"
+    },
+
+    "drop_role": {
+        "prefix": "drop_role",
+        "body": [
+            "DROP ROLE IF EXISTS ${1:role_name};"
+        ],
+        "description": "Supprimer un rôle existant"
+    },
+
+    "set_role": {
+        "prefix": "set_role",
+        "body": [
+            "SET ROLE ${1:role_name};"
+        ],
+        "description": "Assumer temporairement un rôle dans la session actuelle"
     }
 }
