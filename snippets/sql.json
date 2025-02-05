@@ -2593,5 +2593,76 @@
             "REVOKE USAGE ON SEQUENCE ${1:nom_sequence} FROM ${2:nom_role};"
         ],
         "description": "Révoquer le privilège USAGE sur une séquence"
+    },
+
+    "printdbacopy": {
+        "prefix": "printdbacopy",
+        "body": [
+            "-- Snippets pour les commandes \\copy PostgreSQL:",
+            "-- copy_csv_with_header: Exporter vers un fichier CSV avec en-tête", 
+            "-- copy_csv_without_header: Exporter vers un fichier CSV sans en-tête", 
+            "-- copy_tsv_with_header: Exporter vers un fichier TSV avec en-tête", 
+            "-- copy_tsv_without_header: Exporter vers un fichier TSV sans en-tête", 
+            "-- copy_with_null_replacement: Exporter en remplaçant les valeurs NULL", 
+            "-- copy_full_options: Exporter avec toutes les options combinées", 
+            "-- copy_schema_table_columns: Exporter des colonnes spécifiques d'une table dans un schéma"
+        ],
+        "description": "Aide-mémoire pour les snippets de commandes \\copy PostgreSQL"
+    },
+
+    "copy_csv_with_header": {
+        "prefix": "copy_csv_with_header",
+        "body": [
+            "\\copy ${1:nom_table} TO '${2:chemin_fichier}.csv' DELIMITER ',' CSV HEADER;"
+        ],
+        "description": "Exporter des données vers un fichier CSV avec en-tête"
+    },
+
+    "copy_csv_without_header": {
+        "prefix": "copy_csv_without_header",
+        "body": [
+            "\\copy ${1:nom_table} TO '${2:chemin_fichier}.csv' DELIMITER ',' CSV;"
+        ],
+        "description": "Exporter des données vers un fichier CSV sans en-tête"
+    },
+
+    "copy_tsv_with_header": {
+        "prefix": "copy_tsv_with_header",
+        "body": [
+            "\\copy ${1:nom_table} TO '${2:chemin_fichier}.tsv' DELIMITER '\\t' CSV HEADER;"
+        ],
+        "description": "Exporter des données vers un fichier TSV avec en-tête"
+    },
+
+    "copy_tsv_without_header": {
+        "prefix": "copy_tsv_without_header",
+        "body": [
+            "\\copy ${1:nom_table} TO '${2:chemin_fichier}.tsv' DELIMITER '\\t' CSV;"
+        ],
+        "description": "Exporter des données vers un fichier TSV sans en-tête"
+    },
+
+    "copy_with_null_replacement": {
+        "prefix": "copy_with_null_replacement",
+        "body": [
+            "\\copy ${1:nom_table} TO '${2:chemin_fichier}.csv' DELIMITER ';' CSV NULL 'non_renseigné';"
+        ],
+        "description": "Exporter des données avec remplacement des valeurs NULL"
+    },
+
+    "copy_full_options": {
+        "prefix": "copy_full_options",
+        "body": [
+            "\\copy ${1:nom_table} TO '${2:chemin_fichier}.csv' DELIMITER ';' CSV HEADER NULL 'non_renseigné';"
+        ],
+        "description": "Exporter des données avec toutes les options combinées (en-tête, délimiteur personnalisé, et gestion des NULL)"
+    },
+
+    "copy_schema_table_columns": {
+        "prefix": "copy_schema_table_columns",
+        "body": [
+            "\\copy (SELECT ${1:colonne1}, ${2:colonne2}, ${3:colonne3} FROM ${4:schema}.${5:nom_table}) TO '${6:chemin_fichier}.csv' DELIMITER ',' CSV HEADER NULL 'non_renseigné';"
+        ],
+        "description": "Exporter des colonnes spécifiques d'une table dans un schéma avec toutes les options combinées"
     }
-}
+} 
