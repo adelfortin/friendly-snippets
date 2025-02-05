@@ -757,5 +757,119 @@
             "printf \"${1:format}\" , ${2:expression}"
         ],
         "description": "Instruction printf en AWK"
+    },
+
+    "printsed": {
+        "prefix": "printsed",
+        "body": [
+            "# Snippets Sed disponibles :",
+            "# sed_substitute           : Substitution de texte (séparateur par défaut)",
+            "# sed_substitute_custom    : Substitution avec séparateurs personnalisés (ex: £, °, ¦, ||)",
+            "# sed_insert               : Insertion avant la ligne (commande i)",
+            "# sed_append               : Ajout après la ligne (commande a)",
+            "# sed_change               : Remplacement complet de la ligne (commande c)",
+            "# sed_delete               : Suppression des lignes (commande d)",
+            "# sed_print                : Impression conditionnelle (-n et p)",
+            "# sed_range                : Application d'une commande sur un intervalle de lignes",
+            "# sed_multiline            : Commande sed multi-lignes",
+            "# sed_multiple_commands    : Exécution de plusieurs commandes sed avec -e",
+            "# sed_inplace              : Edition in-place d'un fichier"
+        ],
+        "description": "Menu principal pour les snippets Sed"
+    },
+    "sed_substitute": {
+        "prefix": "sed_substitute",
+        "body": [
+            "s/${1:pattern}/${2:replacement}/${3:g}"
+        ],
+        "description": "Substitution de texte avec le séparateur par défaut '/'"
+    },
+    "sed_substitute_custom": {
+        "prefix": "sed_substitute_custom",
+        "body": [
+            "# Exemples de substitution avec séparateurs personnalisés :",
+            "s£${1:pattern}£${2:replacement}£${3:g}",
+            "s°${1:pattern}°${2:replacement}°${3:g}",
+            "s¦${1:pattern}¦${2:replacement}¦${3:g}",
+            "s||${1:pattern}||${2:replacement}||${3:g}"
+        ],
+        "description": "Substitution avec séparateurs personnalisés (ex: £, °, ¦, ||)"
+    },
+    "sed_insert": {
+        "prefix": "sed_insert",
+        "body": [
+            "/${1:pattern}/i\\",
+            "    ${2:texte à insérer}"
+        ],
+        "description": "Insertion avant la ligne correspondant au pattern (commande i)"
+    },
+    "sed_append": {
+        "prefix": "sed_append",
+        "body": [
+            "/${1:pattern}/a\\",
+            "    ${2:texte à ajouter}"
+        ],
+        "description": "Ajout après la ligne correspondant au pattern (commande a)"
+    },
+    "sed_change": {
+        "prefix": "sed_change",
+        "body": [
+            "/${1:pattern}/c\\",
+            "    ${2:nouvelle ligne}"
+        ],
+        "description": "Remplacement complet de la ligne correspondant au pattern (commande c)"
+    },
+    "sed_delete": {
+        "prefix": "sed_delete",
+        "body": [
+            "/${1:pattern}/d"
+        ],
+        "description": "Suppression des lignes correspondant au pattern (commande d)"
+    },
+    "sed_print": {
+        "prefix": "sed_print",
+        "body": [
+            "-n",
+            "/${1:pattern}/p"
+        ],
+        "description": "Impression conditionnelle des lignes correspondant au pattern (avec -n et p)"
+    },
+    "sed_range": {
+        "prefix": "sed_range",
+        "body": [
+            "/${1:pattern1}/,/${2:pattern2}/ {",
+            "    ${3:commande}",
+            "}"
+        ],
+        "description": "Application d'une commande sur un intervalle de lignes (du pattern1 au pattern2)"
+    },
+    "sed_multiline": {
+        "prefix": "sed_multiline",
+        "body": [
+            "# Exemple de commande sed multi-lignes :",
+            "/${1:pattern1}/ {",
+            "    N",
+            "    s/${2:pattern}\\n/${3:replacement}\\n/${4:g}",
+            "}"
+        ],
+        "description": "Commande sed s'exécutant sur plusieurs lignes"
+    },
+    "sed_multiple_commands": {
+        "prefix": "sed_multiple_commands",
+        "body": [
+            "sed -e 's/${1:pattern1}/${2:replacement1}/${3:g}' \\",
+            "    -e '/${4:pattern2}/d' \\",
+            "    -e '/${5:pattern3}/a\\",
+            "${6:texte ajouté}' \\",
+            "    ${7:fichier}"
+        ],
+        "description": "Exécution de plusieurs commandes sed avec -e (enchaînement de commandes)"
+    },
+    "sed_inplace": {
+        "prefix": "sed_inplace",
+        "body": [
+            "sed -i '${1:commande}' ${2:fichier}"
+        ],
+        "description": "Edition in-place d'un fichier avec sed"
     }
 }
