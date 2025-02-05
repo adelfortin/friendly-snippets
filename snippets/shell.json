@@ -620,5 +620,143 @@
             "regex_token='^[A-Za-z0-9-_]{20,}$'"
         ],
         "description": "Regex pour cas spécifiques (ls -l, /etc/passwd, .git-credentials, token)"
+    },
+{
+    "printawk": {
+        "prefix": "printawk",
+        "body": [
+            "# Snippets AWK disponibles :",
+            "# awk_begin_end           : Structure de base avec BEGIN, pattern et END",
+            "# awk_if                  : Condition if simple",
+            "# awk_if_else             : Condition if-else",
+            "# awk_pattern             : Application d'un pattern sur les lignes",
+            "# awk_for                 : Boucle for",
+            "# awk_while               : Boucle while",
+            "# awk_next                : Utilisation de next() pour passer à la ligne suivante",
+            "# awk_vars                : Variables internes (NR, NF, $0, etc.)",
+            "# awk_function            : Définition d'une fonction AWK",
+            "# awk_var                 : Affectation d'une variable",
+            "# awk_print               : Instruction print",
+            "# awk_printf              : Instruction printf"
+        ],
+        "description": "Menu principal pour les snippets AWK"
+    },
+    "awk_begin_end": {
+        "prefix": "awk_begin_end",
+        "body": [
+            "BEGIN {",
+            "    ${1:# Initialisation, par exemple : OFS=\",\"}",
+            "}",
+            "",
+            "${2:pattern} {",
+            "    ${3:# Traitement pour chaque ligne correspondant au pattern}",
+            "}",
+            "",
+            "END {",
+            "    ${4:# Finalisation, par exemple : print \"Traitement terminé\"}",
+            "}"
+        ],
+        "description": "Structure AWK avec BEGIN, un bloc de traitement et END"
+    },
+    "awk_if": {
+        "prefix": "awk_if",
+        "body": [
+            "if (${1:condition}) {",
+            "    ${2:# Instructions si la condition est vraie}",
+            "}"
+        ],
+        "description": "Structure conditionnelle if en AWK"
+    },
+    "awk_if_else": {
+        "prefix": "awk_if_else",
+        "body": [
+            "if (${1:condition}) {",
+            "    ${2:# Instructions si la condition est vraie}",
+            "} else {",
+            "    ${3:# Instructions sinon}",
+            "}"
+        ],
+        "description": "Structure conditionnelle if-else en AWK"
+    },
+    "awk_pattern": {
+        "prefix": "awk_pattern",
+        "body": [
+            "${1:pattern} {",
+            "    ${2:# Actions sur les lignes correspondant au pattern}",
+            "}"
+        ],
+        "description": "Application d'un pattern sur les lignes en AWK"
+    },
+    "awk_for": {
+        "prefix": "awk_for",
+        "body": [
+            "for (i = ${1:start}; i ${2:<=} ${3:end}; i++) {",
+            "    ${4:# Instructions dans la boucle}",
+            "}"
+        ],
+        "description": "Boucle for en AWK"
+    },
+    "awk_while": {
+        "prefix": "awk_while",
+        "body": [
+            "while (${1:condition}) {",
+            "    ${2:# Instructions dans la boucle}",
+            "}"
+        ],
+        "description": "Boucle while en AWK"
+    },
+    "awk_next": {
+        "prefix": "awk_next",
+        "body": [
+            "${1:pattern} {",
+            "    ${2:# Instructions éventuelles avant de sauter la ligne}",
+            "    next",
+            "    ${3:# Ce code ne sera pas exécuté après next()}",
+            "}"
+        ],
+        "description": "Utilisation de next() pour passer à la prochaine ligne en AWK"
+    },
+    "awk_vars": {
+        "prefix": "awk_vars",
+        "body": [
+            "# Variables internes AWK utiles :",
+            "NR    # Numéro de la ligne actuelle",
+            "FNR   # Numéro de la ligne dans le fichier courant (utile en multi-fichiers)",
+            "NF    # Nombre de champs dans la ligne actuelle",
+            "$0    # La ligne entière",
+            "$1, $2, ...   # Champs individuels"
+        ],
+        "description": "Liste et utilisation des variables internes en AWK"
+    },
+    "awk_function": {
+        "prefix": "awk_function",
+        "body": [
+            "function ${1:nom_de_fonction}(${2:arguments}) {",
+            "    ${3:# Code de la fonction}",
+            "    return ${4:valeur}",
+            "}"
+        ],
+        "description": "Définition d'une fonction en AWK"
+    },
+    "awk_var": {
+        "prefix": "awk_var",
+        "body": [
+            "${1:variable} = ${2:valeur}"
+        ],
+        "description": "Affectation d'une variable en AWK"
+    },
+    "awk_print": {
+        "prefix": "awk_print",
+        "body": [
+            "print ${1:expression}"
+        ],
+        "description": "Instruction print en AWK"
+    },
+    "awk_printf": {
+        "prefix": "awk_printf",
+        "body": [
+            "printf \"${1:format}\" , ${2:expression}"
+        ],
+        "description": "Instruction printf en AWK"
     }
 }
