@@ -89,5 +89,432 @@
         "prefix": "expr",
         "body": "expr ${0:1 + 1}",
         "description": "Calculate numbers with Bash."
+    },
+{
+    "printshebang": {
+        "prefix": "printshebang",
+        "body": [
+            "# Snippets pour les shebangs de différents langages :",
+            "# shebang_bash   : Shebang pour Bash",
+            "# shebang_dash   : Shebang pour Dash",
+            "# shebang_ksh    : Shebang pour KornShell",
+            "# shebang_zsh    : Shebang pour Zsh",
+            "# shebang_awk    : Shebang pour Awk",
+            "# shebang_sed    : Shebang pour Sed (avec options -nf)"
+        ],
+        "description": "Liste des shebangs disponibles"
+    },
+    "shebang_bash": {
+        "prefix": "shebang_bash",
+        "body": [
+            "#!/bin/bash"
+        ],
+        "description": "Shebang pour les scripts Bash"
+    },
+    "shebang_dash": {
+        "prefix": "shebang_dash",
+        "body": [
+            "#!/bin/dash"
+        ],
+        "description": "Shebang pour les scripts Dash"
+    },
+    "shebang_ksh": {
+        "prefix": "shebang_ksh",
+        "body": [
+            "#!/bin/ksh"
+        ],
+        "description": "Shebang pour les scripts KornShell"
+    },
+    "shebang_zsh": {
+        "prefix": "shebang_zsh",
+        "body": [
+            "#!/bin/zsh"
+        ],
+        "description": "Shebang pour les scripts Zsh"
+    },
+    "shebang_awk": {
+        "prefix": "shebang_awk",
+        "body": [
+            "#!/usr/bin/awk -f"
+        ],
+        "description": "Shebang pour les scripts Awk"
+    },
+    "shebang_sed": {
+        "prefix": "shebang_sed",
+        "body": [
+            "#!/usr/bin/sed -nf"
+        ],
+        "description": "Shebang pour les scripts Sed (avec options -nf)"
+    },
+    "printfonction": {
+        "prefix": "printfonction",
+        "body": [
+            "# Snippets pour la création de fonctions :",
+            "# function_template : Template de fonction basique",
+            "# function_getopt    : Template pour getopt",
+            "# function_getopts   : Template pour getopts"
+        ],
+        "description": "Aide-mémoire pour les fonctions shell"
+    },
+    "function_template": {
+        "prefix": "function_template",
+        "body": [
+            "${1:nom_de_fonction}() {",
+            "    ${2:# code ici}",
+            "}"
+        ],
+        "description": "Template de fonction basique"
+    },
+    "function_getopt": {
+        "prefix": "function_getopt",
+        "body": [
+            "TEMP=$(getopt -o ${1:opts} --long ${2:longopts} -n '$(basename \"$0\")' -- \"$@\")",
+            "if [ $? != 0 ]; then",
+            "    echo \"Terminating...\" >&2",
+            "    exit 1",
+            "fi",
+            "eval set -- \"$TEMP\"",
+            "while true; do",
+            "    case \"$1\" in",
+            "        ${3:option1})",
+            "            ${4:# code pour option1}",
+            "            shift ;;",
+            "        ${5:option2})",
+            "            ${6:# code pour option2}",
+            "            shift ;;",
+            "        --)",
+            "            shift; break ;;",
+            "        *)",
+            "            break ;;",
+            "    esac",
+            "done"
+        ],
+        "description": "Template de fonction utilisant getopt"
+    },
+    "function_getopts": {
+        "prefix": "function_getopts",
+        "body": [
+            "while getopts \":${1:opts}\" opt; do",
+            "    case ${opt} in",
+            "        ${2:option})",
+            "            ${3:# code pour option}",
+            "            ;;",
+            "        \\?)",
+            "            echo \"Option invalide: -$OPTARG\" >&2",
+            "            exit 1",
+            "            ;;",
+            "        :)",
+            "            echo \"L'option -$OPTARG requiert un argument.\" >&2",
+            "            exit 1",
+            "            ;;",
+            "    esac",
+            "done",
+            "shift $((OPTIND - 1))"
+        ],
+        "description": "Template de fonction utilisant getopts"
+    },
+    "printread": {
+        "prefix": "printread",
+        "body": [
+            "# Snippets pour la lecture d'entrée utilisateur :",
+            "# read_input : Lecture d'une entrée avec prompt"
+        ],
+        "description": "Aide-mémoire pour la commande read"
+    },
+    "read_input": {
+        "prefix": "read_input",
+        "body": [
+            "read -p \"${1:Entrez une valeur}: \" ${2:variable}"
+        ],
+        "description": "Lecture d'une entrée avec prompt"
+    },
+    "printwhile": {
+        "prefix": "printwhile",
+        "body": [
+            "# Snippets pour les boucles while :",
+            "# while_read_file : Boucle while pour lecture de fichier",
+            "# while_read_file_multi : Boucle while pour lecture de fichier avec plusieurs champs"
+        ],
+        "description": "Aide-mémoire pour la boucle while"
+    },
+    "while_read_file": {
+        "prefix": "while_read_file",
+        "body": [
+            "OLD_IFS=$IFS",
+            "IFS='${2:delimiter}'",
+            "while read -r ${1:ligne}; do",
+            "    ${3:# code ici}",
+            "done < ${4:fichier}",
+            "IFS=$OLD_IFS"
+        ],
+        "description": "Boucle while pour lire un fichier avec un seul champ"
+    },
+    "while_read_file_multi": {
+        "prefix": "while_read_file_multi",
+        "body": [
+            "OLD_IFS=$IFS",
+            "IFS='${2:delimiter}'",
+            "# Lecture avec plusieurs champs. Remplacez les noms par '_' pour les champs inutilisés.",
+            "while read -r ${1:col1} ${3:col2} ${4:col3} ${5:col4} ${6:col5}; do",
+            "    ${7:# code ici – par exemple utilisez $col2 et $col5}",
+            "done < ${8:fichier}",
+            "IFS=$OLD_IFS"
+        ],
+        "description": "Boucle while pour lire un fichier en assignant plusieurs champs à des variables"
+    },
+    "while_read_command": {
+        "prefix": "while_read_command",
+        "body": [
+            "OLD_IFS=$IFS",
+            "IFS='${1:delimiter}'",
+            "# Exécute la commande et boucle sur sa sortie",
+            "${2:command} | while read -r ${3:line}; do",
+            "    ${4:# code ici}",
+            "done",
+            "IFS=$OLD_IFS"
+        ],
+        "description": "Boucle while pour traiter la sortie d'une commande"
+    },
+    "printif": {
+        "prefix": "printif",
+        "body": [
+            "# Snippets pour les structures conditionnelles if :",
+            "# if_simple     : if conditionnel simple",
+            "# if_else       : if ... else",
+            "# if_elif       : if ... elif",
+            "# if_elif_else  : if ... elif ... else",
+            "# if_nested     : if imbriqué"
+        ],
+        "description": "Aide-mémoire pour les structures if"
+    },
+    "if_simple": {
+        "prefix": "if_simple",
+        "body": [
+            "if [ ${1:condition} ]; then",
+            "    ${2:# code si vrai}",
+            "fi"
+        ],
+        "description": "Structure if simple"
+    },
+    "if_else": {
+        "prefix": "if_else",
+        "body": [
+            "if [ ${1:condition} ]; then",
+            "    ${2:# code si vrai}",
+            "else",
+            "    ${3:# code sinon}",
+            "fi"
+        ],
+        "description": "Structure if ... else"
+    },
+    "if_elif": {
+        "prefix": "if_elif",
+        "body": [
+            "if [ ${1:condition1} ]; then",
+            "    ${2:# code si condition1 vraie}",
+            "elif [ ${3:condition2} ]; then",
+            "    ${4:# code si condition2 vraie}",
+            "fi"
+        ],
+        "description": "Structure if ... elif"
+    },
+    "if_elif_else": {
+        "prefix": "if_elif_else",
+        "body": [
+            "if [ ${1:condition1} ]; then",
+            "    ${2:# code si condition1 vraie}",
+            "elif [ ${3:condition2} ]; then",
+            "    ${4:# code si condition2 vraie}",
+            "else",
+            "    ${5:# code sinon}",
+            "fi"
+        ],
+        "description": "Structure if ... elif ... else"
+    },
+    "if_nested": {
+        "prefix": "if_nested",
+        "body": [
+            "if [ ${1:condition1} ]; then",
+            "    if [ ${2:condition2} ]; then",
+            "        ${3:# code si les deux conditions sont vraies}",
+            "    else",
+            "        ${4:# code si seule la première condition est vraie}",
+            "    fi",
+            "else",
+            "    ${5:# code si condition1 est fausse}",
+            "fi"
+        ],
+        "description": "Structure if imbriqué"
+    },
+    "printtest": {
+        "prefix": "printtest",
+        "body": [
+            "# Snippets pour les tests conditionnels :",
+            "# test_brackets         : Test avec [ ]",
+            "# test_double_brackets  : Test avec [[ ]]",
+            "# test_arithmetic       : Test arithmétique avec (( ))",
+            "# test_complex          : Exemple de test complexe (&& et ||)",
+            "# test_regex            : Test d'expression régulière avec une variable"
+        ],
+        "description": "Aide-mémoire pour les tests conditionnels"
+    },
+    "test_brackets": {
+        "prefix": "test_brackets",
+        "body": [
+            "[ ${1:variable} ${2:==} ${3:valeur} ]"
+        ],
+        "description": "Test conditionnel simple avec crochets []"
+    },
+    "test_double_brackets": {
+        "prefix": "test_double_brackets",
+        "body": [
+            "[[ ${1:variable} ${2:==} ${3:valeur} ]]"
+        ],
+        "description": "Test conditionnel avec doubles crochets [[]]"
+    },
+    "test_arithmetic": {
+        "prefix": "test_arithmetic",
+        "body": [
+            "(( ${1:variable} ${2:>=} ${3:valeur} ))"
+        ],
+        "description": "Test arithmétique avec (( ))"
+    },
+    "test_complex": {
+        "prefix": "test_complex",
+        "body": [
+            "if [[ ${1:var1} ${2:==} ${3:valeur1} && ${4:var2} ${5:>=} ${6:valeur2} || ${7:var3} ${8:!=} ${9:valeur3} ]]; then",
+            "    ${10:# code si vrai}",
+            "fi"
+        ],
+        "description": "Test conditionnel complexe utilisant && et ||"
+    },
+    "test_regex": {
+        "prefix": "test_regex",
+        "body": [
+            "if [[ ${1:variable} =~ ${2:regex} ]]; then",
+            "    ${3:# code si correspondance}",
+            "fi"
+        ],
+        "description": "Test d'expression régulière avec l'opérateur =~"
+    },
+    "printlet": {
+        "prefix": "printlet",
+        "body": [
+            "# Snippets pour les opérations arithmétiques :",
+            "# arithmetic_let : Évaluation arithmétique avec let"
+        ],
+        "description": "Aide-mémoire pour let / (( ))"
+    },
+    "arithmetic_let": {
+        "prefix": "arithmetic_let",
+        "body": [
+            "let ${1:var}=${2:expression}"
+        ],
+        "description": "Évaluation arithmétique avec let"
+    },
+    "printcase": {
+        "prefix": "printcase",
+        "body": [
+            "# Snippets pour les structures case :",
+            "# case_simple  : Structure case simple",
+            "# case_pattern : Structure case avec plusieurs motifs"
+        ],
+        "description": "Aide-mémoire pour les structures case"
+    },
+    "case_simple": {
+        "prefix": "case_simple",
+        "body": [
+            "case ${1:variable} in",
+            "    ${2:motif})",
+            "        ${3:# code ici} ;;",
+            "    *)",
+            "        ${4:# cas par défaut} ;;",
+            "esac"
+        ],
+        "description": "Structure case simple"
+    },
+    "case_pattern": {
+        "prefix": "case_pattern",
+        "body": [
+            "case ${1:variable} in",
+            "    ${2:motif1}|${3:motif2})",
+            "        ${4:# code pour motifs 1 et 2} ;;",
+            "    ${5:motif3})",
+            "        ${6:# code pour motif 3} ;;",
+            "    *)",
+            "        ${7:# cas par défaut} ;;",
+            "esac"
+        ],
+        "description": "Structure case avec plusieurs motifs"
+    },
+    "printfind": {
+        "prefix": "printfind",
+        "body": [
+            "# Snippets pour les commandes find :",
+            "# find_simple_var  : Recherche simple stockée dans une variable",
+            "# find_exec_var    : Recherche avec -exec",
+            "# find_xargs_var   : Recherche et utilisation avec xargs",
+            "# find_delete_var  : Recherche et suppression avec -delete",
+            "# find_exclude_var : Recherche avec exclusion"
+        ],
+        "description": "Aide-mémoire pour les commandes find"
+    },
+    "find_simple_var": {
+        "prefix": "find_simple_var",
+        "body": [
+            "find_cmd=\"find ${1:directory} -name '${2:pattern}'\""
+        ],
+        "description": "Commande find simple stockée dans une variable"
+    },
+    "find_exec_var": {
+        "prefix": "find_exec_var",
+        "body": [
+            "find_cmd=\"find ${1:directory} -type ${2:f} -exec ${3:command} {} \\;\""
+        ],
+        "description": "Commande find avec -exec stockée dans une variable"
+    },
+    "find_xargs_var": {
+        "prefix": "find_xargs_var",
+        "body": [
+            "find_cmd=\"find ${1:directory} -type ${2:f} | xargs ${3:command}\""
+        ],
+        "description": "Commande find avec xargs stockée dans une variable"
+    },
+    "find_delete_var": {
+        "prefix": "find_delete_var",
+        "body": [
+            "find_cmd=\"find ${1:directory} -name '${2:pattern}' -delete\""
+        ],
+        "description": "Commande find avec -delete stockée dans une variable"
+    },
+    "find_exclude_var": {
+        "prefix": "find_exclude_var",
+        "body": [
+            "find_cmd=\"find ${1:directory} ! -name '${2:exclude_pattern}' -and -name '${3:pattern}'\""
+        ],
+        "description": "Commande find avec exclusion stockée dans une variable"
+    },
+    "printregex": {
+        "prefix": "printregex",
+        "body": [
+            "# Définitions de regex pour divers formats :",
+            "regex_fqdn='^(?=.{1,253}$)(?:(?!-)[A-Za-z0-9-]{1,63}(?<!-)\\.)+[A-Za-z]{2,63}$'",
+            "regex_url='^(https?|ftp):\\/\\/[^\\s/$.?#].[^\\s]*$'",
+            "regex_uri='^(?:[a-zA-Z][a-zA-Z0-9+.-]*:)?\\/\\/[^\\s]*$'",
+            "regex_ipv4='^((25[0-5]|2[0-4]\\d|[01]?\\d?\\d)(\\.|$)){4}$'",
+            "regex_mac='^([0-9A-Fa-f]{2}[:-]){5}[0-9A-Fa-f]{2}$'",
+            "regex_ipv6='^(([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}|::)$'",
+            "regex_fr_phone='^0[1-9](?:[-:. ]?\\d{2}){4}$'",
+            "regex_email='^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$'",
+            "regex_email_ext='^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z.]{2,}$'",
+            "regex_name='^[A-Za-z0-9]+(?:[._-][A-Za-z0-9]+)*$'",
+            "regex_siren='^\\d{9}$'",
+            "regex_siret='^\\d{14}$'",
+            "regex_carte_vitale='^\\d{15}$'",
+            "regex_iban='^[A-Z]{2}\\d{2}[A-Z0-9]{11,30}$'",
+            "regex_bic='^[A-Z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$'",
+            "regex_taxid='^[A-Z0-9]{8,12}$'"
+        ],
+        "description": "Définitions de regex pour divers formats (FQDN, URL, URI, IPv4, MAC, téléphone, email, SIREN, SIRET, carte vitale, IBAN, BIC, etc.)"
     }
 }
