@@ -2432,5 +2432,166 @@
             "GRANT USAGE ON SEQUENCE ${1:nom_sequence} TO ${2:nom_role};"
         ],
         "description": "Accorder le privilège USAGE sur une séquence"
+    },
+
+    "printdbarevokepriv": {
+        "prefix": "printdbarevokepriv",
+        "body": [
+            "-- Snippets pour les privilèges REVOKE PostgreSQL:",
+            "-- revoke_select_table: Révoquer le privilège SELECT sur une table", 
+            "-- revoke_select_column: Révoquer le privilège SELECT sur des colonnes spécifiques", 
+            "-- revoke_insert_table: Révoquer le privilège INSERT sur une table", 
+            "-- revoke_insert_column: Révoquer le privilège INSERT sur des colonnes spécifiques", 
+            "-- revoke_update_table: Révoquer le privilège UPDATE sur une table", 
+            "-- revoke_update_column: Révoquer le privilège UPDATE sur des colonnes spécifiques", 
+            "-- revoke_delete: Révoquer le privilège DELETE", 
+            "-- revoke_truncate: Révoquer le privilège TRUNCATE", 
+            "-- revoke_references_table: Révoquer le privilège REFERENCES sur une table", 
+            "-- revoke_references_column: Révoquer le privilège REFERENCES sur des colonnes spécifiques", 
+            "-- revoke_trigger: Révoquer le privilège TRIGGER", 
+            "-- revoke_create_schema: Révoquer le privilège CREATE sur un schéma", 
+            "-- revoke_create_database: Révoquer le privilège CREATE sur une base de données", 
+            "-- revoke_connect: Révoquer le privilège CONNECT sur une base de données", 
+            "-- revoke_temporary: Révoquer le privilège TEMPORARY sur une base de données", 
+            "-- revoke_execute_function: Révoquer le privilège EXECUTE sur une fonction", 
+            "-- revoke_execute_procedure: Révoquer le privilège EXECUTE sur une procédure", 
+            "-- revoke_usage_schema: Révoquer le privilège USAGE sur un schéma", 
+            "-- revoke_usage_sequence: Révoquer le privilège USAGE sur une séquence"
+        ],
+        "description": "Aide-mémoire pour les snippets de REVOKE des privilèges PostgreSQL"
+    },
+
+    "revoke_select_table": {
+        "prefix": "revoke_select_table",
+        "body": [
+            "REVOKE SELECT ON TABLE ${1:nom_table} FROM ${2:nom_role};"
+        ],
+        "description": "Révoquer le privilège SELECT sur une table"
+    },
+    "revoke_select_column": {
+        "prefix": "revoke_select_column",
+        "body": [
+            "REVOKE SELECT (${1:colonne1}, ${2:colonne2}) ON TABLE ${3:nom_table} FROM ${4:nom_role};"
+        ],
+        "description": "Révoquer le privilège SELECT sur des colonnes spécifiques"
+    },
+    "revoke_insert_table": {
+        "prefix": "revoke_insert_table",
+        "body": [
+            "REVOKE INSERT ON TABLE ${1:nom_table} FROM ${2:nom_role};"
+        ],
+        "description": "Révoquer le privilège INSERT sur une table"
+    },
+    "revoke_insert_column": {
+        "prefix": "revoke_insert_column",
+        "body": [
+            "REVOKE INSERT (${1:colonne1}, ${2:colonne2}) ON TABLE ${3:nom_table} FROM ${4:nom_role};"
+        ],
+        "description": "Révoquer le privilège INSERT sur des colonnes spécifiques"
+    },
+    "revoke_update_table": {
+        "prefix": "revoke_update_table",
+        "body": [
+            "REVOKE UPDATE ON TABLE ${1:nom_table} FROM ${2:nom_role};"
+        ],
+        "description": "Révoquer le privilège UPDATE sur une table"
+    },
+    "revoke_update_column": {
+        "prefix": "revoke_update_column",
+        "body": [
+            "REVOKE UPDATE (${1:colonne1}, ${2:colonne2}) ON TABLE ${3:nom_table} FROM ${4:nom_role};"
+        ],
+        "description": "Révoquer le privilège UPDATE sur des colonnes spécifiques"
+    },
+    "revoke_delete": {
+        "prefix": "revoke_delete",
+        "body": [
+            "REVOKE DELETE ON TABLE ${1:nom_table} FROM ${2:nom_role};"
+        ],
+        "description": "Révoquer le privilège DELETE"
+    },
+    "revoke_truncate": {
+        "prefix": "revoke_truncate",
+        "body": [
+            "REVOKE TRUNCATE ON TABLE ${1:nom_table} FROM ${2:nom_role};"
+        ],
+        "description": "Révoquer le privilège TRUNCATE"
+    },
+    "revoke_references_table": {
+        "prefix": "revoke_references_table",
+        "body": [
+            "REVOKE REFERENCES ON TABLE ${1:nom_table} FROM ${2:nom_role};"
+        ],
+        "description": "Révoquer le privilège REFERENCES sur une table"
+    },
+    "revoke_references_column": {
+        "prefix": "revoke_references_column",
+        "body": [
+            "REVOKE REFERENCES (${1:colonne1}) ON TABLE ${2:nom_table} FROM ${3:nom_role};"
+        ],
+        "description": "Révoquer le privilège REFERENCES sur des colonnes spécifiques"
+    },
+    "revoke_trigger": {
+        "prefix": "revoke_trigger",
+        "body": [
+            "REVOKE TRIGGER ON TABLE ${1:nom_table} FROM ${2:nom_role};"
+        ],
+        "description": "Révoquer le privilège TRIGGER"
+    },
+    "revoke_create_schema": {
+        "prefix": "revoke_create_schema",
+        "body": [
+            "REVOKE CREATE ON SCHEMA ${1:nom_schema} FROM ${2:nom_role};"
+        ],
+        "description": "Révoquer le privilège CREATE sur un schéma"
+    },
+    "revoke_create_database": {
+        "prefix": "revoke_create_database",
+        "body": [
+            "REVOKE CREATE ON DATABASE ${1:nom_database} FROM ${2:nom_role};"
+        ],
+        "description": "Révoquer le privilège CREATE sur une base de données"
+    },
+    "revoke_connect": {
+        "prefix": "revoke_connect",
+        "body": [
+            "REVOKE CONNECT ON DATABASE ${1:nom_database} FROM ${2:nom_role};"
+        ],
+        "description": "Révoquer le privilège CONNECT sur une base de données"
+    },
+    "revoke_temporary": {
+        "prefix": "revoke_temporary",
+        "body": [
+            "REVOKE TEMPORARY ON DATABASE ${1:nom_database} FROM ${2:nom_role};"
+        ],
+        "description": "Révoquer le privilège TEMPORARY sur une base de données"
+    },
+    "revoke_execute_function": {
+        "prefix": "revoke_execute_function",
+        "body": [
+            "REVOKE EXECUTE ON FUNCTION ${1:nom_fonction}(${2:param_types}) FROM ${3:nom_role};"
+        ],
+        "description": "Révoquer le privilège EXECUTE sur une fonction"
+    },
+    "revoke_execute_procedure": {
+        "prefix": "revoke_execute_procedure",
+        "body": [
+            "REVOKE EXECUTE ON PROCEDURE ${1:nom_procedure}(${2:param_types}) FROM ${3:nom_role};"
+        ],
+        "description": "Révoquer le privilège EXECUTE sur une procédure"
+    },
+    "revoke_usage_schema": {
+        "prefix": "revoke_usage_schema",
+        "body": [
+            "REVOKE USAGE ON SCHEMA ${1:nom_schema} FROM ${2:nom_role};"
+        ],
+        "description": "Révoquer le privilège USAGE sur un schéma"
+    },
+    "revoke_usage_sequence": {
+        "prefix": "revoke_usage_sequence",
+        "body": [
+            "REVOKE USAGE ON SEQUENCE ${1:nom_sequence} FROM ${2:nom_role};"
+        ],
+        "description": "Révoquer le privilège USAGE sur une séquence"
     }
 }
