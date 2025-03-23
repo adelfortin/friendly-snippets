@@ -24,7 +24,7 @@
     "# # # # # # # # # # # # # # # # # # # # # # # # # #",
     "# Auteur : anonyme                                #",
     "# Version : v0.0.1                                #",
-    "# Date : $(date +\\%d/\\%m/\\%Y)                  #",
+    "# Date : $(date +\\%d/\\%m/\\%Y)                     #",
     "# # # # # # # # # # # # # # # # # # # # # # # # # #"
   ],
   "description": "Entête standard de script Bash avec auteur, version, date"
@@ -2084,6 +2084,44 @@
       "nmcli connection modify vlan10 ipv4.addresses 192.168.10.10/24 ipv4.method manual"
     ],
     "description": "Exemples multi-étapes : Bond, Bridge, VLAN via nmcli"
-  }
+  },
+"aide": {
+  "prefix": "aide",
+  "body": [
+    "# Liste des commandes print disponibles :",
+    "# printmiseenpage       : Menu des snippets de mise en page structurée pour script Bash",
+    "# printverifications   : Liste des fonctions de vérification courantes",
+    "# printecho            : Menu des snippets pour la commande echo",
+    "# printloop            : Menu des snippets pour break / continue / boucles",
+    "# printread            : Aide-mémoire pour la commande read",
+    "# printwhile           : Aide-mémoire pour la boucle while",
+    "# printarithmetique    : Menu des snippets pour les calculs arithmétiques",
+    "# printfor             : Aide-mémoire pour les boucles for",
+    "# printif              : Aide-mémoire pour les structures if",
+    "# printtest            : Aide-mémoire pour les tests conditionnels",
+    "# printfonction        : Aide-mémoire pour les fonctions shell",
+    "# printcase            : Aide-mémoire pour les structures case",
+    "# printshebang         : Liste des shebangs disponibles",
+    "# printfind            : Aide-mémoire pour les commandes find",
+    "# printregex           : Menu principal pour les sous-snippets regex",
+    "# printregexfqdn       : Regex pour FQDN et variantes",
+    "# printregexurl        : Regex pour URL et variantes",
+    "# printregexuri        : Regex pour URI et variantes",
+    "# printregexipv4       : Regex pour IPv4 et réseaux",
+    "# printregexmac        : Regex pour adresses MAC",
+    "# printregexipv6       : Regex pour IPv6",
+    "# printregexphone      : Regex pour numéros de téléphone français",
+    "# printregexemail      : Regex pour adresses email",
+    "# printregexadmin      : Regex pour identifiants et numéros administratifs",
+    "# printregexspec       : Regex pour cas spécifiques (ls -l, /etc/passwd, .git-credentials, token)",
+    "# printawk             : Menu principal pour les snippets AWK",
+    "# printsed             : Menu principal pour les snippets Sed",
+    "# printsystemd         : Menu principal pour les commandes systemd/systemctl/journalctl",
+    "# printselinux         : Menu principal pour les commandes SELinux (sesearch, semanage, etc.)",
+    "# printacl             : Menu principal pour la gestion des ACL (setfacl, getfacl, etc.)",
+    "# printnmcli           : Menu principal pour les commandes nmcli (NetworkManager)"
+  ],
+  "description": "Liste de toutes les commandes print"
+ }
 }
 
