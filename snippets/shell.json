@@ -1969,14 +1969,15 @@
   },
 
   "nmcli_connection_add_wifi": {
-    "prefix": "nmcli_connection_add_wifi",
-    "body": [
-      "# Créer une connexion Wi-Fi",
-      "nmcli connection add type wifi ifname ${1:wlan0} con-name ${2:MonWifi} \",
-      "    ssid ${3:MonSSID}"
-    ],
-    "description": "Créer un profil Wi-Fi (ssid, ifname, con-name)"
-  },
+  "prefix": "nmcli_connection_add_wifi",
+  "body": [
+    "# Créer une connexion Wi-Fi",
+    "nmcli connection add type wifi ifname ${1:wlan0} con-name ${2:MonWifi} \\",
+    "    ssid ${3:MonSSID}"
+  ],
+  "description": "Créer un profil Wi-Fi (ssid, ifname, con-name)"
+},
+
 
   "nmcli_connection_add_ethernet": {
     "prefix": "nmcli_connection_add_ethernet",
