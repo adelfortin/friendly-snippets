@@ -16,30 +16,30 @@
     ],
     "description": "Menu des snippets de mise en page structurée pour script Bash"
   },
-  "entete_script": {
-    "prefix": "entete_script",
-    "body": [
-      "#!/bin/bash",
-      "",
-      "# # # # # # # # # # # # # # # # # # # # # # # # # #",
-      "# Auteur : anonyme                                #",
-      "# Version : v0.0.1                                #",
-      "# Date : $(date +%d/%m/%Y)                              #",
-      "# # # # # # # # # # # # # # # # # # # # # # # # # #"
-    ],
-    "description": "Entête standard de script Bash avec auteur, version, date"
-  },
-  "section_variables": {
-    "prefix": "section_variables",
-    "body": [
-      "##########################################################",
-      "### Variables du script",
-      "##########################################################",
-      "",
-      "${0}"
-    ],
-    "description": "Section pour les variables du script"
-  },
+"entete_script": {
+  "prefix": "entete_script",
+  "body": [
+    "#!/bin/bash",
+    "",
+    "# # # # # # # # # # # # # # # # # # # # # # # # # #",
+    "# Auteur : anonyme                                #",
+    "# Version : v0.0.1                                #",
+    "# Date : $(date +\\%d/\\%m/\\%Y)                  #",
+    "# # # # # # # # # # # # # # # # # # # # # # # # # #"
+  ],
+  "description": "Entête standard de script Bash avec auteur, version, date"
+},
+"section_variables": {
+  "prefix": "section_variables",
+  "body": [
+    "##########################################################",
+    "### Variables du script",
+    "##########################################################",
+    "",
+    "${1:# Déclarer vos variables ici}"
+  ],
+  "description": "Section pour les variables du script"
+},
   "section_constantes": {
     "prefix": "section_constantes",
     "body": [
@@ -78,18 +78,18 @@
     ],
     "description": "Commentaire standard de fin de script"
   },
-  "usage_fonction": {
-    "prefix": "usage_fonction",
-    "body": [
-      "## Affiche l'usage du script",
-      "usage() {",
-      "    echo \"Erreur : nombre de paramètres incorrect : $# au lieu des 2 attendus\"",
-      "    echo \"Usage : \\${0##*/} param1 param2\"",
-      "    exit $ERREUR_PARAMETRES",
-      "}"
-    ],
-    "description": "Fonction usage avec message d'erreur formaté"
-  },
+"usage_fonction": {
+  "prefix": "usage_fonction",
+  "body": [
+    "## Affiche l'usage du script",
+    "usage() {",
+    "    echo \"Erreur : nombre de paramètres incorrect : $# au lieu des 2 attendus\"",
+    "    echo \"Usage : ${0##*/} param1 param2\"",
+    "    exit $ERREUR_PARAMETRES",
+    "}"
+  ],
+  "description": "Fonction usage avec message d'erreur formaté"
+},
   "bloc_verification": {
     "prefix": "bloc_verification",
     "body": [
@@ -107,7 +107,7 @@
       "##########################################################",
       "",
       "traitement() {",
-      "    ${0:# Traitement principal ici (ex: boucle, find, awk...)}",
+      "    ${1:# Traitement principal ici (ex: boucle, find, awk...)}",
       "}"
     ],
     "description": "Bloc de traitement principal du script"
@@ -142,20 +142,20 @@
     ],
     "description": "Liste des fonctions de vérification courantes"
   },
-  "verifier_parametres_nb": {
-    "prefix": "verifier_parametres_nb",
-    "body": [
-      "verifierParametres() {",
-      "    if [ \"$#\" -ne ${1:2} ]; then",
-      "        echo \"$0:$LINENO [Errno $ERREUR_PARAMETRES] : nombre de paramètres incorrect : $# au lieu de ${1}\"",
-      "        echo \"Usage : \\\\${0##*/} ${2:param1 param2}\"",
-      "        exit $ERREUR_PARAMETRES",
-      "    fi",
-      "    ${3:# Appel d'une autre vérification ici (ex: verifierFormat)}",
-      "}"
-    ],
-    "description": "Vérifie le nombre de paramètres passés au script"
-  },
+"verifier_parametres_nb": {
+  "prefix": "verifier_parametres_nb",
+  "body": [
+    "verifierParametres() {",
+    "    if [ \"$#\" -ne ${1:2} ]; then",
+    "        echo \"$0:$LINENO [Errno $ERREUR_PARAMETRES] : nombre de paramètres incorrect : $# au lieu de ${1}\"",
+    "        echo \"Usage : ${0##*/} ${2:param1 param2}\"",
+    "        exit $ERREUR_PARAMETRES",
+    "    fi",
+    "    ${3:# Appel d'une autre vérification ici (ex: verifierFormat)}",
+    "}"
+  ],
+  "description": "Vérifie le nombre de paramètres passés au script"
+},
   "verifier_parametre_regex": {
     "prefix": "verifier_parametre_regex",
     "body": [
@@ -245,7 +245,7 @@
   },
   "echo": {
     "prefix": "echo",
-    "body": "echo \"${0:message}\"",
+    "body": "echo \"${1:message}\"",
     "description": "Affiche un message simple dans le terminal (commande echo)."
   },
 
@@ -413,20 +413,21 @@
     "description": "Boucle while pour lister les connexions nmcli et séparer en 4 champs"
   },
 
-  "while_read_ip_a": {
-    "prefix": "while_read_ip_a",
-    "body": [
-      "# Parse 'ip a' pour les interfaces et adresses.",
-      "# Ex : ip a | grep 'inet ' | while read -r ...",
-      "OLD_IFS=$IFS",
-      "IFS='${1:[[:space:]]}'",
-      "ip a | grep '^\s*inet ' | while read -r inet addr rest; do",
-      "    ${0:# code : $addr contient l'adresse/masque}",
-      "done",
-      "IFS=$OLD_IFS"
-    ],
-    "description": "Boucle while pour extraire les adresses IPv4 via 'ip a'"
-  },
+"while_read_ip_a": {
+  "prefix": "while_read_ip_a",
+  "body": [
+    "# Parse 'ip a' pour les interfaces et adresses.",
+    "# Ex : ip a | grep 'inet ' | while read -r ...",
+    "OLD_IFS=$IFS",
+    "IFS='${1:[[:space:]]}'",
+    "ip a | grep '^[[:space:]]*inet ' | while read -r inet addr rest; do",
+    "    ${0:# code : $addr contient l'adresse/masque}",
+    "done",
+    "IFS=$OLD_IFS"
+  ],
+  "description": "Boucle while pour extraire les adresses IPv4 via 'ip a'"
+},
+
 
   "while_read_iptables": {
     "prefix": "while_read_iptables",
