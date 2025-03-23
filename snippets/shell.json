@@ -2001,9 +2001,9 @@
     "prefix": "nmcli_connection_modify",
     "body": [
       "# Modifier des paramètres d'une connexion",
-      "nmcli connection modify ${1:NomConnexion} ${2:ipv4.addresses} ${3:192.168.1.10/24} \",
-      "                         ${4:ipv4.gateway} ${5:192.168.1.1} \",
-      "                         ${6:ipv4.dns} ${7:1.1.1.1,8.8.8.8} \",
+      "nmcli connection modify ${1:NomConnexion} ${2:ipv4.addresses} ${3:192.168.1.10/24} \\",
+      "                         ${4:ipv4.gateway} ${5:192.168.1.1} \\",
+      "                         ${6:ipv4.dns} ${7:1.1.1.1,8.8.8.8} \\",
       "                         ${8:ipv4.method} manual"
     ],
     "description": "Modifier une connexion : IP statique, DNS, gateway, etc."
