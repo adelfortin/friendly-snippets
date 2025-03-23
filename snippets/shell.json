@@ -1,161 +1,760 @@
 {
-    "bash": {
-        "prefix": ["bash", "#!", "shebang"],
-        "body": "${1|#!/bin/bash,#!/usr/bin/env bash,#!/bin/sh,#!/usr/bin/env sh|}\n",
-        "description": [
-            "Option 1:\n",
-            "#!/bin/bash\n",
-            "Description: Shebang Bash executor.\n",
-            "Option 2:\n",
-            "#!/usr/bin/env bash\n",
-            "Description: Shell searchs for the first match of bash in the $PATH environment variable.\n",
-            "It can be useful if you aren't aware of the absolute path or don't want to search for it.\n"
-        ]
-    },
-    "echo": {
-        "prefix": "echo",
-        "body": "echo \"${0:message}\"",
-        "description": "Echo a message."
-    },
-    "read": {
-        "prefix": "read",
-        "body": "read -r ${0:VAR}",
-        "description": "Read input of ${VAR}."
-    },
-    "if": {
-        "prefix": "if",
-        "body": "if [[ ${1:condition} ]]; then\n\t${0}\nfi",
-        "description": "An IF statement."
-    },
-    "elseif": {
-        "prefix": "elseif",
-        "body": "elif [[ ${1:condition} ]]; then\n\t${0}",
-        "description": "Add an elseif to an if statement."
-    },
-    "else": {
-        "prefix": "else",
-        "body": "else\n\t${0:command}",
-        "description": "else"
-    },
-    "for_in": {
-        "prefix": "for_in",
-        "body": "for ${1:VAR} in ${0:LIST}\ndo\n\techo \"\\$${1:VAR}\"\ndone\n",
-        "description": "for loop in list"
-    },
-    "for_i": {
-        "prefix": "for_i",
-        "body": "for ((${1:i} = 0; ${1:i} < ${0:10}; ${1:i}++)); do\n\techo \"\\$${1:i}\"\ndone\n",
-        "description": "An index-based iteration for loop."
-    },
-    "while": {
-        "prefix": "while",
-        "body": "while [[ ${1:condition} ]]; do\n\t${0}\ndone\n",
-        "description": "A while loop by condition."
-    },
-    "until": {
-        "prefix": "until",
-        "body": "until [[ ${1:condition} ]]; do\n\t${0}\ndone\n",
-        "description": "until loop by condition"
-    },
-    "function": {
-        "prefix": "function",
-        "body": "${1:name} ()\n{\n\t${0}\n}",
-        "description": [
-            "This defines a function named name.\n",
-            "The reserved word function is optional.\n",
-            "If the function reserved word is supplied, the parentheses are optional.\n",
-            "1. Recommended way:\n",
-            "name() {}\n",
-            "2. C-like-way:\nfunction name [()] {}"
-        ]
-    },
-    "case": {
-        "prefix": "case",
-        "body": "case \"\\$${1:VAR}\" in\n\t${2:1}) echo 1\n\t;;\n\t${3:2|3}) echo 2 or 3\n\t;;\n\t*) echo default\n\t;;\nesac\n",
-        "description": [
-            "case word in [ [(] pattern [ | pattern ] ... ) list ;; ] ... esac\n",
-            "A case command first expands word, and tries to match it against each pattern in turn."
-        ]
-    },
-    "break": {
-        "prefix": "break",
-        "body": "break ${0}",
-        "description": [
-            "The break command tells Bash to leave the loop straight away.\n",
-            "Enter the break or break (n) where n=number of loops."
-        ]
-    },
-    "expr": {
-        "prefix": "expr",
-        "body": "expr ${0:1 + 1}",
-        "description": "Calculate numbers with Bash."
-    },
-    "printshebang": {
-        "prefix": "printshebang",
+   "printmiseenpage": {
+    "prefix": "printmiseenpage",
+    "body": [
+      "# Snippets pour construire un squelette de script Bash complet :",
+      "# entete_script         : Ajoute l'entête du script (auteur, version, date)",
+      "# section_variables     : Bloc des variables du script",
+      "# section_constantes    : Bloc des constantes du script",
+      "# section_erreurs       : Bloc des codes d'erreur du script",
+      "# debut_programme       : Commentaire pour indiquer le début du programme",
+      "# fin_script            : Commentaire pour indiquer la fin du script",
+      "# usage_fonction        : Fonction usage standard",
+      "# bloc_verification     : Titre des fonctions de vérification",
+      "# bloc_traitement       : Bloc avec traitement principal",
+      "# bloc_principal        : Bloc principal avec appel à demarrer()"
+    ],
+    "description": "Menu des snippets de mise en page structurée pour script Bash"
+  },
+  "entete_script": {
+    "prefix": "entete_script",
+    "body": [
+      "#!/bin/bash",
+      "",
+      "# # # # # # # # # # # # # # # # # # # # # # # # # #",
+      "# Auteur : anonyme                                #",
+      "# Version : v0.0.1                                #",
+      "# Date : $(date +%d/%m/%Y)                              #",
+      "# # # # # # # # # # # # # # # # # # # # # # # # # #"
+    ],
+    "description": "Entête standard de script Bash avec auteur, version, date"
+  },
+  "section_variables": {
+    "prefix": "section_variables",
+    "body": [
+      "##########################################################",
+      "### Variables du script",
+      "##########################################################",
+      "",
+      "${0}"
+    ],
+    "description": "Section pour les variables du script"
+  },
+  "section_constantes": {
+    "prefix": "section_constantes",
+    "body": [
+      "##########################################################",
+      "### Constantes du script",
+      "##########################################################",
+      "",
+      "${0}"
+    ],
+    "description": "Section pour les constantes du script"
+  },
+  "section_erreurs": {
+    "prefix": "section_erreurs",
+    "body": [
+      "##########################################################",
+      "### Codes d'erreur",
+      "##########################################################",
+      "",
+      "ERREUR_PARAMETRES=80",
+      "ERREUR_FORMAT_PARAM1=81",
+      "ERREUR_FORMAT_PARAM2=82"
+    ],
+    "description": "Section des constantes pour les codes d'erreur"
+  },
+  "debut_programme": {
+    "prefix": "debut_programme",
+    "body": [
+      "#### DEBUT DU PROGRAMME"
+    ],
+    "description": "Commentaire pour marquer le début du script"
+  },
+  "fin_script": {
+    "prefix": "fin_script",
+    "body": [
+      "#### FIN DU PROGRAMME"
+    ],
+    "description": "Commentaire standard de fin de script"
+  },
+  "usage_fonction": {
+    "prefix": "usage_fonction",
+    "body": [
+      "## Affiche l'usage du script",
+      "usage() {",
+      "    echo \"Erreur : nombre de paramètres incorrect : $# au lieu des 2 attendus\"",
+      "    echo \"Usage : \\${0##*/} param1 param2\"",
+      "    exit $ERREUR_PARAMETRES",
+      "}"
+    ],
+    "description": "Fonction usage avec message d'erreur formaté"
+  },
+  "bloc_verification": {
+    "prefix": "bloc_verification",
+    "body": [
+      "##########################################################",
+      "### Fonctions de vérification",
+      "##########################################################"
+    ],
+    "description": "En-tête standard pour les fonctions de vérification"
+  },
+  "bloc_traitement": {
+    "prefix": "bloc_traitement",
+    "body": [
+      "##########################################################",
+      "### Fonctions de traitement",
+      "##########################################################",
+      "",
+      "traitement() {",
+      "    ${0:# Traitement principal ici (ex: boucle, find, awk...)}",
+      "}"
+    ],
+    "description": "Bloc de traitement principal du script"
+  },
+  "bloc_principal": {
+    "prefix": "bloc_principal",
+    "body": [
+      "##########################################################",
+      "### PROGRAMME PRINCIPAL",
+      "##########################################################",
+      "",
+      "demarrer() {",
+      "    verifierParametres \"$@\"",
+      "}",
+      "",
+      "demarrer \"$@\""
+    ],
+    "description": "Bloc principal avec fonction demarrer et appel final"
+  },
+
+    "printverifications": {
+    "prefix": "printverifications",
+    "body": [
+      "# Snippets pour les fonctions de vérification réutilisables :",
+      "# verifier_parametres_nb        : Vérifie le nombre de paramètres attendus",
+      "# verifier_parametre_regex      : Vérifie un paramètre selon une regex stockée",
+      "# verifier_parametre_numerique  : Vérifie si un paramètre est un nombre (test arithmétique)",
+      "# verifier_fichier_lecture      : Vérifie l’accessibilité en lecture d’un fichier",
+      "# verifier_fichier_ecriture     : Vérifie l’accessibilité en écriture d’un fichier",
+      "# verifier_repertoire_ecriture  : Vérifie l’accessibilité en écriture d’un répertoire",
+      "# verifier_repertoire_execution : Vérifie si un répertoire est exécutable"
+    ],
+    "description": "Liste des fonctions de vérification courantes"
+  },
+  "verifier_parametres_nb": {
+    "prefix": "verifier_parametres_nb",
+    "body": [
+      "verifierParametres() {",
+      "    if [ \"$#\" -ne ${1:2} ]; then",
+      "        echo \"$0:$LINENO [Errno $ERREUR_PARAMETRES] : nombre de paramètres incorrect : $# au lieu de ${1}\"",
+      "        echo \"Usage : \\\\${0##*/} ${2:param1 param2}\"",
+      "        exit $ERREUR_PARAMETRES",
+      "    fi",
+      "    ${3:# Appel d'une autre vérification ici (ex: verifierFormat)}",
+      "}"
+    ],
+    "description": "Vérifie le nombre de paramètres passés au script"
+  },
+  "verifier_parametre_regex": {
+    "prefix": "verifier_parametre_regex",
+    "body": [
+      "verifierParametreRegex() {",
+      "    local valeur=\"$1\" regex=\"$2\" erreur=\"$3\"",
+      "    if ! [[ \"$valeur\" =~ $regex ]]; then",
+      "        echo \"$0:$LINENO [Errno $erreur] : '$valeur' ne correspond pas au format attendu\"",
+      "        exit \"$erreur\"",
+      "    fi",
+      "}"
+    ],
+    "description": "Vérifie un paramètre avec une regex (regex à fournir)"
+  },
+  "verifier_parametre_numerique": {
+    "prefix": "verifier_parametre_numerique",
+    "body": [
+      "verifierParametreNumerique() {",
+      "    local valeur=\"$1\" erreur=\"$2\"",
+      "    if ! [[ \"$valeur\" =~ ^[0-9]+$ ]]; then",
+      "        echo \"$0:$LINENO [Errno $erreur] : '$valeur' n'est pas un entier positif valide\"",
+      "        exit \"$erreur\"",
+      "    fi",
+      "}"
+    ],
+    "description": "Vérifie qu'un paramètre est un entier positif"
+  },
+  "verifier_fichier_lecture": {
+    "prefix": "verifier_fichier_lecture",
+    "body": [
+      "verifierFichierLecture() {",
+      "    local fichier=\"$1\" erreur=\"$2\"",
+      "    if [ ! -r \"$fichier\" ]; then",
+      "        echo \"$0:$LINENO [Errno $erreur] : Le fichier '$fichier' n'est pas accessible en lecture\"",
+      "        exit \"$erreur\"",
+      "    fi",
+      "}"
+    ],
+    "description": "Vérifie si un fichier est lisible"
+  },
+  "verifier_fichier_ecriture": {
+    "prefix": "verifier_fichier_ecriture",
+    "body": [
+      "verifierFichierEcriture() {",
+      "    local fichier=\"$1\" erreur=\"$2\"",
+      "    if [ ! -w \"$fichier\" ]; then",
+      "        echo \"$0:$LINENO [Errno $erreur] : Le fichier '$fichier' n'est pas accessible en écriture\"",
+      "        exit \"$erreur\"",
+      "    fi",
+      "}"
+    ],
+    "description": "Vérifie si un fichier est modifiable"
+  },
+  "verifier_repertoire_ecriture": {
+    "prefix": "verifier_repertoire_ecriture",
+    "body": [
+      "verifierRepertoireEcriture() {",
+      "    local repertoire=\"$1\" erreur=\"$2\"",
+      "    if [ ! -w \"$repertoire\" ]; then",
+      "        echo \"$0:$LINENO [Errno $erreur] : Le répertoire '$repertoire' n'est pas accessible en écriture\"",
+      "        exit \"$erreur\"",
+      "    fi",
+      "}"
+    ],
+    "description": "Vérifie si un répertoire est modifiable"
+  },
+  "verifier_repertoire_execution": {
+    "prefix": "verifier_repertoire_execution",
+    "body": [
+      "verifierRepertoireExecution() {",
+      "    local repertoire=\"$1\" erreur=\"$2\"",
+      "    if [ ! -x \"$repertoire\" ]; then",
+      "        echo \"$0:$LINENO [Errno $erreur] : Le répertoire '$repertoire' n'est pas exécutable\"",
+      "        exit \"$erreur\"",
+      "    fi",
+      "}"
+    ],
+    "description": "Vérifie si un répertoire est exécutable"
+  },
+
+  "printecho": {
+    "prefix": "printecho",
+    "body": [
+      "# Snippets liés à echo :",
+      "# echo            : Affiche un message simple"
+    ],
+    "description": "Menu des snippets pour la commande echo"
+  },
+  "echo": {
+    "prefix": "echo",
+    "body": "echo \"${0:message}\"",
+    "description": "Affiche un message simple dans le terminal (commande echo)."
+  },
+
+  "printloop": {
+    "prefix": "printloop",
+    "body": [
+      "# Snippets liés aux boucles et contrôles :",
+      "# break     : Interrompt une boucle immédiatement",
+      "# while     : Boucle while avec condition",
+      "# until     : Boucle until avec condition"
+    ],
+    "description": "Menu des snippets pour break / continue / boucles"
+  },
+  "break": {
+    "prefix": "break",
+    "body": "break ${0}",
+    "description": "Interrompt une boucle immédiatement"
+  },
+  "while": {
+    "prefix": "while",
+    "body": "while [[ ${1:condition} ]]; do\n\t${0}\ndone",
+    "description": "Boucle while avec condition logique"
+  },
+  "until": {
+    "prefix": "until",
+    "body": "until [[ ${1:condition} ]]; do\n\t${0}\ndone",
+    "description": "Boucle until avec condition logique"
+  },
+
+      "printread": {
+        "prefix": "printread",
         "body": [
-            "# Snippets pour les shebangs de différents langages :",
-            "# shebang_bash   : Shebang pour Bash",
-            "# shebang_dash   : Shebang pour Dash",
-            "# shebang_ksh    : Shebang pour KornShell",
-            "# shebang_zsh    : Shebang pour Zsh",
-            "# shebang_awk    : Shebang pour Awk",
-            "# shebang_sed    : Shebang pour Sed (avec options -nf)"
+            "# Snippets pour la lecture d'entrée utilisateur :",
+            "# read_input : Lecture d'une entrée avec prompt"
         ],
-        "description": "Liste des shebangs disponibles"
+        "description": "Aide-mémoire pour la commande read"
     },
-    "shebang_bash": {
-        "prefix": "shebang_bash",
+    "read_input": {
+        "prefix": "read_input",
         "body": [
-            "#!/bin/bash"
+            "read -p \"${1:Entrez une valeur}: \" ${2:variable}"
         ],
-        "description": "Shebang pour les scripts Bash"
+        "description": "Lecture d'une entrée avec prompt"
     },
-    "shebang_dash": {
-        "prefix": "shebang_dash",
+
+  "printwhile": {
+    "prefix": "printwhile",
+    "body": [
+      "# Snippets pour les boucles while :",
+      "# while_read_file           : Boucle while pour lecture de fichier (un champ)",
+      "# while_read_file_multi     : Boucle while pour lecture de fichier (plusieurs champs)",
+      "# while_read_command        : Boucle while pour traiter la sortie d'une commande",
+      "# while_read_passwd         : Lecture de /etc/passwd",
+      "# while_read_lsblk          : Lecture de la commande lsblk",
+      "# while_read_find_dev       : Lecture d'un find /dev pour le matériel",
+      "# while_read_nmcli          : Lecture de nmcli (ex: nmcli connection show)",
+      "# while_read_ip_a           : Lecture de la commande 'ip a' pour lister interfaces",
+      "# while_read_iptables       : Lecture de iptables -S (ou iptables -L)",
+      "# while_read_selinux        : Lecture de getenforce ou sestatus pour SELinux",
+      "# while_read_ls_larth       : Lecture d'un ls -larth pour séparer champs",
+      "# while_read_ss             : Lecture de ss (sockets)",
+      "# while_read_netstat        : Lecture de netstat",
+      "# while_read_dig            : Lecture de dig output",
+      "# while_read_host           : Lecture de host output",
+      "# while_read_ip_r           : Lecture de la table de routage (ip r)",
+      "# while_read_autre_commande : Modèle générique pour toute autre commande"
+    ],
+    "description": "Aide-mémoire pour la boucle while"
+  },
+
+  "while_read_file": {
+    "prefix": "while_read_file",
+    "body": [
+      "OLD_IFS=$IFS",
+      "IFS='${2:delimiter}'",
+      "while read -r ${1:ligne}; do",
+      "    ${3:# code ici}",
+      "done < ${4:fichier}",
+      "IFS=$OLD_IFS"
+    ],
+    "description": "Boucle while pour lire un fichier avec un seul champ"
+  },
+
+  "while_read_file_multi": {
+    "prefix": "while_read_file_multi",
+    "body": [
+      "OLD_IFS=$IFS",
+      "IFS='${2:delimiter}'",
+      "# Lecture avec plusieurs champs. Remplacez les noms par '_' pour les champs inutilisés.",
+      "while read -r ${1:col1} ${3:col2} ${4:col3} ${5:col4} ${6:col5}; do",
+      "    ${7:# code ici – par exemple utilisez $col2 et $col5}",
+      "done < ${8:fichier}",
+      "IFS=$OLD_IFS"
+    ],
+    "description": "Boucle while pour lire un fichier en assignant plusieurs champs à des variables"
+  },
+
+  "while_read_command": {
+    "prefix": "while_read_command",
+    "body": [
+      "OLD_IFS=$IFS",
+      "IFS='${1:delimiter}'",
+      "# Exécute la commande et boucle sur sa sortie",
+      "${2:command} | while read -r ${3:line}; do",
+      "    ${4:# code ici}",
+      "done",
+      "IFS=$OLD_IFS"
+    ],
+    "description": "Boucle while pour traiter la sortie d'une commande"
+  },
+
+  "while_read_passwd": {
+    "prefix": "while_read_passwd",
+    "body": [
+      "# Lit /etc/passwd et sépare par ':' pour extraire 7 champs.",
+      "OLD_IFS=$IFS",
+      "IFS=':'",
+      "cat /etc/passwd | while read -r user x uid gid gecos home shell; do",
+      "    ${0:# code ici : $user, $uid, $gid, $home, $shell}",
+      "done",
+      "IFS=$OLD_IFS"
+    ],
+    "description": "Boucle while pour lire /etc/passwd et extraire champs utilisateur"
+  },
+
+  "while_read_lsblk": {
+    "prefix": "while_read_lsblk",
+    "body": [
+      "# Lit la sortie de 'lsblk' en colonnes séparées par espace (ou tab).",
+      "OLD_IFS=$IFS",
+      "IFS='${1:[[:space:]]}'",
+      "lsblk -o NAME,KNAME,TYPE,SIZE,MOUNTPOINT | while read -r name kname type size mp; do",
+      "    ${0:# code ici}",
+      "done",
+      "IFS=$OLD_IFS"
+    ],
+    "description": "Boucle while pour analyser la sortie de lsblk avec 5 colonnes"
+  },
+
+  "while_read_find_dev": {
+    "prefix": "while_read_find_dev",
+    "body": [
+      "# Recherche dans /dev, récupère la liste, lit ligne par ligne.",
+      "OLD_IFS=$IFS",
+      "IFS='${1:\n}'",
+      "find /dev -type b -o -type c | while read -r dev; do",
+      "    ${0:# code : $dev est un périphérique block ou char}",
+      "done",
+      "IFS=$OLD_IFS"
+    ],
+    "description": "Boucle while pour lister /dev (type bloc ou char) et traiter chaque ligne"
+  },
+
+  "while_read_nmcli": {
+    "prefix": "while_read_nmcli",
+    "body": [
+      "# Analyse la sortie de nmcli connection show",
+      "OLD_IFS=$IFS",
+      "IFS='${1:[[:space:]]}'",
+      "nmcli connection show | while read -r name uuid type device; do",
+      "    ${0:# code : $name, $uuid, $type, $device}",
+      "done",
+      "IFS=$OLD_IFS"
+    ],
+    "description": "Boucle while pour lister les connexions nmcli et séparer en 4 champs"
+  },
+
+  "while_read_ip_a": {
+    "prefix": "while_read_ip_a",
+    "body": [
+      "# Parse 'ip a' pour les interfaces et adresses.",
+      "# Ex : ip a | grep 'inet ' | while read -r ...",
+      "OLD_IFS=$IFS",
+      "IFS='${1:[[:space:]]}'",
+      "ip a | grep '^\s*inet ' | while read -r inet addr rest; do",
+      "    ${0:# code : $addr contient l'adresse/masque}",
+      "done",
+      "IFS=$OLD_IFS"
+    ],
+    "description": "Boucle while pour extraire les adresses IPv4 via 'ip a'"
+  },
+
+  "while_read_iptables": {
+    "prefix": "while_read_iptables",
+    "body": [
+      "# Analyse les règles iptables -S ou -L.",
+      "OLD_IFS=$IFS",
+      "IFS='${1:\n}'",
+      "iptables -S | while read -r rule; do",
+      "    ${0:# code : $rule est une ligne de règle iptables}",
+      "done",
+      "IFS=$OLD_IFS"
+    ],
+    "description": "Boucle while pour analyser les règles iptables via -S"
+  },
+
+  "while_read_selinux": {
+    "prefix": "while_read_selinux",
+    "body": [
+      "# Récupère l'état SELinux (sestatus ou getenforce).",
+      "OLD_IFS=$IFS",
+      "IFS='${1:\n}'",
+      "sestatus | while read -r line; do",
+      "    ${0:# code : $line contient le paramètre SELinux}",
+      "done",
+      "IFS=$OLD_IFS"
+    ],
+    "description": "Boucle while pour traiter la sortie de 'sestatus' (SELinux)"
+  },
+
+  "while_read_ls_larth": {
+    "prefix": "while_read_ls_larth",
+    "body": [
+      "# Analyse la sortie d'un 'ls -larth' pour séparer les champs.",
+      "OLD_IFS=$IFS",
+      "IFS='${1:[[:space:]]}'",
+      "ls -larth ${2:.} | while read -r perms links owner group size date time filename; do",
+      "    ${0:# code : 9 champs si ls format classique}",
+      "done",
+      "IFS=$OLD_IFS"
+    ],
+    "description": "Boucle while pour parser ls -larth en 9 champs"
+  },
+
+  "while_read_ss": {
+    "prefix": "while_read_ss",
+    "body": [
+      "# Parse la commande 'ss' pour analyser les sockets.",
+      "OLD_IFS=$IFS",
+      "IFS='${1:[[:space:]]}'",
+      "ss -tulnp | while read -r proto recvq sendq localaddr foreignaddr state pidprog; do",
+      "    ${0:# code}",
+      "done",
+      "IFS=$OLD_IFS"
+    ],
+    "description": "Boucle while pour analyser la sortie de ss -tulnp (TCP/UDP sockets)"
+  },
+
+  "while_read_netstat": {
+    "prefix": "while_read_netstat",
+    "body": [
+      "# Parse la commande 'netstat -tulnp'.",
+      "OLD_IFS=$IFS",
+      "IFS='${1:[[:space:]]}'",
+      "netstat -tulnp | tail -n +3 | while read -r proto recvq sendq local foreign state pidprog; do",
+      "    ${0:# code}",
+      "done",
+      "IFS=$OLD_IFS"
+    ],
+    "description": "Boucle while pour analyser la sortie de netstat -tulnp"
+  },
+
+  "while_read_dig": {
+    "prefix": "while_read_dig",
+    "body": [
+      "# Parse la sortie de 'dig' (ex: dig google.com).",
+      "OLD_IFS=$IFS",
+      "IFS='${1:[[:space:]]}'",
+      "dig ${2:google.com} | while read -r line; do",
+      "    ${0:# code}",
+      "done",
+      "IFS=$OLD_IFS"
+    ],
+    "description": "Boucle while pour analyser la sortie de dig"
+  },
+
+  "while_read_host": {
+    "prefix": "while_read_host",
+    "body": [
+      "# Parse la sortie de 'host' (ex: host google.com).",
+      "OLD_IFS=$IFS",
+      "IFS='${1:[[:space:]]}'",
+      "host ${2:google.com} | while read -r part1 part2 part3 part4 part5; do",
+      "    ${0:# code}",
+      "done",
+      "IFS=$OLD_IFS"
+    ],
+    "description": "Boucle while pour analyser la sortie de host"
+  },
+
+  "while_read_ip_r": {
+    "prefix": "while_read_ip_r",
+    "body": [
+      "# Parse la table de routage via 'ip r'.",
+      "OLD_IFS=$IFS",
+      "IFS='${1:[[:space:]]}'",
+      "ip r | while read -r dest via gw dev iface rest; do",
+      "    ${0:# code : $dest, $gw, $iface, etc.}",
+      "done",
+      "IFS=$OLD_IFS"
+    ],
+    "description": "Boucle while pour analyser 'ip r' (table de routage)"
+  },
+
+  "while_read_autre_commande": {
+    "prefix": "while_read_autre_commande",
+    "body": [
+      "# Modèle générique pour toute autre commande.",
+      "OLD_IFS=$IFS",
+      "IFS='${1:[[:space:]]}'",
+      "${2:ma_commande} | while read -r ${3:col1} ${4:col2} ${5:col3}; do",
+      "    ${0:# code}",
+      "done",
+      "IFS=$OLD_IFS"
+    ],
+    "description": "Boucle while générique pour n'importe quelle commande"
+  },
+
+  "printarithmetique": {
+    "prefix": "printarithmetique",
+    "body": [
+      "# Snippets pour les opérations arithmétiques :",
+      "# expr            : Calcul simple via expr",
+      "# arithmetic_let  : Évaluation arithmétique avec let"
+    ],
+    "description": "Menu des snippets pour les calculs arithmétiques"
+  },
+  "expr": {
+    "prefix": "expr",
+    "body": "expr ${0:1 + 1}",
+    "description": "Évalue une expression arithmétique simple (ancienne méthode historique)"
+  },
+  "arithmetic_let": {
+    "prefix": "arithmetic_let",
+    "body": "let ${1:var}=${2:expression}",
+    "description": "Évaluation arithmétique avec let"
+  },
+
+  "printfor": {
+    "prefix": "printfor",
+    "body": [
+      "# Snippets pour les boucles for :",
+      "# for_in           : Boucle sur une liste",
+      "# for_i            : Boucle indexée en style C"
+    ],
+    "description": "Aide-mémoire pour les boucles for"
+  },
+  "for_in": {
+    "prefix": "for_in",
+    "body": "for ${1:VAR} in ${0:LIST}; do\n\techo \"\\$${1:VAR}\"\ndone",
+    "description": "Boucle for sur une liste"
+  },
+  "for_i": {
+    "prefix": "for_i",
+    "body": "for (( ${1:i} = 0; ${1:i} < ${0:10}; ${1:i}++ )); do\n\techo \"\\$${1:i}\"\ndone",
+    "description": "Boucle for avec compteur indexé (style C)"
+  },
+
+  "printif": {
+    "prefix": "printif",
+    "body": [
+      "# Snippets pour les structures conditionnelles if :",
+      "# if               : Bloc if simple",
+      "# elseif           : Bloc elif",
+      "# else             : Bloc else",
+      "# if_simple        : if conditionnel simple",
+      "# if_else          : if ... else",
+      "# if_elif          : if ... elif",
+      "# if_elif_else     : if ... elif ... else",
+      "# if_nested        : if imbriqué"
+    ],
+    "description": "Aide-mémoire pour les structures if"
+  },
+  "if": {
+    "prefix": "if",
+    "body": "if [[ ${1:condition} ]]; then\n\t${0}\nfi",
+    "description": "Structure if avec double crochets"
+  },
+  "elseif": {
+    "prefix": "elseif",
+    "body": "elif [[ ${1:condition} ]]; then\n\t${0}",
+    "description": "Bloc elif dans une structure conditionnelle"
+  },
+  "else": {
+    "prefix": "else",
+    "body": "else\n\t${0:command}",
+    "description": "Bloc else dans une structure conditionnelle"
+  },
+  "if_simple": {
+    "prefix": "if_simple",
+    "body": [
+      "if [ ${1:condition} ]; then",
+      "    ${2:# code si vrai}",
+      "fi"
+    ],
+    "description": "Structure if simple"
+  },
+  "if_else": {
+    "prefix": "if_else",
+    "body": [
+      "if [ ${1:condition} ]; then",
+      "    ${2:# code si vrai}",
+      "else",
+      "    ${3:# code sinon}",
+      "fi"
+    ],
+    "description": "Structure if ... else"
+  },
+  "if_elif": {
+    "prefix": "if_elif",
+    "body": [
+      "if [ ${1:condition1} ]; then",
+      "    ${2:# code si condition1 vraie}",
+      "elif [ ${3:condition2} ]; then",
+      "    ${4:# code si condition2 vraie}",
+      "fi"
+    ],
+    "description": "Structure if ... elif"
+  },
+  "if_elif_else": {
+    "prefix": "if_elif_else",
+    "body": [
+      "if [ ${1:condition1} ]; then",
+      "    ${2:# code si condition1 vraie}",
+      "elif [ ${3:condition2} ]; then",
+      "    ${4:# code si condition2 vraie}",
+      "else",
+      "    ${5:# code sinon}",
+      "fi"
+    ],
+    "description": "Structure if ... elif ... else"
+  },
+  "if_nested": {
+    "prefix": "if_nested",
+    "body": [
+      "if [ ${1:condition1} ]; then",
+      "    if [ ${2:condition2} ]; then",
+      "        ${3:# code si les deux conditions sont vraies}",
+      "    else",
+      "        ${4:# code si seule la première condition est vraie}",
+      "    fi",
+      "else",
+      "    ${5:# code si condition1 est fausse}",
+      "fi"
+    ],
+    "description": "Structure if imbriqué"
+  },
+
+      "printtest": {
+        "prefix": "printtest",
         "body": [
-            "#!/bin/dash"
+            "# Snippets pour les tests conditionnels :",
+            "# test_brackets         : Test avec [ ]",
+            "# test_double_brackets  : Test avec [[ ]]",
+            "# test_arithmetic       : Test arithmétique avec (( ))",
+            "# test_complex          : Exemple de test complexe (&& et ||)",
+            "# test_regex            : Test d'expression régulière avec une variable"
         ],
-        "description": "Shebang pour les scripts Dash"
+        "description": "Aide-mémoire pour les tests conditionnels"
     },
-    "shebang_ksh": {
-        "prefix": "shebang_ksh",
+    "test_brackets": {
+        "prefix": "test_brackets",
         "body": [
-            "#!/bin/ksh"
+            "[ ${1:variable} ${2:==} ${3:valeur} ]"
         ],
-        "description": "Shebang pour les scripts KornShell"
+        "description": "Test conditionnel simple avec crochets []"
     },
-    "shebang_zsh": {
-        "prefix": "shebang_zsh",
+    "test_double_brackets": {
+        "prefix": "test_double_brackets",
         "body": [
-            "#!/bin/zsh"
+            "[[ ${1:variable} ${2:==} ${3:valeur} ]]"
         ],
-        "description": "Shebang pour les scripts Zsh"
+        "description": "Test conditionnel avec doubles crochets [[]]"
     },
-    "shebang_awk": {
-        "prefix": "shebang_awk",
+    "test_arithmetic": {
+        "prefix": "test_arithmetic",
         "body": [
-            "#!/usr/bin/awk -f"
+            "(( ${1:variable} ${2:>=} ${3:valeur} ))"
         ],
-        "description": "Shebang pour les scripts Awk"
+        "description": "Test arithmétique avec (( ))"
     },
-    "shebang_sed": {
-        "prefix": "shebang_sed",
+    "test_complex": {
+        "prefix": "test_complex",
         "body": [
-            "#!/usr/bin/sed -nf"
+            "if [[ ${1:var1} ${2:==} ${3:valeur1} && ${4:var2} ${5:>=} ${6:valeur2} || ${7:var3} ${8:!=} ${9:valeur3} ]]; then",
+            "    ${10:# code si vrai}",
+            "fi"
         ],
-        "description": "Shebang pour les scripts Sed (avec options -nf)"
+        "description": "Test conditionnel complexe utilisant && et ||"
     },
-    "printfonction": {
-        "prefix": "printfonction",
+    "test_regex": {
+        "prefix": "test_regex",
         "body": [
-            "# Snippets pour la création de fonctions :",
-            "# function_template : Template de fonction basique",
-            "# function_getopt    : Template pour getopt",
-            "# function_getopts   : Template pour getopts"
+            "if [[ ${1:variable} =~ ${2:regex} ]]; then",
+            "    ${3:# code si correspondance}",
+            "fi"
         ],
-        "description": "Aide-mémoire pour les fonctions shell"
+        "description": "Test d'expression régulière avec l'opérateur =~"
     },
-    "function_template": {
+
+
+  "printfonction": {
+    "prefix": "printfonction",
+    "body": [
+      "# Snippets pour la création de fonctions :",
+      "# function_template : Template de fonction basique",
+      "# function_simple   : Déclaration rapide de fonction",
+      "# function_getopt   : Template pour getopt",
+      "# function_getopts  : Template pour getopts"
+    ],
+    "description": "Aide-mémoire pour les fonctions shell"
+  },
+  "function_simple": {
+    "prefix": "function",
+    "body": "${1:name} ()\n{\n\t${0}\n}",
+    "description": "Déclaration rapide de fonction avec syntaxe classique"
+  },
+
+      "function_template": {
         "prefix": "function_template",
         "body": [
             "${1:nom_de_fonction}() {",
@@ -212,241 +811,79 @@
         ],
         "description": "Template de fonction utilisant getopts"
     },
-    "printread": {
-        "prefix": "printread",
+
+  "printcase": {
+    "prefix": "printcase",
+    "body": [
+      "# Snippets pour les structures case :",
+      "# case              : Structure case avec echo",
+      "# case_simple       : Structure case simple",
+      "# case_pattern      : Structure case avec plusieurs motifs"
+    ],
+    "description": "Aide-mémoire pour les structures case"
+  },
+  "case": {
+    "prefix": "case",
+    "body": "case \"\\$${1:VAR}\" in\n\t${2:1}) echo 1\n\t;;\n\t${3:2|3}) echo 2 or 3\n\t;;\n\t*) echo default\n\t;;\nesac",
+    "description": "Structure case avec echo en sortie"
+  },
+    "printshebang": {
+        "prefix": "printshebang",
         "body": [
-            "# Snippets pour la lecture d'entrée utilisateur :",
-            "# read_input : Lecture d'une entrée avec prompt"
+            "# Snippets pour les shebangs de différents langages :",
+            "# shebang_bash   : Shebang pour Bash",
+            "# shebang_dash   : Shebang pour Dash",
+            "# shebang_ksh    : Shebang pour KornShell",
+            "# shebang_zsh    : Shebang pour Zsh",
+            "# shebang_awk    : Shebang pour Awk",
+            "# shebang_sed    : Shebang pour Sed (avec options -nf)"
         ],
-        "description": "Aide-mémoire pour la commande read"
+        "description": "Liste des shebangs disponibles"
     },
-    "read_input": {
-        "prefix": "read_input",
+    "shebang_bash": {
+        "prefix": "shebang_bash",
         "body": [
-            "read -p \"${1:Entrez une valeur}: \" ${2:variable}"
+            "#!/bin/bash"
         ],
-        "description": "Lecture d'une entrée avec prompt"
+        "description": "Shebang pour les scripts Bash"
     },
-    "printwhile": {
-        "prefix": "printwhile",
+    "shebang_dash": {
+        "prefix": "shebang_dash",
         "body": [
-            "# Snippets pour les boucles while :",
-            "# while_read_file : Boucle while pour lecture de fichier",
-            "# while_read_file_multi : Boucle while pour lecture de fichier avec plusieurs champs"
+            "#!/bin/dash"
         ],
-        "description": "Aide-mémoire pour la boucle while"
+        "description": "Shebang pour les scripts Dash"
     },
-    "while_read_file": {
-        "prefix": "while_read_file",
+    "shebang_ksh": {
+        "prefix": "shebang_ksh",
         "body": [
-            "OLD_IFS=$IFS",
-            "IFS='${2:delimiter}'",
-            "while read -r ${1:ligne}; do",
-            "    ${3:# code ici}",
-            "done < ${4:fichier}",
-            "IFS=$OLD_IFS"
+            "#!/bin/ksh"
         ],
-        "description": "Boucle while pour lire un fichier avec un seul champ"
+        "description": "Shebang pour les scripts KornShell"
     },
-    "while_read_file_multi": {
-        "prefix": "while_read_file_multi",
+    "shebang_zsh": {
+        "prefix": "shebang_zsh",
         "body": [
-            "OLD_IFS=$IFS",
-            "IFS='${2:delimiter}'",
-            "# Lecture avec plusieurs champs. Remplacez les noms par '_' pour les champs inutilisés.",
-            "while read -r ${1:col1} ${3:col2} ${4:col3} ${5:col4} ${6:col5}; do",
-            "    ${7:# code ici – par exemple utilisez $col2 et $col5}",
-            "done < ${8:fichier}",
-            "IFS=$OLD_IFS"
+            "#!/bin/zsh"
         ],
-        "description": "Boucle while pour lire un fichier en assignant plusieurs champs à des variables"
+        "description": "Shebang pour les scripts Zsh"
     },
-    "while_read_command": {
-        "prefix": "while_read_command",
+    "shebang_awk": {
+        "prefix": "shebang_awk",
         "body": [
-            "OLD_IFS=$IFS",
-            "IFS='${1:delimiter}'",
-            "# Exécute la commande et boucle sur sa sortie",
-            "${2:command} | while read -r ${3:line}; do",
-            "    ${4:# code ici}",
-            "done",
-            "IFS=$OLD_IFS"
+            "#!/usr/bin/awk -f"
         ],
-        "description": "Boucle while pour traiter la sortie d'une commande"
+        "description": "Shebang pour les scripts Awk"
     },
-    "printif": {
-        "prefix": "printif",
+    "shebang_sed": {
+        "prefix": "shebang_sed",
         "body": [
-            "# Snippets pour les structures conditionnelles if :",
-            "# if_simple     : if conditionnel simple",
-            "# if_else       : if ... else",
-            "# if_elif       : if ... elif",
-            "# if_elif_else  : if ... elif ... else",
-            "# if_nested     : if imbriqué"
+            "#!/usr/bin/sed -nf"
         ],
-        "description": "Aide-mémoire pour les structures if"
+        "description": "Shebang pour les scripts Sed (avec options -nf)"
     },
-    "if_simple": {
-        "prefix": "if_simple",
-        "body": [
-            "if [ ${1:condition} ]; then",
-            "    ${2:# code si vrai}",
-            "fi"
-        ],
-        "description": "Structure if simple"
-    },
-    "if_else": {
-        "prefix": "if_else",
-        "body": [
-            "if [ ${1:condition} ]; then",
-            "    ${2:# code si vrai}",
-            "else",
-            "    ${3:# code sinon}",
-            "fi"
-        ],
-        "description": "Structure if ... else"
-    },
-    "if_elif": {
-        "prefix": "if_elif",
-        "body": [
-            "if [ ${1:condition1} ]; then",
-            "    ${2:# code si condition1 vraie}",
-            "elif [ ${3:condition2} ]; then",
-            "    ${4:# code si condition2 vraie}",
-            "fi"
-        ],
-        "description": "Structure if ... elif"
-    },
-    "if_elif_else": {
-        "prefix": "if_elif_else",
-        "body": [
-            "if [ ${1:condition1} ]; then",
-            "    ${2:# code si condition1 vraie}",
-            "elif [ ${3:condition2} ]; then",
-            "    ${4:# code si condition2 vraie}",
-            "else",
-            "    ${5:# code sinon}",
-            "fi"
-        ],
-        "description": "Structure if ... elif ... else"
-    },
-    "if_nested": {
-        "prefix": "if_nested",
-        "body": [
-            "if [ ${1:condition1} ]; then",
-            "    if [ ${2:condition2} ]; then",
-            "        ${3:# code si les deux conditions sont vraies}",
-            "    else",
-            "        ${4:# code si seule la première condition est vraie}",
-            "    fi",
-            "else",
-            "    ${5:# code si condition1 est fausse}",
-            "fi"
-        ],
-        "description": "Structure if imbriqué"
-    },
-    "printtest": {
-        "prefix": "printtest",
-        "body": [
-            "# Snippets pour les tests conditionnels :",
-            "# test_brackets         : Test avec [ ]",
-            "# test_double_brackets  : Test avec [[ ]]",
-            "# test_arithmetic       : Test arithmétique avec (( ))",
-            "# test_complex          : Exemple de test complexe (&& et ||)",
-            "# test_regex            : Test d'expression régulière avec une variable"
-        ],
-        "description": "Aide-mémoire pour les tests conditionnels"
-    },
-    "test_brackets": {
-        "prefix": "test_brackets",
-        "body": [
-            "[ ${1:variable} ${2:==} ${3:valeur} ]"
-        ],
-        "description": "Test conditionnel simple avec crochets []"
-    },
-    "test_double_brackets": {
-        "prefix": "test_double_brackets",
-        "body": [
-            "[[ ${1:variable} ${2:==} ${3:valeur} ]]"
-        ],
-        "description": "Test conditionnel avec doubles crochets [[]]"
-    },
-    "test_arithmetic": {
-        "prefix": "test_arithmetic",
-        "body": [
-            "(( ${1:variable} ${2:>=} ${3:valeur} ))"
-        ],
-        "description": "Test arithmétique avec (( ))"
-    },
-    "test_complex": {
-        "prefix": "test_complex",
-        "body": [
-            "if [[ ${1:var1} ${2:==} ${3:valeur1} && ${4:var2} ${5:>=} ${6:valeur2} || ${7:var3} ${8:!=} ${9:valeur3} ]]; then",
-            "    ${10:# code si vrai}",
-            "fi"
-        ],
-        "description": "Test conditionnel complexe utilisant && et ||"
-    },
-    "test_regex": {
-        "prefix": "test_regex",
-        "body": [
-            "if [[ ${1:variable} =~ ${2:regex} ]]; then",
-            "    ${3:# code si correspondance}",
-            "fi"
-        ],
-        "description": "Test d'expression régulière avec l'opérateur =~"
-    },
-    "printlet": {
-        "prefix": "printlet",
-        "body": [
-            "# Snippets pour les opérations arithmétiques :",
-            "# arithmetic_let : Évaluation arithmétique avec let"
-        ],
-        "description": "Aide-mémoire pour let / (( ))"
-    },
-    "arithmetic_let": {
-        "prefix": "arithmetic_let",
-        "body": [
-            "let ${1:var}=${2:expression}"
-        ],
-        "description": "Évaluation arithmétique avec let"
-    },
-    "printcase": {
-        "prefix": "printcase",
-        "body": [
-            "# Snippets pour les structures case :",
-            "# case_simple  : Structure case simple",
-            "# case_pattern : Structure case avec plusieurs motifs"
-        ],
-        "description": "Aide-mémoire pour les structures case"
-    },
-    "case_simple": {
-        "prefix": "case_simple",
-        "body": [
-            "case ${1:variable} in",
-            "    ${2:motif})",
-            "        ${3:# code ici} ;;",
-            "    *)",
-            "        ${4:# cas par défaut} ;;",
-            "esac"
-        ],
-        "description": "Structure case simple"
-    },
-    "case_pattern": {
-        "prefix": "case_pattern",
-        "body": [
-            "case ${1:variable} in",
-            "    ${2:motif1}|${3:motif2})",
-            "        ${4:# code pour motifs 1 et 2} ;;",
-            "    ${5:motif3})",
-            "        ${6:# code pour motif 3} ;;",
-            "    *)",
-            "        ${7:# cas par défaut} ;;",
-            "esac"
-        ],
-        "description": "Structure case avec plusieurs motifs"
-    },
-    "printfind": {
+
+   "printfind": {
         "prefix": "printfind",
         "body": [
             "# Snippets pour les commandes find :",
@@ -871,5 +1308,780 @@
             "sed -i '${1:commande}' ${2:fichier}"
         ],
         "description": "Edition in-place d'un fichier avec sed"
-    }
+    },
+
+    "printsystemd": {
+    "prefix": "printsystemd",
+    "body": [
+      "# Snippets pour systemd et systemctl :",
+      "# systemd_start          : Démarrer une unité",
+      "# systemd_stop           : Arrêter une unité",
+      "# systemd_restart        : Redémarrer une unité",
+      "# systemd_reload         : Recharger le service (si supporté)",
+      "# systemd_enable         : Activer une unité au démarrage",
+      "# systemd_disable        : Désactiver une unité au démarrage",
+      "# systemd_status         : Afficher le statut d'une unité",
+      "# systemd_edit           : Éditer l'unité (drop-ins)",
+      "# systemd_daemon_reload  : Recharger la configuration systemd",
+      "# systemd_mask           : Masquer une unité",
+      "# systemd_unmask         : Démasquer une unité",
+      "# systemd_list_units     : Lister les unités chargées",
+      "# systemd_get_default    : Obtenir la cible par défaut",
+      "# systemd_set_default    : Définir la cible par défaut",
+      "# systemd_isolate        : Basculer vers une cible",
+      "# systemd_analyze        : Outils d'analyse (blame, critical-chain...)",
+      "# systemd_timer          : Exemple d'unité .timer",
+      "# systemd_path           : Exemple d'unité .path",
+      "# systemd_journalctl     : Commandes de base journalctl",
+      "# systemd_journalctl_unit : Journal d'une unité",
+      "# systemd_journalctl_since_until : Journal entre deux dates",
+      "# systemd_journalctl_follow : Journal en direct (--follow)",
+      "# systemd_journalctl_nopager : Journal sans pager",
+      "# systemd_analyze_security : Évaluer la sécurité d'un service",
+      "# systemd_analyze_unit_files : Lister/Évaluer tous les units",
+      "# systemd_analyze_plot    : Générer un diagramme (SVG) du boot"
+    ],
+    "description": "Menu principal pour les commandes systemd/systemctl/journalctl"
+  },
+
+  "systemd_start": {
+    "prefix": "systemd_start",
+    "body": [
+      "systemctl start ${1:nom_du_service}.service"
+    ],
+    "description": "Démarrer une unité (service, socket, etc.)"
+  },
+
+  "systemd_stop": {
+    "prefix": "systemd_stop",
+    "body": [
+      "systemctl stop ${1:nom_du_service}.service"
+    ],
+    "description": "Arrêter une unité"
+  },
+
+  "systemd_restart": {
+    "prefix": "systemd_restart",
+    "body": [
+      "systemctl restart ${1:nom_du_service}.service"
+    ],
+    "description": "Redémarrer une unité"
+  },
+
+  "systemd_reload": {
+    "prefix": "systemd_reload",
+    "body": [
+      "systemctl reload ${1:nom_du_service}.service"
+    ],
+    "description": "Recharger la configuration d'une unité (si pris en charge)"
+  },
+
+  "systemd_enable": {
+    "prefix": "systemd_enable",
+    "body": [
+      "systemctl enable ${1:nom_du_service}.service"
+    ],
+    "description": "Activer une unité au démarrage"
+  },
+
+  "systemd_disable": {
+    "prefix": "systemd_disable",
+    "body": [
+      "systemctl disable ${1:nom_du_service}.service"
+    ],
+    "description": "Désactiver une unité au démarrage"
+  },
+
+  "systemd_status": {
+    "prefix": "systemd_status",
+    "body": [
+      "systemctl status ${1:nom_du_service}.service --no-pager"
+    ],
+    "description": "Afficher le statut d'une unité"
+  },
+
+  "systemd_edit": {
+    "prefix": "systemd_edit",
+    "body": [
+      "# Édite ou crée des drop-ins pour l'unité, sans écraser l'original",
+      "systemctl edit ${1:nom_du_service}.service"
+    ],
+    "description": "Éditer l'unité via des drop-ins (systemctl edit)"
+  },
+
+  "systemd_daemon_reload": {
+    "prefix": "systemd_daemon_reload",
+    "body": [
+      "systemctl daemon-reload"
+    ],
+    "description": "Recharger la configuration systemd (après modif .service, .socket, etc.)"
+  },
+
+  "systemd_mask": {
+    "prefix": "systemd_mask",
+    "body": [
+      "systemctl mask ${1:nom_du_service}.service"
+    ],
+    "description": "Masquer une unité (empêche son démarrage)"
+  },
+
+  "systemd_unmask": {
+    "prefix": "systemd_unmask",
+    "body": [
+      "systemctl unmask ${1:nom_du_service}.service"
+    ],
+    "description": "Démasquer une unité précédemment masquée"
+  },
+
+  "systemd_list_units": {
+    "prefix": "systemd_list_units",
+    "body": [
+      "# Lister les unités chargées, actives, etc.",
+      "systemctl list-units --type ${1:service} --all --no-pager"
+    ],
+    "description": "Lister les unités (services, sockets, etc.) avec systemctl list-units"
+  },
+
+  "systemd_get_default": {
+    "prefix": "systemd_get_default",
+    "body": [
+      "systemctl get-default"
+    ],
+    "description": "Obtenir la cible (target) par défaut"
+  },
+
+  "systemd_set_default": {
+    "prefix": "systemd_set_default",
+    "body": [
+      "systemctl set-default ${1:multi-user.target}"
+    ],
+    "description": "Définir la cible par défaut (ex: multi-user.target, graphical.target)"
+  },
+
+  "systemd_isolate": {
+    "prefix": "systemd_isolate",
+    "body": [
+      "systemctl isolate ${1:multi-user.target}"
+    ],
+    "description": "Basculer immédiatement vers une cible (target)"
+  },
+
+  "systemd_analyze": {
+    "prefix": "systemd_analyze",
+    "body": [
+      "# Quelques exemples :",
+      "systemd-analyze blame",
+      "systemd-analyze critical-chain",
+      "systemd-analyze plot > boot.svg",
+      "systemd-analyze dot > boot.dot"
+    ],
+    "description": "Outils d'analyse du démarrage (blame, critical-chain, plot...)"
+  },
+
+  "systemd_analyze_security": {
+    "prefix": "systemd_analyze_security",
+    "body": [
+      "systemd-analyze security ${1:nom_du_service}.service"
+    ],
+    "description": "Évalue la sécurité d'une unité (service)"
+  },
+
+  "systemd_analyze_unit_files": {
+    "prefix": "systemd_analyze_unit_files",
+    "body": [
+      "systemd-analyze unit-files"
+    ],
+    "description": "Liste/évalue les fichiers d'unités installés"
+  },
+
+  "systemd_analyze_plot": {
+    "prefix": "systemd_analyze_plot",
+    "body": [
+      "systemd-analyze plot > ${1:boot.svg}"
+    ],
+    "description": "Génère un diagramme SVG du processus de boot"
+  },
+
+  "systemd_timer": {
+    "prefix": "systemd_timer",
+    "body": [
+      "# Exemple d'unité .timer basique",
+      "[Unit]",
+      "Description=Exécution périodique de myscript.service",
+      "",
+      "[Timer]",
+      "OnBootSec=${1:5min}",
+      "OnUnitActiveSec=${2:1h}",
+      "Unit=${3:myscript.service}",
+      "",
+      "[Install]",
+      "WantedBy=timers.target"
+    ],
+    "description": "Exemple d'unité .timer pour déclencher un service périodiquement"
+  },
+
+  "systemd_path": {
+    "prefix": "systemd_path",
+    "body": [
+      "# Exemple d'unité .path basique",
+      "[Unit]",
+      "Description=Surveille un chemin et déclenche un service",
+      "",
+      "[Path]",
+      "PathChanged=${1:/var/log/myapp}",
+      "Unit=${2:myapp.service}",
+      "",
+      "[Install]",
+      "WantedBy=multi-user.target"
+    ],
+    "description": "Exemple d'unité .path pour lancer un service sur modification de fichier/dossier"
+  },
+
+  "systemd_journalctl": {
+    "prefix": "systemd_journalctl",
+    "body": [
+      "# Quelques options courantes de journalctl",
+      "journalctl --no-pager",
+      "journalctl --since '1 hour ago'",
+      "journalctl --until '2025-01-01 10:00:00'"
+    ],
+    "description": "Commandes de base pour consulter le journal systemd"
+  },
+
+  "systemd_journalctl_unit": {
+    "prefix": "systemd_journalctl_unit",
+    "body": [
+      "journalctl -u ${1:nom_du_service}.service --no-pager"
+    ],
+    "description": "Afficher le journal d'une unité spécifique"
+  },
+
+  "systemd_journalctl_since_until": {
+    "prefix": "systemd_journalctl_since_until",
+    "body": [
+      "journalctl -u ${1:nom_du_service}.service --since '${2:2025-01-01 09:00:00}' --until '${3:2025-01-01 10:00:00}' --no-pager"
+    ],
+    "description": "Consulter le journal d'une unité sur une plage de temps"
+  },
+
+  "systemd_journalctl_follow": {
+    "prefix": "systemd_journalctl_follow",
+    "body": [
+      "journalctl -u ${1:nom_du_service}.service -f"
+    ],
+    "description": "Suivre en temps réel le journal d'une unité (follow)"
+  },
+
+  "systemd_journalctl_nopager": {
+    "prefix": "systemd_journalctl_nopager",
+    "body": [
+      "journalctl -u ${1:nom_du_service}.service --no-pager"
+    ],
+    "description": "Afficher le journal sans less/more (pas de pager)"
+  },
+    "printselinux": {
+    "prefix": "printselinux",
+    "body": [
+      "# Snippets pour SELinux :",
+      "# selinux_sesearch_allow         : Recherche de règles allow via sesearch",
+      "# selinux_semanage_boolean       : Gérer un booléen SELinux",
+      "# selinux_semanage_permissive    : Ajouter/enlever un domaine permissif",
+      "# selinux_setenforce             : Passer SELinux en mode enforcing ou permissive",
+      "# selinux_ls_z                   : Afficher le contexte SELinux avec ls -Z",
+      "# selinux_ps_z                   : Afficher le contexte SELinux des processus",
+      "# selinux_id_z                   : Afficher le contexte SELinux de l'utilisateur",
+      "# selinux_chcon                  : Changer le contexte SELinux d'un fichier",
+      "# selinux_semanage_fcontext      : Définir un fcontext permanent",
+      "# selinux_matchpathcon           : Vérifier le contexte attendu d'un chemin",
+      "# selinux_restorecon             : Restaurer le contexte SELinux par défaut",
+      "# selinux_audit2allow            : Générer des règles allow depuis audit.log",
+      "# selinux_sealert                : Analyser les alertes SELinux"
+    ],
+    "description": "Menu principal pour les commandes SELinux (sesearch, semanage, etc.)"
+  },
+
+  "selinux_sesearch_allow": {
+    "prefix": "selinux_sesearch_allow",
+    "body": [
+      "# Exemple : chercher les règles allow pour une source, target, class, perm",
+      "sesearch --allow -s ${1:httpd_t} -t ${2:var_t} -c ${3:file} -p ${4:read}"
+    ],
+    "description": "Recherche de règles allow via sesearch (refpolicy)"
+  },
+
+  "selinux_semanage_boolean": {
+    "prefix": "selinux_semanage_boolean",
+    "body": [
+      "# Exemple : activer un booléen SELinux (HTTPD can network)",
+      "semanage boolean -m --on httpd_can_network_connect"
+    ],
+    "description": "Gérer un booléen SELinux (semanage boolean)"
+  },
+
+  "selinux_semanage_permissive": {
+    "prefix": "selinux_semanage_permissive",
+    "body": [
+      "# Exemple : ajouter un domaine en mode permissif",
+      "semanage permissive -a ${1:httpd_t}",
+      "",
+      "# Pour retirer le domaine du mode permissif :",
+      "semanage permissive -d ${1:httpd_t}"
+    ],
+    "description": "Ajouter/enlever un domaine en mode permissif via semanage"
+  },
+
+  "selinux_setenforce": {
+    "prefix": "selinux_setenforce",
+    "body": [
+      "# Passer SELinux en mode enforcing ou permissive",
+      "setenforce ${1:0|1}  # 0=permissive, 1=enforcing"
+    ],
+    "description": "Modifier le mode SELinux (enforcing/permissive)"
+  },
+
+  "selinux_ls_z": {
+    "prefix": "selinux_ls_z",
+    "body": [
+      "# Afficher le contexte SELinux des fichiers",
+      "ls -Z ${1:/chemin/vers/fichier_ou_dossier}"
+    ],
+    "description": "Lister un fichier ou répertoire avec son contexte SELinux"
+  },
+
+  "selinux_ps_z": {
+    "prefix": "selinux_ps_z",
+    "body": [
+      "# Afficher le contexte SELinux des processus",
+      "ps -eZ | grep ${1:httpd_t}"
+    ],
+    "description": "Lister les processus avec leur contexte SELinux"
+  },
+
+  "selinux_id_z": {
+    "prefix": "selinux_id_z",
+    "body": [
+      "# Afficher le contexte SELinux de l'utilisateur courant",
+      "id -Z"
+    ],
+    "description": "Afficher le contexte SELinux utilisateur"
+  },
+
+  "selinux_chcon": {
+    "prefix": "selinux_chcon",
+    "body": [
+      "# Changer le contexte SELinux d'un fichier ou dossier",
+      "chcon -t ${1:httpd_sys_content_t} ${2:/chemin/vers/fichier}"
+    ],
+    "description": "Modifier le contexte SELinux d'un fichier (chcon)"
+  },
+
+  "selinux_semanage_fcontext": {
+    "prefix": "selinux_semanage_fcontext",
+    "body": [
+      "# Définir un fcontext permanent (ex: pour un dossier /data/html), puis restorecon",
+      "semanage fcontext -a -t ${1:httpd_sys_content_t} \"${2:/data/html(/.*)?}\""
+    ],
+    "description": "Ajouter un contexte permanent via semanage fcontext"
+  },
+
+  "selinux_matchpathcon": {
+    "prefix": "selinux_matchpathcon",
+    "body": [
+      "# Vérifier le contexte SELinux attendu d'un chemin",
+      "matchpathcon ${1:/chemin/vers/fichier}"
+    ],
+    "description": "Afficher le contexte SELinux par défaut attendu pour un chemin"
+  },
+
+  "selinux_restorecon": {
+    "prefix": "selinux_restorecon",
+    "body": [
+      "# Restaurer le contexte SELinux par défaut d'un fichier ou dossier",
+      "restorecon -Rv ${1:/chemin/vers/repertoire}"
+    ],
+    "description": "Restaurer le contexte SELinux par défaut sur un fichier/répertoire"
+  },
+
+  "selinux_audit2allow": {
+    "prefix": "selinux_audit2allow",
+    "body": [
+      "# Générer un module SELinux autorisant des actions depuis /var/log/audit/audit.log",
+      "cat /var/log/audit/audit.log | audit2allow -M mymodule",
+      "semodule -i mymodule.pp"
+    ],
+    "description": "Générer un module .pp depuis les AVC trouvés dans audit.log"
+  },
+
+  "selinux_sealert": {
+    "prefix": "selinux_sealert",
+    "body": [
+      "# Analyser les alertes SELinux depuis /var/log/audit/audit.log",
+      "sealert -a /var/log/audit/audit.log"
+    ],
+    "description": "Analyser les alertes SELinux (audit.log) avec sealert"
+  },
+
+   "printacl": {
+    "prefix": "printacl",
+    "body": [
+      "# Snippets pour ACL (Access Control Lists) :",
+      "# acl_set_user               : Ajouter ou modifier ACL pour un utilisateur",
+      "# acl_set_group              : Ajouter ou modifier ACL pour un groupe",
+      "# acl_set_mask               : Définir le masque ACL",
+      "# acl_recursive              : Appliquer des ACL récursivement",
+      "# acl_remove_user            : Supprimer ACL pour un utilisateur",
+      "# acl_remove_all             : Supprimer toutes les ACL étendues",
+      "# getfacl_basic              : Afficher les ACL d'un fichier/répertoire",
+      "# setfacl_restore            : Restaurer des ACL depuis un fichier",
+      "# cp_preserve_acls           : Copier en préservant ACL",
+      "# tar_preserve_acls          : Archiver en préservant ACL",
+      "# setfacl_examples           : Exemples combinés setfacl",
+      "# getfacl_examples           : Exemples combinés getfacl"
+    ],
+    "description": "Menu principal pour la gestion des ACL (setfacl, getfacl, etc.)"
+  },
+
+  "acl_set_user": {
+    "prefix": "acl_set_user",
+    "body": [
+      "# Ajouter ou modifier une ACL pour un utilisateur",
+      "# Syntaxe : setfacl -m u:<utilisateur>:<permissions> <fichier>",
+      "setfacl -m u:${1:user_name}:${2:rwX} ${3:/chemin/vers/fichier}"
+    ],
+    "description": "Ajouter/modifier ACL pour un utilisateur avec setfacl -m u:user:perms"
+  },
+
+  "acl_set_group": {
+    "prefix": "acl_set_group",
+    "body": [
+      "# Ajouter ou modifier une ACL pour un groupe",
+      "# Syntaxe : setfacl -m g:<groupe>:<permissions> <fichier>",
+      "setfacl -m g:${1:group_name}:${2:rwX} ${3:/chemin/vers/fichier}"
+    ],
+    "description": "Ajouter/modifier ACL pour un groupe avec setfacl -m g:group:perms"
+  },
+
+  "acl_set_mask": {
+    "prefix": "acl_set_mask",
+    "body": [
+      "# Définir le masque ACL, limite les droits effectifs (pour u: et g:)",
+      "setfacl -m m:${1:rwX} ${2:/chemin/vers/fichier}"
+    ],
+    "description": "Définir le masque ACL (m:perms)"
+  },
+
+  "acl_recursive": {
+    "prefix": "acl_recursive",
+    "body": [
+      "# Appliquer des ACL récursivement",
+      "setfacl -R -m u:${1:user_name}:${2:rwX} ${3:/chemin/vers/repertoire}"
+    ],
+    "description": "Utiliser -R pour appliquer setfacl récursivement sur un répertoire"
+  },
+
+  "acl_remove_user": {
+    "prefix": "acl_remove_user",
+    "body": [
+      "# Supprimer une ACL spécifique pour un utilisateur",
+      "# Syntaxe : setfacl -x u:<utilisateur> <fichier>",
+      "setfacl -x u:${1:user_name} ${2:/chemin/vers/fichier}"
+    ],
+    "description": "Retirer une ACL pour un utilisateur précis (setfacl -x u:user)"
+  },
+
+  "acl_remove_all": {
+    "prefix": "acl_remove_all",
+    "body": [
+      "# Supprimer toutes les ACL étendues",
+      "setfacl -b ${1:/chemin/vers/fichier}"
+    ],
+    "description": "Retirer toutes les ACL d'un fichier (-b pour strip ACL)"
+  },
+
+  "getfacl_basic": {
+    "prefix": "getfacl_basic",
+    "body": [
+      "# Afficher les ACL d'un fichier ou répertoire",
+      "getfacl ${1:/chemin/vers/fichier_ou_repertoire}"
+    ],
+    "description": "Commande de base pour afficher les ACL (getfacl)"
+  },
+
+  "setfacl_restore": {
+    "prefix": "setfacl_restore",
+    "body": [
+      "# Restaurer des ACL depuis un fichier de backup (créé avec getfacl -R)",
+      "setfacl --restore=${1:backup_acl_file}"
+    ],
+    "description": "Recharger des ACL depuis un fichier généré par getfacl"
+  },
+
+  "cp_preserve_acls": {
+    "prefix": "cp_preserve_acls",
+    "body": [
+      "# Copier un fichier en préservant ACL et attributs",
+      "cp -p --preserve=mode,ownership,timestamps,acl ${1:source} ${2:destination}"
+    ],
+    "description": "Copier en préservant les ACL (cp -p --preserve=acl)"
+  },
+
+  "tar_preserve_acls": {
+    "prefix": "tar_preserve_acls",
+    "body": [
+      "# Créer ou extraire une archive tout en préservant les ACL",
+      "# Exemple de création :",
+      "tar --acls -cvf ${1:archive.tar} ${2:repertoire}",
+      "",
+      "# Exemple d'extraction :",
+      "tar --acls -xvf ${1:archive.tar}"
+    ],
+    "description": "Utiliser tar --acls pour archiver/restaurer les ACL"
+  },
+
+  "setfacl_examples": {
+    "prefix": "setfacl_examples",
+    "body": [
+      "# Exemples combinés :",
+      "# 1) Ajouter ACL lecture/écriture pour user bob",
+      "setfacl -m u:bob:rw /myfile",
+      "# 2) Ajouter ACL read-execute pour group www",
+      "setfacl -m g:www:rx /myfile",
+      "# 3) Définir le masque à rw-",
+      "setfacl -m m:rw /myfile",
+      "# 4) Supprimer l'ACL user alice",
+      "setfacl -x u:alice /myfile",
+      "# 5) Supprimer toutes les ACL étendues",
+      "setfacl -b /myfile",
+      "# 6) Appliquer récursivement sur un dossier",
+      "setfacl -R -m u:bob:rw /mydir"
+    ],
+    "description": "Quelques exemples pratiques d'utilisation de setfacl"
+  },
+
+  "getfacl_examples": {
+    "prefix": "getfacl_examples",
+    "body": [
+      "# Exemples combinés :",
+      "# 1) Afficher les ACL d'un fichier",
+      "getfacl /myfile",
+      "# 2) Lister récursivement les ACL d'un répertoire",
+      "getfacl -R /mydir",
+      "# 3) Sauvegarder les ACL dans un fichier",
+      "getfacl -R /mydir > acl_backup.txt",
+      "# 4) Restaurer les ACL depuis ce fichier",
+      "setfacl --restore=acl_backup.txt"
+    ],
+    "description": "Exemples combinés pour consulter et restaurer les ACL (getfacl)"
+  },
+   "printnmcli": {
+    "prefix": "printnmcli",
+    "body": [
+      "# Snippets pour NetworkManager via nmcli :",
+      "# nmcli_general_status            : Afficher l'état général de NetworkManager",
+      "# nmcli_general_hostname         : Définir ou afficher l'hostname",
+      "# nmcli_networking_on_off        : Activer ou désactiver la pile réseau (networking)",
+      "# nmcli_radio_wifi_on_off        : Activer ou désactiver le Wi-Fi",
+      "# nmcli_connection_show          : Lister toutes les connexions connues",
+      "# nmcli_connection_up            : Activer une connexion",
+      "# nmcli_connection_down          : Désactiver une connexion",
+      "# nmcli_connection_add_wifi      : Créer une connexion Wi-Fi",
+      "# nmcli_connection_add_ethernet  : Créer une connexion Ethernet",
+      "# nmcli_connection_edit          : Éditer une connexion en mode interactif",
+      "# nmcli_connection_modify        : Modifier une connexion (paramètres divers)",
+      "# nmcli_connection_delete        : Supprimer une connexion",
+      "# nmcli_connection_clone         : Cloner une connexion existante",
+      "# nmcli_device_wifi_list         : Lister les réseaux Wi-Fi disponibles",
+      "# nmcli_device_wifi_connect      : Se connecter à un réseau Wi-Fi existant",
+      "# nmcli_device_show             : Afficher les informations sur une interface",
+      "# nmcli_connection_reload        : Recharger les profils de connexion",
+      "# nmcli_exemples_avances         : Exemples multi-étapes (Bond, Bridge, VLAN)"
+    ],
+    "description": "Menu principal pour les commandes nmcli (NetworkManager)"
+  },
+
+  "nmcli_general_status": {
+    "prefix": "nmcli_general_status",
+    "body": [
+      "nmcli general status"
+    ],
+    "description": "Afficher l'état général de NetworkManager"
+  },
+
+  "nmcli_general_hostname": {
+    "prefix": "nmcli_general_hostname",
+    "body": [
+      "# Afficher ou définir l'hostname :",
+      "nmcli general hostname",
+      "nmcli general hostname ${1:nouvel_host}"
+    ],
+    "description": "Définir ou afficher l'hostname via nmcli"
+  },
+
+  "nmcli_networking_on_off": {
+    "prefix": "nmcli_networking_on_off",
+    "body": [
+      "# Activer/désactiver la pile réseau gérée par NetworkManager",
+      "nmcli networking on",
+      "nmcli networking off"
+    ],
+    "description": "Contrôler l'option networking (pile réseau) : on / off"
+  },
+
+  "nmcli_radio_wifi_on_off": {
+    "prefix": "nmcli_radio_wifi_on_off",
+    "body": [
+      "# Activer/désactiver la radio Wi-Fi",
+      "nmcli radio wifi on",
+      "nmcli radio wifi off"
+    ],
+    "description": "Activer ou désactiver le Wi-Fi via nmcli radio"
+  },
+
+  "nmcli_connection_show": {
+    "prefix": "nmcli_connection_show",
+    "body": [
+      "# Lister toutes les connexions enregistrées",
+      "nmcli connection show",
+      "",
+      "# Lister les connexions actives uniquement",
+      "nmcli connection show --active"
+    ],
+    "description": "Afficher toutes les connexions (ou seulement les actives)"
+  },
+
+  "nmcli_connection_up": {
+    "prefix": "nmcli_connection_up",
+    "body": [
+      "# Activer une connexion existante",
+      "nmcli connection up ${1:NomConnexion}"
+    ],
+    "description": "Activer une connexion NetworkManager"
+  },
+
+  "nmcli_connection_down": {
+    "prefix": "nmcli_connection_down",
+    "body": [
+      "# Désactiver une connexion active",
+      "nmcli connection down ${1:NomConnexion}"
+    ],
+    "description": "Désactiver une connexion NetworkManager"
+  },
+
+  "nmcli_connection_add_wifi": {
+    "prefix": "nmcli_connection_add_wifi",
+    "body": [
+      "# Créer une connexion Wi-Fi",
+      "nmcli connection add type wifi ifname ${1:wlan0} con-name ${2:MonWifi} \",
+      "    ssid ${3:MonSSID}"
+    ],
+    "description": "Créer un profil Wi-Fi (ssid, ifname, con-name)"
+  },
+
+  "nmcli_connection_add_ethernet": {
+    "prefix": "nmcli_connection_add_ethernet",
+    "body": [
+      "# Créer une connexion Ethernet",
+      "nmcli connection add type ethernet ifname ${1:eth0} con-name ${2:MaConnexionEth}"
+    ],
+    "description": "Créer un profil Ethernet (ifname, con-name)"
+  },
+
+  "nmcli_connection_edit": {
+    "prefix": "nmcli_connection_edit",
+    "body": [
+      "# Éditer une connexion en mode interactif",
+      "nmcli connection edit ${1:NomConnexion}"
+    ],
+    "description": "Mode interactif pour configurer une connexion existante"
+  },
+
+  "nmcli_connection_modify": {
+    "prefix": "nmcli_connection_modify",
+    "body": [
+      "# Modifier des paramètres d'une connexion",
+      "nmcli connection modify ${1:NomConnexion} ${2:ipv4.addresses} ${3:192.168.1.10/24} \",
+      "                         ${4:ipv4.gateway} ${5:192.168.1.1} \",
+      "                         ${6:ipv4.dns} ${7:1.1.1.1,8.8.8.8} \",
+      "                         ${8:ipv4.method} manual"
+    ],
+    "description": "Modifier une connexion : IP statique, DNS, gateway, etc."
+  },
+
+  "nmcli_connection_delete": {
+    "prefix": "nmcli_connection_delete",
+    "body": [
+      "# Supprimer une connexion",
+      "nmcli connection delete ${1:NomConnexion}"
+    ],
+    "description": "Supprimer un profil de connexion NetworkManager"
+  },
+
+  "nmcli_connection_clone": {
+    "prefix": "nmcli_connection_clone",
+    "body": [
+      "# Cloner une connexion existante",
+      "nmcli connection clone ${1:NomConnexionExistant} ${2:NouveauNom}"
+    ],
+    "description": "Cloner un profil existant en un nouveau"
+  },
+
+  "nmcli_device_wifi_list": {
+    "prefix": "nmcli_device_wifi_list",
+    "body": [
+      "# Lister les réseaux Wi-Fi disponibles",
+      "nmcli device wifi list"
+    ],
+    "description": "Afficher les réseaux Wi-Fi scannés par la carte"
+  },
+
+  "nmcli_device_wifi_connect": {
+    "prefix": "nmcli_device_wifi_connect",
+    "body": [
+      "# Se connecter à un réseau Wi-Fi (avec ssid et clé) sans créer de profil nommé",
+      "nmcli device wifi connect ${1:MonSSID} password ${2:MaCleWiFi}"
+    ],
+    "description": "Se connecter à un réseau Wi-Fi en une seule commande"
+  },
+
+  "nmcli_device_show": {
+    "prefix": "nmcli_device_show",
+    "body": [
+      "# Afficher les informations sur une interface réseau",
+      "nmcli device show ${1:eth0}"
+    ],
+    "description": "Détails sur une interface (IP, DNS, etc.) via nmcli"
+  },
+
+  "nmcli_connection_reload": {
+    "prefix": "nmcli_connection_reload",
+    "body": [
+      "# Recharger les profils de connexion depuis /etc/NetworkManager/system-connections",
+      "nmcli connection reload"
+    ],
+    "description": "Forcer la recharge des profils de connexion"
+  },
+
+  "nmcli_exemples_avances": {
+    "prefix": "nmcli_exemples_avances",
+    "body": [
+      "# Quelques exemples avancés (Bond, Bridge, VLAN) :",
+      "",
+      "# 1) Créer un bond avec deux interfaces",
+      "nmcli connection add type bond con-name bond0 ifname bond0 mode active-backup",
+      "nmcli connection add type ethernet ifname eth0 master bond0",
+      "nmcli connection add type ethernet ifname eth1 master bond0",
+      "",
+      "# 2) Créer un bridge",
+      "nmcli connection add type bridge ifname br0 con-name br0",
+      "nmcli connection add type ethernet ifname eth0 master br0",
+      "",
+      "# 3) Créer un VLAN",
+      "nmcli connection add type vlan ifname vlan10 dev eth0 id 10 con-name vlan10",
+      "",
+      "# On peut ensuite modifier les IP, DNS...",
+      "nmcli connection modify vlan10 ipv4.addresses 192.168.10.10/24 ipv4.method manual"
+    ],
+    "description": "Exemples multi-étapes : Bond, Bridge, VLAN via nmcli"
+  }
 }
+
